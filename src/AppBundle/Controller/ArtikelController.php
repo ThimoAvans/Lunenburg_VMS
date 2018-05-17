@@ -11,8 +11,8 @@ use AppBundle\Form\Type\ArtikelType;
 class ArtikelController extends Controller
 {
     /**
-    * @Route("/artikel/bestand", name="artikelbestand")
-    */
+     * @Route("/artikel/bestand", name="artikelbestand")
+     */
     public function nieuwArtikelBestand(Request $request) {
         $nieuwArtikelBestand = new Artikel();
         $form = $this->createForm(ArtikelType::class, $nieuwArtikelBestand);
@@ -21,6 +21,24 @@ class ArtikelController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($nieuwArtikelBestand);
+            $em->flush();
+            return $this->redirect($this->generateurl("artikelbestand"));
+        }
+
+        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+    }
+
+    /**
+     * @Route("/artikel/wijzig/{artikelnummer}", name="artikelwijzigen")
+     */
+    public function wijzigArtikel(Request $request, $artikelnummer) {
+        $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findBy($artikelnummer);
+        $form = $this->createForm(ArtikelType::class, $bestaandArtikel);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bestaandArtikel);
             $em->flush();
             return $this->redirect($this->generateurl("artikelbestand"));
         }
