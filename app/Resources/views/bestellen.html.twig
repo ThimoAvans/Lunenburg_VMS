@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>Bestelorders</h1>
+	{% for bestelorder in bestelorders %}
+		<ul>
+			<li>
+			 Bestelordernummer: {{bestelorder.bestelordernummer}}, 
+			 Artikelnummer: {{bestelorder.artikelnummer}},
+			 Leverancier: {{bestelorder.leverancier}},
+			 Hoeveelheid: {{bestelorder.hoeveelheid}},
+			 <a href="{{ path('bestelorderwijzigen', {'id':bestelorder.bestelordernummer}) }}">Wijzig</a>
+			 <a href="{{ path('bestelorderverwijderen', {'id':bestelorder.bestelordernummer}) }}">Verwijder</a>
+			</li>
+		</ul>
+	{% endfor %}
+{% endblock %}
