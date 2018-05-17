@@ -32,7 +32,7 @@ class ArtikelController extends Controller
      * @Route("/artikel/wijzig/{artikelnummer}", name="artikelwijzigen")
      */
     public function wijzigArtikel(Request $request, $artikelnummer) {
-        $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findBy($artikelnummer);
+        $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
         $form = $this->createForm(ArtikelType::class, $bestaandArtikel);
 
         $form->handleRequest($request);
