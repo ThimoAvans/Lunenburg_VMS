@@ -13,15 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Artikel
 {
-    // *
-    //  * @var int
-    //  *
-    //  * @ORM\Column(name="id", type="integer")
-    //  * @ORM\Id
-    //  * @ORM\GeneratedValue(strategy="AUTO")
-     
-    // private $id;
-
     /**
      * @var int
      *
@@ -109,7 +100,7 @@ class Artikel
      */
     private $goederenopdracht;
 
-        public function __construct() {
+    public function __construct() {
         $this->artikelen = new ArrayCollection();
     }
 

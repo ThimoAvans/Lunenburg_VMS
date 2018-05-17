@@ -11,21 +11,21 @@ use AppBundle\Form\Type\ArtikelType;
 class ArtikelController extends Controller
 {
     /**
-     * @Route("/artikel/bestand", name="artikelbestand")
+     * @Route("/artikel/nieuw", name="artikeltoevoegen")
      */
-    public function nieuwArtikelBestand(Request $request) {
-        $nieuwArtikelBestand = new Artikel();
-        $form = $this->createForm(ArtikelType::class, $nieuwArtikelBestand);
+    public function nieuwArtikel(Request $request) {
+        $nieuwArtikel = new Artikel();
+        $form = $this->createForm(ArtikelType::class, $nieuwArtikel);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($nieuwArtikelBestand);
+            $em->persist($nieuwArtikel);
             $em->flush();
             return $this->redirect($this->generateurl("artikelbestand"));
         }
 
-        return new Response($this->render('artikel.html.twig', array('artikelen' => $form->createView())));
+        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
     }
 
     /**
@@ -44,5 +44,24 @@ class ArtikelController extends Controller
         }
 
         return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+    }
+
+    /**
+     * @Route("/artikel/verwijder/{artikelnummer}", name="artikelverwijderen")
+     */
+    public function verwijderArtikel(Request $request, $artikelnummer) {
+        $em = $this->getDoctrine()->getManager();
+        $bestaandArtikel = $em->getRepository("AppBundle:Artikel")->find($artikelnummer);
+        $em->remove($bestaandArtikel);
+        $em->flush();
+        return $this->redirect($this->generateurl("artikelbestand"));
+    }
+
+    /**
+     * @Route("/artikelbestand", name="artikelbestand")
+     */
+    public function alleArtikelen(Request $request) {
+      $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+      return new Response($this->render('artikel.html.twig', array('artikelen' => $Artikelen)));
     }
 }
