@@ -52,9 +52,9 @@ class Artikel
     private $magazijnlocatie;
 
     /**
-     * @var string
+     * @var decimal
      *
-     * @ORM\Column(name="inkoopprijs", type="decimal", precision=2, scale=1)
+     * @ORM\Column(name="inkoopprijs", type="decimal", precision=10, scale=1)
      */
     private $inkoopprijs;
 
