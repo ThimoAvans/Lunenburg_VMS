@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Bestellen;
 use AppBundle\Form\Type\BestellenType;
 
-class MijnEersteController extends Controller
+class BestelController extends Controller
 {	
 	/**
      * @Route("/bestelorder/nieuw", name="nieuwbestelorder")

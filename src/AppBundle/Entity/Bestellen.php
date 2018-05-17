@@ -25,6 +25,7 @@ class Bestellen
      *
      * @ORM\Column(name="bestelordernummer", type="integer", unique=true)
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $bestelordernummer;
 
