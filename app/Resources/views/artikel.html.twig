@@ -4,6 +4,8 @@
 	<ul>
 	{% for artikel in artikelen %}
 	<li>
+		Artikelnummer: {{ artikel.artikelnummer }},
+		Omschrijving: {{ artikel.omschrijving }},
 		Huidige voorraad: {{ artikel.huidigeVoorraad }}, 
 		Minimum voorraad: {{ artikel.minimumVoorraad }},
 		Bestelserie: {{ artikel.bestelserie }}
