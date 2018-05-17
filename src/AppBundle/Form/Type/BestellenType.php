@@ -10,6 +10,7 @@ use AppBundle\Controller\BestelController;
 //vul aan als je andere invoerveld-typen wilt gebruiken in je formulier
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class BestellenType extends AbstractType
@@ -17,8 +18,13 @@ class BestellenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
-        $builder
-            ->add('artikelnummer', IntegerType::class);
+        // $builder
+        //     ->add('artikelnummer', IntegerType::class);
+                $builder
+        ->add('artikelnummer', EntityType::class, array(
+        'class' => 'AppBundle:Artikel',
+        'choice_label' => 'artikelnummer'))
+        ;
         $builder
             ->add('leverancier', TextType::class);
         $builder
