@@ -25,6 +25,6 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("artikelbestand"));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->render('artikel.html.twig', array('artikelen' => $form->createView())));
     }
 }

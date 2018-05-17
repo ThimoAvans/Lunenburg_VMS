@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	<h1>Artikel overzicht</h1>
-	{% for artikelen in artikelen %}
+	<ul>
+	{% for artikel in artikelen %}
+	<li>
+
+	{{ artikel.huidigeVoorraad }}, {{ artikel.minimumVoorraad }}
+
+	</li>
 	{% endfor %}
+	<ul>
 {% endblock %}

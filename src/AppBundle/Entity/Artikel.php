@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Artikel
@@ -107,6 +108,10 @@ class Artikel
      * @ORM\ManyToMany(targetEntity="OntvangenGoederen", inversedBy="ontvangengoederen", cascade={"persist"})
      */
     private $goederenopdracht;
+
+        public function __construct() {
+        $this->artikelen = new ArrayCollection();
+    }
 
     // /**
     //  * Set id
