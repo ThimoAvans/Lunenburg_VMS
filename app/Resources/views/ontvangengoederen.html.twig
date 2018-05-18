@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<h1>Ontvangen Goederen</h1>
-	{% for goederen in goederen %}
-		<ul>
-			<li><a href="{{path('goederenwijzigen', {'ontvangstnummer':goederen.ontvangstnummer})}}">Wijzig</a>
-			<a href="{{path('goederenverwijdering', {'ontvangstnummer':goederen.ontvangstnummer})}}">Verwijderen</a>
-
-			{{goederen.artikelnummer}}, {{goederen.ontvangstnummer}}, {{ goederen.datumontvangst|date('Y-m-d') }}, {{goederen.hoeveelheid}}, {{goederen.kwaliteit}}, {{goederen.omschrijving}}, 
-			{{goederen.leverancier}}, {{goederen.ontvangen}}
-
-			</li>
-		</ul>
-	{% endfor %}
+    <h1>Ontvangen Goederen</h1>
+    {% for goederen in goederen %}
+        <ul>
+            <li>
+            Ontvanstnummer: {{goederen.ontvangstnummer}} </BR>
+            Artikelnummer: {{goederen.artikelnummer}} </BR>
+            Datum Ontvangst: {{ goederen.datumontvangst|date('Y-m-d') }} </BR>
+            Hoeveelheid: {{goederen.hoeveelheid}} </BR>
+            Kwaliteit: {{goederen.kwaliteit}} </BR>
+            Omschrijving: {{goederen.omschrijving}} </BR>
+            Leverancier: {{goederen.leverancier}} </BR>
+            Ontvangen: {{goederen.ontvangen}} </BR>
+            <a href="{{path('goederenwijzigen', {'ontvangstnummer':goederen.ontvangstnummer})}}">Wijzig</a>
+            <a href="{{path('goederenverwijdering', {'ontvangstnummer':goederen.ontvangstnummer})}}">Verwijderen</a>
+            </li>
+        </ul>
+    {% endfor %}
 {% endblock %}
