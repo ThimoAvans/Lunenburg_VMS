@@ -40,6 +40,7 @@ class ArtikelController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($bestaandArtikel);
+            $bestaandArtikel->bestelserie = $bestaandArtikel->minimumVoorraad - $bestaandArtikel->huidigeVoorraad;
             $em->flush();
             return $this->redirect($this->generateurl("artikelbestand"));
         }
