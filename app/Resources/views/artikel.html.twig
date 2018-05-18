@@ -4,10 +4,13 @@
 	<ul>
 	{% for artikel in artikelen %}
 	<li>
+		Artikelnummer: {{ artikel.artikelnummer }}, 
+		Omschrijving: {{ artikel.omschrijving }}, </BR>
 		Huidige voorraad: {{ artikel.huidigeVoorraad }}, 
 		Minimum voorraad: {{ artikel.minimumVoorraad }},
+		Bestelserie: {{ artikel.bestelserie }} 
 		<a href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a>
-		<a href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a>
+		<a href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a> </BR></BR>
 	</li>
 	{% endfor %}
 	<ul>

@@ -56,9 +56,9 @@ class ArtikelType extends AbstractType
          $builder
         ->add('huidigeVoorraad', IntegerType::class) 
         ;          
-        $builder
-        ->add('bestelserie', IntegerType::class) 
-        ;
+        //$builder
+        //->add('bestelserie', IntegerType::class) 
+        //;
 //         $builder->add('magazijnlocatie', ChoiceType::class, array(
 //     'choices' => array(
 //         '1' => 'en',
