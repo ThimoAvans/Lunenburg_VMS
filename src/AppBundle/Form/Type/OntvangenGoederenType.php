@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 //EntiteitType vervangen door b.v. KlantType
 class OntvangenGoederenType extends AbstractType
@@ -34,8 +35,12 @@ class OntvangenGoederenType extends AbstractType
         $builder
             ->add('leverancier', TextType::class);
         $builder
-            ->add('ontvangen', TextType::class);
-      
+        ->add('Ontvangen', ChoiceType::class, array(
+        'choices'  => array( 
+        'Ja' => "Ontvangen",
+        'Nee' => "Niet Ontvangen",
+    ),
+));
 
                                                                                        	 
 		//zie
@@ -46,7 +51,7 @@ class OntvangenGoederenType extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'AppBundle\Entity\OntvangenGoederen', //Entiteit vervangen door b.v. Klant
+			'data_class' => 'AppBundle\Entity\OntvangenGoederen', 
 		));
 	}
 }
