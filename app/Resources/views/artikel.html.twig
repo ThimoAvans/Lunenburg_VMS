@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<h1>Artikel overzicht</h1>
+	<h2>Overzicht van alle artikelen</h2>
 	<ul>
 	{% for artikel in artikelen %}
 	<li>
@@ -13,5 +13,5 @@
 		<a href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a> </BR></BR>
 	</li>
 	{% endfor %}
-	<ul>
+	</ul>
 {% endblock %}

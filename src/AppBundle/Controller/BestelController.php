@@ -13,7 +13,7 @@ class BestelController extends Controller
 	/**
      * @Route("/bestelorder/nieuw", name="nieuwbestelorder")
      */
-    public function nieuwBestelorder(Request $request) {
+	public function nieuwBestelorder(Request $request) {
 		$nieuwBestelorder = new Bestellen();
 		$form = $this->createForm(BestellenType::class, $nieuwBestelorder);
 
@@ -26,12 +26,12 @@ class BestelController extends Controller
 		}
 
 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
-    }
+	}
 
 	/**
      * @Route("/bestelorder/wijzig/{id}", name="bestelorderwijzigen")
      */
-    public function wijzigBestelorder(Request $request, $id) {
+	public function wijzigBestelorder(Request $request, $id) {
 		$bestaandBestelorder = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->find($id);
 		$form = $this->createForm(BestellenType::class, $bestaandBestelorder);
 
@@ -44,26 +44,26 @@ class BestelController extends Controller
 		}
 
 		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
-    }
+	}
 
 	/**
      * @Route("/bestelorder/verwijder/{id}", name="bestelorderverwijderen")
      */
-    public function verwijderBestelorder(Request $request, $id) {
-    	$em = $this->getDoctrine()->getManager();
+	public function verwijderBestelorder(Request $request, $id) {
+		$em = $this->getDoctrine()->getManager();
 		$bestaandBestelorder = $em->getRepository("AppBundle:Bestellen")->find($id);
 		$em->remove($bestaandBestelorder);
 		$em->flush();
 		return $this->redirect($this->generateurl("bestelorderoverzicht"));
-    }
+	}
 
 
 	/**
      * @Route("/bestelorderoverzicht", name="bestelorderoverzicht")
      */
-    public function alleBestelorders(Request $request) {
-	  $Bestelorders = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->findAll();
-      return new Response($this->render('bestellen.html.twig', array('bestelorders' => $Bestelorders)));
-    }
+	public function alleBestelorders(Request $request) {
+		$Bestelorders = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->findAll();
+		return new Response($this->render('bestellen.html.twig', array('bestelorders' => $Bestelorders)));
+	}
 }
 ?>
