@@ -23,6 +23,7 @@
 						<th>Bestelserie</th>
 
 						<th>Wijzigen</th>
+						<th>Verwijderen</th>
 					</thead>
 					{% for artikel in artikelen %}
 					<tbody>
@@ -35,10 +36,14 @@
 							<th>{{ artikel.huidigeVoorraad }} </th>
 							<th>{{ artikel.minimumVoorraad }} </th>
 							<th>{{ artikel.bestelserie }} </th> 
-							
+
 
 							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
 							<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
+
+							<td><button type="button" class="btn btn-primary btn-sm"><a href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}" style="color:white" >Wijzig</a></button></td>
+							<td><button type="button" class="btn btn-danger btn-sm"><a href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}" style="color:white" onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?')"	>Verwijder</a></button></td>
+
 						</tr>
 					</tbody>
 							{% endfor %}	
