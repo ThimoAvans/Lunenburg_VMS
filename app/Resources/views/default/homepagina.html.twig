@@ -1,42 +1,75 @@
-{% extends 'base.html.twig' %}
-
 {% block body %}
+
 <head>
-    <meta charset="utf-8">
-    <title>Login</title>
+
+	<meta charset="utf-8">
+	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
 	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-  </head>
-  <body>
+</head>
+<style>
+
+body {
+    background-image: url("logo-lunenburg.png");
+    background-color: #cccccc;
+	text-align: center;
+
+}
+input[type=text] {
+
+}
+form {
+	display: inline-block;
+	
+	
+}
+
+h1   {
+	color: black;
+	
+}
+
+p    {
+	color: black;
+
+}
+</style>
+<body>
+
 	<center>
 		<div class="login">
-			<h1 class="loginheading">Login</h1>
-			<form method="post" action="./artikelbestand">
-					<div class="form-group nameInput has-feedback">
-						<label for="name">Gebruikersnaam</label>
-						<input type="text" class="form-control" name="name" id="name" placeholder="Vul hier uw gebruikersnaam in">
-					</div>
-					<div class="form-group pswInput has-feedback">
-						<label for="password">Wachtwoord</label>
-						<input type="password" class="form-control" name="psw" id="psw" placeholder="Vul hier uw wachtwoord in">
-					</div>
-				<button type="submit" onclick="myFunction()" class="btn btn-default">Login</button>
+			<h1 class="loginheading" >Login</h1>
+			<form onsubmit="return validateForm();  return false;" method="post" action="./artikelbestand">
+				<div class="form-group nameInput has-feedback">
+					<label for="name">Gebruikersnaam</label>
+					<input type="text" class="form-control" name="name" id="name" placeholder="Vul hier uw gebruikersnaam in">
+				</div>
+				<div class="form-group pswInput has-feedback">
+					<label for="password">Wachtwoord</label>
+					<input type="password" class="form-control" name="psw" id="psw"  placeholder="Vul hier uw wachtwoord in">
+				</div>
+				<button type="submit" name="login-submit" class="btn btn-default">Login</button>
 				<p >Problemen bij het inloggen? neem dan <a href="javascript:alert('040-187555029');">contact</a> op met de administrator</p>
-				<script>
-function myFunction() {
-    var x = document.getElementById("psw").defaultValue;
-}
-</script>
 			</form>
+			<script>
+				function validateForm(){
+					if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
+						alert('U wordt doorgestuurd naar menu');
+					} else {
+						alert('Verkeerde gebruikersnaam of wachtwoord!');
+						return false;
+					}
+				}
+			</script>
+
 			<p class="text-muted loginbottomtext"></p> 
 		</div>
 	</center>
-  </body>
-  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+</body>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 
 
 {% endblock %}
