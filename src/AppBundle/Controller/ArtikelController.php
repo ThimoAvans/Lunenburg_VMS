@@ -68,15 +68,18 @@ class ArtikelController extends Controller
     }
 
     /**
-    *@Route("/search/artikel", name="artikelzoeken")
+    *@Route("/artikelzoeken", name="artikelzoeken")
     */
-    public function zoekartikel(Request $request){
-      $zoekwaarde = $request->request->get('zoekwaarde');
+    public function artikelzoeken(Request $request){
+      $zoekwaarde = $request->request->GET('zoekwaarde');
+      
       if($zoekwaarde == null) {
         return new Response("Er is geen zoekwaarde ingevoerd!");
-      } else {
+      } else {  
       //maak de query, gebruik $zoekwaarde als parameter, haal gegevens op en toon ze in een TWIG template (degene die je waarschijnlijk ook gebruikt voor het zoekformulier)
-        return new Response($this->render('', array('zoekwaarde' =>  $zoekwaarde)));
+        $zoekwaarde = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findByArtikelnummer($zoekwaarde);
+        return new Response($this->render('artikelzoeken.html.twig', array('zoekwaarde' =>  $zoekwaarde)));
+
       }
     }
 }
