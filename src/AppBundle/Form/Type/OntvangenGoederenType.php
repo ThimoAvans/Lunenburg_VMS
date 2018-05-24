@@ -13,16 +13,15 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-//EntiteitType vervangen door b.v. KlantType
+
 class OntvangenGoederenType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('artikelnummer', EntityType::class, array(
+            ->add('artikelnummer', EntityType::class, array(
             'class'=> 'AppBundle:Artikel',
-            'choice_label' => 'artikelnummer', 'expanded' => false,  'multiple' => true));
-        //$builder
+            'choice_label' => 'naam', 'expanded' => false,  'multiple' => true));
         $builder
             ->add('datumontvangst', DateType::class); 
         $builder
@@ -34,17 +33,10 @@ class OntvangenGoederenType extends AbstractType
         $builder
             ->add('leverancier', TextType::class);
         $builder
-        ->add('Ontvangen', ChoiceType::class, array(
-        'choices'  => array( 
-        'Ja' => "Ontvangen",
-        'Nee' => "Niet Ontvangen",
-    ),
-));
-
-                                                                                       	 
-		//zie
-		//http://symfony.com/doc/current/forms.html#built-in-field-types
-		//voor meer typen invoer
+            ->add('Ontvangen', ChoiceType::class, array(
+            'choices'  => array( 
+            'Ja' => "Ontvangen",
+            'Nee' => "Niet Ontvangen",),));                                                                                    	 
     }
 	
 	public function configureOptions(OptionsResolver $resolver)
