@@ -24,7 +24,7 @@ class GoederenController extends Controller{
             $em->flush();
             return $this->redirect($this->generateurl("ontvangengoederennieuw"));
         }
-        return new Response($this->render('form.html.twig', array ('form' => $form->createView())));
+        return new Response($this->renderview('form.html.twig', array ('form' => $form->createView())));
     }
 
     /**
@@ -41,7 +41,7 @@ class GoederenController extends Controller{
             $em->flush();
             return $this->redirect($this->generateurl("alleGoederen"));
         }
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
     }
 
     /**
@@ -65,7 +65,7 @@ class GoederenController extends Controller{
      */
     public function alleGoederen(request $request) {
         $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Groen");
-        return new Response($this->render('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
+        return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
     }
 
     /**
@@ -73,7 +73,7 @@ class GoederenController extends Controller{
      */
     public function nietOntvangenGoederen(request $request) {
         $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Rood");
-        return new Response($this->render('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
+        return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
     }
 
 }

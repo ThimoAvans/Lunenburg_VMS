@@ -26,7 +26,7 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("artikelbestand"));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
     }
 
     /**
@@ -45,7 +45,7 @@ class ArtikelController extends Controller
             return $this->redirect($this->generateurl("artikelbestand"));
         }
 
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
     }
 
     /**
@@ -64,7 +64,7 @@ class ArtikelController extends Controller
      */
     public function alleArtikelen(Request $request) {
       $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
-      return new Response($this->render('artikel.html.twig', array('artikelen' => $Artikelen)));
+      return new Response($this->renderview('artikel.html.twig', array('artikelen' => $Artikelen)));
     }
 
     /**
@@ -78,7 +78,7 @@ class ArtikelController extends Controller
       } else {  
       //maak de query, gebruik $zoekwaarde als parameter, haal gegevens op en toon ze in een TWIG template (degene die je waarschijnlijk ook gebruikt voor het zoekformulier)
         $zoekwaarde = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findByArtikelnummer($zoekwaarde);
-        return new Response($this->render('artikelzoeken.html.twig', array('zoekwaarde' =>  $zoekwaarde)));
+        return new Response($this->renderview('artikelzoeken.html.twig', array('zoekwaarde' =>  $zoekwaarde)));
 
       }
     }
