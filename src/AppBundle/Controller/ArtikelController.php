@@ -66,4 +66,17 @@ class ArtikelController extends Controller
       $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
       return new Response($this->render('artikel.html.twig', array('artikelen' => $Artikelen)));
     }
+
+    /**
+    *@Route("/search/artikel", name="artikelzoeken")
+    */
+    public function zoekartikel(Request $request){
+      $zoekwaarde = $request->request->get('zoekwaarde');
+      if($zoekwaarde == null) {
+        return new Response("Er is geen zoekwaarde ingevoerd!");
+      } else {
+      //maak de query, gebruik $zoekwaarde als parameter, haal gegevens op en toon ze in een TWIG template (degene die je waarschijnlijk ook gebruikt voor het zoekformulier)
+        return new Response($this->render('', array('zoekwaarde' =>  $zoekwaarde)));
+      }
+    }
 }
