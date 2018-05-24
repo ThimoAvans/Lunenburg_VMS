@@ -107,14 +107,6 @@ class Artikel
      */
     public $bestelserie;
 
-    // *
-    //  * @var int
-    //  *
-    //  * @ORM\ManyToOne(targetEntity="Bestellen", inversedBy="artikelen")
-    //  * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="bestelordernummer")
-     
-    // private $bestelopdracht;
-
     /**
      * @var int
      *
@@ -132,30 +124,6 @@ class Artikel
     public function __construct() {
         $this->artikelen = new ArrayCollection();
     }
-
-    // /**
-    //  * Set id
-    //  *
-    //  * @param string $id
-    //  *
-    //  * @return Product
-    //  */
-    // public function setId($id)
-    // {
-    //     $this->id = $id;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * Get id
-    //  *
-    //  * @return int
-    //  */
-    // public function getId()
-    // {
-    //     return $this->id;
-    // }
 
     /**
      * Set artikelnummer
