@@ -15,7 +15,7 @@ class homeController extends Controller
     public function indexAction()
     {
 
-       return $this->renderview('default/homepagina.html.twig', [
+       return $this->render('default/homepagina.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
