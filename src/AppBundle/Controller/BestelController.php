@@ -29,10 +29,10 @@ class BestelController extends Controller
 	}
 
 	/**
-     * @Route("/bestelorder/wijzig/{id}", name="bestelorderwijzigen")
+     * @Route("/bestelorder/wijzig/{bestelordernummer}", name="bestelorderwijzigen")
      */
-	public function wijzigBestelorder(Request $request, $id) {
-		$bestaandBestelorder = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->find($id);
+	public function wijzigBestelorder(Request $request, $bestelordernummer) {
+		$bestaandBestelorder = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->find($bestelordernummer);
 		$form = $this->createForm(BestellenType::class, $bestaandBestelorder);
 
 		$form->handleRequest($request);
@@ -47,11 +47,11 @@ class BestelController extends Controller
 	}
 
 	/**
-     * @Route("/bestelorder/verwijder/{id}", name="bestelorderverwijderen")
+     * @Route("/bestelorder/verwijder/{bestelordernummer}", name="bestelorderverwijderen")
      */
-	public function verwijderBestelorder(Request $request, $id) {
+	public function verwijderBestelorder(Request $request, $bestelordernummer) {
 		$em = $this->getDoctrine()->getManager();
-		$bestaandBestelorder = $em->getRepository("AppBundle:Bestellen")->find($id);
+		$bestaandBestelorder = $em->getRepository("AppBundle:Bestellen")->find($bestelordernummer);
 		$em->remove($bestaandBestelorder);
 		$em->flush();
 		return $this->redirect($this->generateurl("bestelorderoverzicht"));
