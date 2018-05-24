@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <h2>Overzicht van nog te ontvangen goederen</h2>
+
+            <div class="table-responsive">
+
+
+                <table id="mytable" class="table table-bordred table-striped table-hover">
+
+                    <thead>
+
+                        <th>Ontvangstnummer</th>
+                        <th>Artikelnummer</th>
+                        <th>Datum ontvangst</th>
+                        <th>Hoeveelheid</th>
+                        <th>Kwaliteit</th>
+                        <th>Omschrijving</th>
+                        <th>Leverancier</th>
+                        <th>Ontvangen</th>
+
+                        <th>Wijzigen</th>
+                    </thead>
+                    {% for nietgoederen in nietgoederen %}
+                    <tbody>
+
+                        <tr>
+                            <th>{{nietgoederen.ontvangstnummer}} </th>
+                            <th>{{nietgoederen.artikelnummer}} </th>
+                            <th>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </th>
+                            <th>{{nietgoederen.hoeveelheid}} </th>
+                            <th>{{nietgoederen.kwaliteit}} </th>
+                            <th>{{nietgoederen.omschrijving}} </th> 
+                            <th>{{nietgoederen.leverancier}} </th>
+                            <th>{{nietgoederen.ontvangen}} </th> 
+                            
+
+                            <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" href="{{path('goederenwijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer})}}">Wijzig</p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" href="{{path('goederenverwijdering', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijderen</a></p></td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}    
+                    </table>
+
+                    <div class="clearfix"></div>
+                    <ul class="pagination pull-right">
+                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
