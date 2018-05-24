@@ -75,8 +75,9 @@ class ArtikelController extends Controller
       
       if($zoekwaarde == null) {
         return new Response("Er is geen zoekwaarde ingevoerd!");
-      } else {
+      } else {  
       //maak de query, gebruik $zoekwaarde als parameter, haal gegevens op en toon ze in een TWIG template (degene die je waarschijnlijk ook gebruikt voor het zoekformulier)
+        $zoekwaarde = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll($artikelnummer);
         return new Response($this->render('artikelzoeken.html.twig', array('zoekwaarde' =>  $zoekwaarde)));
 
       }
