@@ -26,14 +26,21 @@ class Artikel
     /**
      * @var string
      *
-     * @ORM\Column(name="omschrijving", type="string", length=50)
+     * @ORM\Column(name="naam", type="string", length=50)
+     */
+    private $naam;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="omschrijving", type="string", length=255)
      */
     private $omschrijving;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="technischeSpecificaties", type="string", length=60, nullable=true)
+     * @ORM\Column(name="technischeSpecificaties", type="string", length=255, nullable=true)
      */
     private $technischeSpecificaties;
 
@@ -147,6 +154,30 @@ class Artikel
     public function getArtikelnummer()
     {
         return $this->artikelnummer;
+    }
+
+    /**
+     * Set naam
+     *
+     * @param integer $naam
+     *
+     * @return Naam
+     */
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+
+        return $this;
+    }
+
+    /**
+     * Get naam
+     *
+     * @return int
+     */
+    public function getNaam()
+    {
+        return $this->naam;
     }
 
     /**

@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<style>
+    tr{
+        border: none !important;
+    }
+    th{
+        border: none !important;
+    }
+    tbody{
+        border: none !important;
+    }
+</style>
 <div class="container">
     <div class="row">
 
@@ -28,15 +39,15 @@
                     {% for nietgoederen in nietgoederen %}
                     <tbody>
 
-                        <tr>
-                            <th>{{nietgoederen.ontvangstnummer}} </th>
-                            <th>{{nietgoederen.artikelnummer}} </th>
-                            <th>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </th>
-                            <th>{{nietgoederen.hoeveelheid}} </th>
-                            <th>{{nietgoederen.kwaliteit}} </th>
-                            <th>{{nietgoederen.omschrijving}} </th> 
-                            <th>{{nietgoederen.leverancier}} </th>
-                            <th>{{nietgoederen.ontvangen}} </th> 
+                        <tr style="background-color: white;">
+                            <td>{{nietgoederen.ontvangstnummer}} </td>
+                            <td>{{nietgoederen.artikelnummer}} </td>
+                            <td>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </td>
+                            <td>{{nietgoederen.hoeveelheid}} </td>
+                            <td>{{nietgoederen.kwaliteit}} </td>
+                            <td>{{nietgoederen.omschrijving}} </td> 
+                            <td>{{nietgoederen.leverancier}} </td>
+                            <td>{{nietgoederen.ontvangen}} </td> 
                             
 
                             <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>

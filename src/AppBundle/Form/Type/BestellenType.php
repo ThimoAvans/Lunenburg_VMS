@@ -17,14 +17,10 @@ class BestellenType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		//gebruiken wat je nodig hebt, de id hoeft er niet bij als deze auto increment is
-        // $builder
-        //     ->add('artikelnummer', IntegerType::class);
-                $builder
-        ->add('artikelnummer', EntityType::class, array(
-        'class' => 'AppBundle:Artikel',
-        'choice_label' => 'artikelnummer'))
-        ;
+        $builder
+            ->add('artikelnummer', EntityType::class, array(
+            'class' => 'AppBundle:Artikel',
+            'choice_label' => 'naam'));
         $builder
             ->add('leverancier', TextType::class);
         $builder

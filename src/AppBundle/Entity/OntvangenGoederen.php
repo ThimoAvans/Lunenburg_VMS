@@ -238,7 +238,8 @@ class OntvangenGoederen
     { 
         $this->ontvangen = $ontvangen;
 
-        return $this; }
+        return $this; 
+    }
 
     /**
     * Get ontvangen
@@ -250,10 +251,10 @@ class OntvangenGoederen
         return $this->ontvangen;
     }
 
-        /**
+    /**
      * Set ontvangstnummer
      *
-   /  * @param integer $ontvangstnummer
+     * @param integer $ontvangstnummer
      *
      * @return Ontvangengoederen
      */
@@ -264,7 +265,7 @@ class OntvangenGoederen
         return $this;
     }
 
-        /**
+    /**
      * Get ontvangstnummer
      *
      * @return int
