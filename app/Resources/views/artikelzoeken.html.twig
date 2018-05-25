@@ -1,42 +1,52 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<style>
+	tr{
+		border: none !important;
+	}
+	th{
+		border: none !important;
+	}
+	tbody{
+		border: none !important;
+	}
+</style>
 <div class="container">
 	<div class="row">
-		
-
 		<div class="col-md-12">
 			<h2>Gevonden artikelen</h2>
 
 			<div class="table-responsive">
-			<div class="table-responsive">
 
 
-				<table id="mytable" class="table table-bordred table-striped table-hover">
+				<table id="mytable" class="table table-striped table-hover">
 								
 					<thead>
-
-						<th>Artikelnummer</th>
+						<th>Artikel- nummer</th>
+						<th>Naam</th>
 						<th>Omschrijving</th>
-						<th>Magazijnlocatie</th>
-						<th>Inkoopprijs</th>
+						<th>Technische specificaties</th>
+						<th>Magazijn- locatie</th>
+						<th>Inkoop- prijs</th>
 						<th>Huidige voorraad</th>
 						<th>Minimum voorraad</th>
-						<th>Bestelserie</th>
-
-						<th>Wijzigen</th>
-						<th>Verwijderen</th>
+						<th>Bestel- serie</th>
+						<th>Vervangend artikel</th>
 					</thead>
 					{% for artikel in zoekwaarde %}
 					<tbody>
 
-						<tr>
-							<th>{{ artikel.artikelnummer }} </th>
-							<th>{{ artikel.omschrijving }} </th>
-							<th>{{ artikel.magazijnlocatie}} </th>
-							<th>{{ artikel.inkoopprijs}} </th>
-							<th>{{ artikel.huidigeVoorraad }} </th>
-							<th>{{ artikel.minimumVoorraad }} </th>
-							<th>{{ artikel.bestelserie }} </th> 
+						<tr style="background-color: white;">
+							<td> {{ artikel.artikelnummer }} </td>
+							<td> {{ artikel.naam }} </td>
+							<td> {{ artikel.omschrijving }} </td>
+							<td> {{ artikel.technischeSpecificaties }} </td>
+							<td> {{ artikel.magazijnlocatie}} </td>
+							<td>€{{ artikel.inkoopprijs}} </td>
+							<td> {{ artikel.huidigeVoorraad }} </td>
+							<td> {{ artikel.minimumVoorraad }} </td>
+							<td> {{ artikel.bestelserie }} </td>
+							<td> {{ artikel.vervangendArtikel }} </td> 
 
 
 							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
@@ -46,20 +56,7 @@
 					</tbody>
 					{% endfor %}	
 				</table>
-
-				<div class="clearfix"></div>
-				<ul class="pagination pull-right">
-					<li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-				</ul>
-
 			</div>
-
 		</div>
 	</div>
 </div>

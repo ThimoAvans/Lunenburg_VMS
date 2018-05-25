@@ -70,7 +70,7 @@ class OntvangenGoederen
     *
      * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+
      */
     private $ontvangstnummer;
 
@@ -238,7 +238,8 @@ class OntvangenGoederen
     { 
         $this->ontvangen = $ontvangen;
 
-        return $this; }
+        return $this; 
+    }
 
     /**
     * Get ontvangen
@@ -250,21 +251,21 @@ class OntvangenGoederen
         return $this->ontvangen;
     }
 
-        /**
+    /**
      * Set ontvangstnummer
      *
-   /  * @param integer $ontvangstnummer
+     * @param integer $ontvangstnummer
      *
      * @return Ontvangengoederen
      */
-    //public function setOntvangstnummer($ontvangstnummer)
-    //{
-      //  $this->ontvangstnummer = $ontvangstnummer;
+    public function setOntvangstnummer($ontvangstnummer)
+    {
+        $this->ontvangstnummer = $ontvangstnummer;
 
-       // return $this;
-    //}
+        return $this;
+    }
 
-        /**
+    /**
      * Get ontvangstnummer
      *
      * @return int
