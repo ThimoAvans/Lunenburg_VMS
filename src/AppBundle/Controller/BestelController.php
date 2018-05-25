@@ -25,7 +25,7 @@ class BestelController extends Controller
 			return $this->redirect($this->generateurl("bestelorderoverzicht"));
 		}
 
-		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
@@ -43,7 +43,7 @@ class BestelController extends Controller
 			return $this->redirect($this->generateurl("bestelorderoverzicht"));
 		}
 
-		return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
@@ -63,7 +63,7 @@ class BestelController extends Controller
      */
 	public function alleBestelorders(Request $request) {
 		$Bestelorders = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->findAll();
-		return new Response($this->render('bestellen.html.twig', array('bestelorders' => $Bestelorders)));
+		return new Response($this->renderview('bestellen.html.twig', array('bestelorders' => $Bestelorders)));
 	}
 }
 ?>
