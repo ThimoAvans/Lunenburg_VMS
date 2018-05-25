@@ -23,6 +23,8 @@ class OntvangenGoederenType extends AbstractType
             'class'=> 'AppBundle:Artikel',
             'choice_label' => 'naam', 'expanded' => false,  'multiple' => true));
         $builder
+            ->add('ontvangstnummer', IntegerType::class);
+        $builder
             ->add('datumontvangst', DateType::class); 
         $builder
             ->add('hoeveelheid', IntegerType::class);

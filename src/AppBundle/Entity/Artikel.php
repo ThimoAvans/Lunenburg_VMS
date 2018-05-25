@@ -371,5 +371,9 @@ class Artikel
     {
         return $this->bestelserie;
     }
+
+        public function __toString() {
+        return (string) $this->artikelnummer;
+    }
 }
 
