@@ -66,7 +66,7 @@ class GoederenController extends Controller{
     */
         public function alleGoederen(request $request) {
             $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Ja");
-            return new Response($this->render('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
+            return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
         }
 
    /**
@@ -74,6 +74,6 @@ class GoederenController extends Controller{
     */
            public function nietOntvangenGoederen(request $request) {
             $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Nee");
-            return new Response($this->render('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
+            return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
         }
 }
