@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<style>
+    tr{
+        border: none !important;
+    }
+    th{
+        border: none !important;
+    }
+    tbody{
+        border: none !important;
+    }
+</style>
 <div class="container">
     <div class="row">
 
@@ -28,17 +39,15 @@
                     {% for goederen in goederen %}
                     <tbody>
 
-                        <tr>
-                            <th>{{goederen.ontvangstnummer}} </th>
-                            <th>{{goederen.artikelnummer}} </th>
-                            <th>{{goederen.datumontvangst|date('Y-m-d') }} </th>
-                            <th>{{goederen.hoeveelheid}} </th>
-                            <th>{{goederen.kwaliteit}} </th>
-                            <th>{{goederen.omschrijving}} </th> 
-                            <th>{{goederen.leverancier}} </th>
-                            <th>{{goederen.ontvangen}} </th> 
+                            <td>{{goederen.ontvangstnummer}} </td>
+                            <td>{{goederen.artikelnummer}} </td>
+                            <td>{{goederen.datumontvangst|date('Y-m-d') }} </td>
+                            <td>{{goederen.hoeveelheid}} </td>
+                            <td>{{goederen.kwaliteit}} </td>
+                            <td>{{goederen.omschrijving}} </td> 
+                            <td>{{goederen.leverancier}} </td>
+                            <td>{{goederen.ontvangen}} </td> 
                             
-
                             <td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Wijzig</a></td>
                             <td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('goederenverwijdering', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Verwijder</a></td>
 
@@ -49,4 +58,6 @@
             </div>
         </div>
     </div>
+</div>
+
     {% endblock %}

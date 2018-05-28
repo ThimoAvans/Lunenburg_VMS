@@ -24,7 +24,7 @@ class GoederenController extends Controller{
             $em->flush();
             return $this->redirect($this->generateurl("ontvangengoederennieuw"));
         }
-        return new Response($this->render('form.html.twig', array ('form' => $form->createView())));
+        return new Response($this->renderview('form.html.twig', array ('form' => $form->createView())));
     }
 
     /**
@@ -41,7 +41,7 @@ class GoederenController extends Controller{
             $em->flush();
             return $this->redirect($this->generateurl("alleGoederen"));
         }
-        return new Response($this->render('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
     }
 
     /**
@@ -60,20 +60,20 @@ class GoederenController extends Controller{
 
 
 
-    /**
-     * @Route("/ontvangengoederen/alle", name="alleGoederen")
-     */
-    public function alleGoederen(request $request) {
-        $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Groen");
-        return new Response($this->render('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
-    }
 
-    /**
-     * @Route("/nietontvangengoederen/alle", name="nietOntvangenGoederen")
-     */
-    public function nietOntvangenGoederen(request $request) {
-        $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Rood");
-        return new Response($this->render('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
-    }
+   /**
+    * @Route("/ontvangengoederen/alle", name="alleGoederen")
+    */
+        public function alleGoederen(request $request) {
+            $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Ja");
+            return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
+        }
 
+   /**
+    * @Route("/nietontvangengoederen/alle", name="nietOntvangenGoederen")
+    */
+           public function nietOntvangenGoederen(request $request) {
+            $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Nee");
+            return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
+        }
 }

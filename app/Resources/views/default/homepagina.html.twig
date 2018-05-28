@@ -5,88 +5,66 @@
 	<meta charset="utf-8">
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
 	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
 </head>
 <style>
 
-@font-face {
-	font-family: headerFont;
-	src: url(PEPSI_pl.ttf);
-}
-
-body {
-	margin-top: 10%;
-	background-image: url("../img/logo-lunenburg.png");
-	background-repeat: no-repeat;
-	background-position: 50% 10%;
-	background-color: #cccccc;
-	text-align: center;
-	border-width:2px;
-	border-color:#cd1626;
-	border-radius:50px;
-	-moz-border-radius:50px;
-	-webkit-border-radius:50px;
-	-webkit-box-shadow:0px 0px 50px 0.1px #cd1626 ;
-	-moz-box-shadow:0px 0px 50px 0.1px #cd1626 ;
-	box-shadow:0px 0px 50px 0.1px #cd1626 ;
-
-}
-input[type=text] {
-
-}
-form {
-	display: inline-block;
-	
-	
-}
-
-h1   {
-	margin: 35px;
-	color: black;
-	font-family: headerFont;
-}
-
-p    {
-	color: black;
-
-}
 </style>
 <body>
+	<section class="login-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 login-sec">
+					<h2 class="text-center">Login</h2>
+					<form onsubmit="return validateForm();  return false;" method="post" action="./artikelbestand" class="login-form">
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="text-uppercase">Gebruikersnaam</label>
+							<input type="text" class="form-control" name="name" id="name" placeholder="">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1" class="text-uppercase">Wachtwoord</label>
+							<input type="password" class="form-control" name="psw" id="psw" placeholder="">
+						</div>
 
-	<center>
-		<div class="login">
-			<h1 class="loginheading" > Voorraadsysteem login</h1>
-			<form onsubmit="return validateForm();  return false;" method="post" action="./artikelbestand">
-				<div class="form-group nameInput has-feedback">
-					<label for="name">Gebruikersnaam</label>
-					<input type="text" class="form-control" name="name" id="name" placeholder="Vul hier uw gebruikersnaam in">
-				</div>
-				<div class="form-group pswInput has-feedback">
-					<label for="password">Wachtwoord</label>
-					<input type="password" class="form-control" name="psw" id="psw"  placeholder="Vul hier uw wachtwoord in">
-				</div>
-				<button type="submit" name="login-submit" class="btn btn-default">Login</button>
-				<p >Problemen bij het inloggen? neem dan <a href="javascript:alert('040-187555029');">contact</a> op met de administrator</p>
-			</form>
-			<script>
-				function validateForm(){
-					if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
-						alert('U wordt doorgestuurd naar menu');
-					} else {
-						alert('Verkeerde gebruikersnaam of wachtwoord!');
-						return false;
-					}
-				}
-			</script>
 
-			<p class="text-muted loginbottomtext"></p> 
+						<div class="form-check">
+							<label class="form-check-label" style="width: 85px;">
+								<input type="checkbox" class="form-check-input">
+								<p class="float-right">Remember Me</p>
+							</label>
+							<button type="Submit" class="btn btn-danger float-right">Submit</button>
+						</div>
+						<script>
+							function validateForm(){
+							if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
+							alert('U wordt doorgestuurd naar menu');
+							} else {
+							alert('Verkeerde gebruikersnaam of wachtwoord!');
+							return false;
+							}
+							}
+						</script>
+					</form>
+				</div>
+
+				<div class="col-md-8 banner-sec login-text">
+					<div class="login-text">
+					  <h1 class="display-4">Hello, world!</h1>
+					  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+					  <hr class="my-4">
+					  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+					  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+				  	</div>
+				</div>
+			</div>
 		</div>
-	</center>
+	</section>
 </body>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-<script src="script.js"></script>
 
 
 {% endblock %}

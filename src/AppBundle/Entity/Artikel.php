@@ -117,9 +117,9 @@ class Artikel
     /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="Bestellen", inversedBy="artikelen", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Bestelling", inversedBy="artikelen", cascade={"persist"})
      */
-    private $bestelopdracht;
+    private $bestelregel;
 
     /**
      * @var int
@@ -370,6 +370,10 @@ class Artikel
     public function getBestelserie()
     {
         return $this->bestelserie;
+    }
+
+        public function __toString() {
+        return (string) $this->artikelnummer;
     }
 }
 

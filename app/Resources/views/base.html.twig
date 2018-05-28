@@ -19,11 +19,17 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/homepagina.css') }}" />
     </head>
+        <style>
+        .navbar {
+            position: flex;
+        }
 
+</style>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" width="120" height="30" class="d-inline-block" alt="">
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,8 +54,8 @@
                             Bestel overzicht
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ path('bestelorderoverzicht') }}">Bestelde artikelen</a>
-                                <a class="dropdown-item" href="{{ path('nieuwbestelorder') }}">Nieuwe bestelling</a>
+                                <a class="dropdown-item" href="{{ path('allebestellingen') }}">Alle bestellingen</a>
+                                <a class="dropdown-item" href="{{ path('nieuwebestelling') }}">Nieuwe bestelling</a>
                             </div>
                         </li>
 
@@ -59,24 +65,23 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{{ path('alleGoederen') }}">Ontvangen goederen</a>
-                                <a class="dropdown-item"  href="{{ path('ontvangengoederennieuw') }}">Ontvangen goederen toevoegen</a>
+                                <a class="dropdown-item" href="{{ path('nietOntvangenGoederen') }}">Nog niet ontvangen goederen</a>
+                                <a class="dropdown-item" href="{{ path('ontvangengoederennieuw') }}">Ontvangen goederen toevoegen</a>
                                
                             </div>
                         </li>
-
-                         <form method="POST" action="{{ path('artikelbestand') }}" class="form-inline my-2 my-lg-0 float-right">
-                            <input class="form-control mr-sm-2" name="zoekwaarde" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="verzendknop" href="">Search</button>
+                         <form method="POST" action="{{ path('artikelzoeken') }}" class="form-inline my-2 my-lg-0 float-right">
+                            <input class="form-control mr-sm-2" name="zoekwaarde" type="search" placeholder="Zoeken..." aria-label="Search">
+                            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="verzendknop" href="{{ path('artikelzoeken') }}">Zoek</button>
                         </form>
 
                         <hr/>
 
                         <li class="nav-item dropdown" style="border-left:1px solid rgba(0, 0, 0, 0.1);height:50px; margin-left: 20px">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, User</a>
-                        <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">
+                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, User</a>
+                         <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#"><i class="icon-cog"></i> Preferences</a>
-                            <a class="dropdown-item" href="#"><i class="icon-envelope"></i> Contact Support</a>
-                            
+                            <a class="dropdown-item" href="#"><i class="icon-envelope"></i> Contact Support</a>                      
                             <a class="dropdown-item" href="{{ path('logout') }}"><i class="icon-off"></i> Logout</a>
                         </div>
                     </li>
@@ -85,7 +90,8 @@
                 </div>
             </div>
         </nav>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
         {% block javascripts %}{% endblock %}
         </div>
     </body>
