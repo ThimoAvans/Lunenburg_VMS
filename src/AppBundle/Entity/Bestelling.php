@@ -19,6 +19,7 @@ class Bestelling
      * @ORM\Column(name="bestelnummer", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="bestelnummer")
      */
     private $bestelnummer;
 
@@ -29,6 +30,10 @@ class Bestelling
      */
     private $leverancier;
 
+    public function __construct()
+    {
+        $this->bestellingen = new ArrayCollection();
+    }
 
     /**
      * Get bestelnummer

@@ -26,6 +26,9 @@ class Bestelregel
      * @var int
      *
      * @ORM\Column(name="bestelnummer", type="integer")
+     *
+     * @ORM\ManyToOne(targetEntity="Bestelling", inversedBy="bestelnummer")
+     * @ORM\JoinColumn(name="bestelling_bestelnummer", referencedColumnName="bestelnummer")
      */
     private $bestelnummer;
 
@@ -66,6 +69,16 @@ class Bestelregel
         $this->bestelnummer = $bestelnummer;
     
         return $this;
+    }
+
+    /**
+     * Get bestelnummer
+     *
+     * @return integer
+     */
+    public function getBestelnummer()
+    {
+        return $this->bestelnummer;
     }
 
     /**

@@ -16,7 +16,9 @@
 		
 
 		<div class="col-md-12">
-			<h2>Bestelling</h2>
+			{% for bestelregel in bestelregels %}
+			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
+			{% endfor %}
 
 			<div class="table-responsive">
 
@@ -25,7 +27,6 @@
 
 					<thead>
 
-						<th>Bestelordernummer</th>
 						<th>Artikelnummer</th>
 						<th>Hoeveelheid</th>
 
@@ -34,7 +35,6 @@
 					<tbody>
 
 						<tr style="background-color: white;">
-							<td>{{ bestelregel.bestelnummer }} </td>
 							<td>{{ bestelregel.artikelnummer}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 						</tr>

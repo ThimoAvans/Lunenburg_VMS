@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Bestelling;
 use AppBundle\Form\Type\BestellingType;
+use AppBundle\Entity\Bestelregel;
+use AppBundle\Form\Type\BestelregelType;
 
 class BestelController extends Controller
 {	
@@ -22,7 +24,26 @@ class BestelController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($nieuweBestelling);
 			$em->flush();
-			return $this->redirect($this->generateurl("nieuwebestelling"));
+			return $this->redirect($this->generateurl("nieuwebestelregel"));
+		}
+
+		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+	}
+
+	/**
+     * @Route("/bestelregel/nieuw", name="nieuwebestelregel")
+     */
+	public function nieuweBestelregel(Request $request) {
+		$nieuweBestelregel = new Bestelregel();
+		$form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
+
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($nieuweBestelregel);
+			$em->flush();
+			//return $this->redirect($this->generateurl("allebestellingen"));
+			return $this->redirect($this->generateurl("bestellingbekijken"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
@@ -61,7 +82,7 @@ class BestelController extends Controller
      * @Route("/bestelling/bekijk/{bestelnummer}", name="bestellingbekijken")
      */
 	public function bekijkBestelregels(Request $request, $bestelnummer) {
-		$Bestelregels = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->find($bestelnummer);
+		$Bestelregels = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByBestelnummer($bestelnummer);
 		return new Response($this->renderview('bestelregel.html.twig', array('bestelregels' => $Bestelregels)));
 	}
 
