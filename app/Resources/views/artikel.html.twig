@@ -1,64 +1,66 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <style>
-	tr{
-		border: none !important;
-	}
-	th{
-		border: none !important;
-	}
-	tbody{
-		border: none !important;
-	}
+tr{
+	border: none !important;
+}
+th{
+	border: none !important;
+}
+tbody{
+	border: none !important;
+}
 </style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Artikelen overzicht</h2>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Artikelen overzicht</h2>
-
-			<div class="table-responsive">
-
-
-				<table id="mytable" class="table table-bordred table-striped table-hover">
-								
-					<thead>
-
-						<th>Artikel- nummer</th>
-						<th>Naam</th>
-						<th>Omschrijving</th>
-						<th>Technische specificaties</th>
-						<th>Magazijn- locatie</th>
-						<th>Inkoop- prijs</th>
-						<th>Huidige voorraad</th>
-						<th>Minimum voorraad</th>
-						<th>Bestel- serie</th>
-						<th>Vervangend artikel</th>
-					</thead>
-					{% for artikel in artikelen %}
-					<tbody>
-
-						<tr style="background-color: white;">
-							<td> {{ artikel.artikelnummer }} </td>
-							<td> {{ artikel.naam }} </td>
-							<td> {{ artikel.omschrijving }} </td>
-							<td> {{ artikel.technischeSpecificaties }} </td>
-							<td> {{ artikel.magazijnlocatie}} </td>
-							<td>€{{ artikel.inkoopprijs}} </td>
-							<td> {{ artikel.huidigeVoorraad }} </td>
-							<td> {{ artikel.minimumVoorraad }} </td>
-							<td> {{ artikel.bestelserie }} </td>
-							<td> {{ artikel.vervangendArtikel }} </td> 
+				<div class="table-responsive">
 
 
-							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-							<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
+					<table id="mytable" class="table">
 
-						</tr>
-					</tbody>
-					{% endfor %}	
-				</table>
+						<thead>
+
+							<th>Artikel- nummer</th>
+							<th>Naam</th>
+							<th>Omschrijving</th>
+							<th>Technische specificaties</th>
+							<th>Magazijn- locatie</th>
+							<th>Inkoop- prijs</th>
+							<th>Huidige voorraad</th>
+							<th>Minimum voorraad</th>
+							<th>Bestel- serie</th>
+							<th>Vervangend artikel</th>
+						</thead>
+						{% for artikel in artikelen %}
+						<tbody>
+
+							<tr style="background-color: white;">
+								<td> {{ artikel.artikelnummer }} </td>
+								<td> {{ artikel.naam }} </td>
+								<td> {{ artikel.omschrijving }} </td>
+								<td> {{ artikel.technischeSpecificaties }} </td>
+								<td> {{ artikel.magazijnlocatie}} </td>
+								<td>€{{ artikel.inkoopprijs}} </td>
+								<td> {{ artikel.huidigeVoorraad }} </td>
+								<td> {{ artikel.minimumVoorraad }} </td>
+								<td> {{ artikel.bestelserie }} </td>
+								<td> {{ artikel.vervangendArtikel }} </td> 
+
+
+								<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+								<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
+
+							</tr>
+						</tbody>
+						{% endfor %}	
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+</body>
 {% endblock %}
