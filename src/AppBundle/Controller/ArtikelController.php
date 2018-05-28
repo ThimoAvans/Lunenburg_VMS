@@ -42,7 +42,7 @@ class ArtikelController extends Controller
           $em->flush();
           return $this->redirect($this->generateurl("artikelbestand"));
       }
-      return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+      return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
   }
 
  /**

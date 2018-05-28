@@ -41,7 +41,7 @@ class GoederenController extends Controller{
             $em->flush();
             return $this->redirect($this->generateurl("alleGoederen"));
         }
-        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+        return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
     }
 
     /**
