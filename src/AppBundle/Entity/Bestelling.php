@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bestelling
@@ -15,16 +16,9 @@ class Bestelling
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="bestelnummer", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bestelnummer", type="integer", unique=true)
      */
     private $bestelnummer;
 
@@ -35,30 +29,6 @@ class Bestelling
      */
     private $leverancier;
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set bestelnummer
-     *
-     * @param integer $bestelnummer
-     *
-     * @return Bestelling
-     */
-    public function setBestelnummer($bestelnummer)
-    {
-        $this->bestelnummer = $bestelnummer;
-    
-        return $this;
-    }
 
     /**
      * Get bestelnummer

@@ -5,65 +5,72 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Bestellen;
-use AppBundle\Form\Type\BestellenType;
+use AppBundle\Entity\Bestelling;
+use AppBundle\Form\Type\BestellingType;
 
 class BestelController extends Controller
 {	
 	/**
-     * @Route("/bestelorder/nieuw", name="nieuwbestelorder")
+     * @Route("/bestelling/nieuw", name="nieuwebestelling")
      */
-	public function nieuwBestelorder(Request $request) {
-		$nieuwBestelorder = new Bestellen();
-		$form = $this->createForm(BestellenType::class, $nieuwBestelorder);
+	public function nieuweBestelling(Request $request) {
+		$nieuweBestelling = new Bestelling();
+		$form = $this->createForm(BestellingType::class, $nieuweBestelling);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			$em->persist($nieuwBestelorder);
+			$em->persist($nieuweBestelling);
 			$em->flush();
-			return $this->redirect($this->generateurl("bestelorderoverzicht"));
+			return $this->redirect($this->generateurl("nieuwebestelling"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
-     * @Route("/bestelorder/wijzig/{bestelordernummer}", name="bestelorderwijzigen")
+     * @Route("/bestelling/wijzig/{bestelnummer}", name="bestellingwijzigen")
      */
-	public function wijzigBestelorder(Request $request, $bestelordernummer) {
-		$bestaandBestelorder = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->find($bestelordernummer);
-		$form = $this->createForm(BestellenType::class, $bestaandBestelorder);
+	public function wijzigBestelling(Request $request, $bestelnummer) {
+		$bestaandeBestelling = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->find($bestelnummer);
+		$form = $this->createForm(BestellingType::class, $bestaandeBestelling);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			$em->persist($bestaandBestelorder);
+			$em->persist($bestaandeBestelling);
 			$em->flush();
-			return $this->redirect($this->generateurl("bestelorderoverzicht"));
+			return $this->redirect($this->generateurl("allebestellingen"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
-     * @Route("/bestelorder/verwijder/{bestelordernummer}", name="bestelorderverwijderen")
+     * @Route("/bestelling/verwijder/{bestelnummer}", name="bestellingverwijderen")
      */
-	public function verwijderBestelorder(Request $request, $bestelordernummer) {
+	public function verwijderBestelling(Request $request, $bestelnummer) {
 		$em = $this->getDoctrine()->getManager();
-		$bestaandBestelorder = $em->getRepository("AppBundle:Bestellen")->find($bestelordernummer);
-		$em->remove($bestaandBestelorder);
+		$bestaandeBestelling = $em->getRepository("AppBundle:Bestelling")->find($bestelnummer);
+		$em->remove($bestaandeBestelling);
 		$em->flush();
-		return $this->redirect($this->generateurl("bestelorderoverzicht"));
+		return $this->redirect($this->generateurl("allebestellingen"));
 	}
 
+	/**
+     * @Route("/bestelling/bekijk/{bestelnummer}", name="bestellingbekijken")
+     */
+	public function bekijkBestelregels(Request $request, $bestelnummer) {
+		$Bestelregels = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->find($bestelnummer);
+		return new Response($this->renderview('bestelregel.html.twig', array('bestelregels' => $Bestelregels)));
+	}
 
 	/**
-     * @Route("/bestelorderoverzicht", name="bestelorderoverzicht")
+     * @Route("/allebestellingen", name="allebestellingen")
      */
-	public function alleBestelorders(Request $request) {
-		$Bestelorders = $this->getDoctrine()->getRepository("AppBundle:Bestellen")->findAll();
-		return new Response($this->renderview('bestellen.html.twig', array('bestelorders' => $Bestelorders)));
+	public function alleBestellingen(Request $request) {
+		$Bestellingen = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->findAll();
+		return new Response($this->renderview('bestelling.html.twig', array('bestellingen' => $Bestellingen)));
 	}
 }
 ?>

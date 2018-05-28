@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bestelregel
@@ -65,16 +66,6 @@ class Bestelregel
         $this->bestelnummer = $bestelnummer;
     
         return $this;
-    }
-
-    /**
-     * Get bestelnummer
-     *
-     * @return integer
-     */
-    public function getBestelnummer()
-    {
-        return $this->bestelnummer;
     }
 
     /**

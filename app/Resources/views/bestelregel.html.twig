@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+	tr{
+		border: none !important;
+	}
+	th{
+		border: none !important;
+	}
+	tbody{
+		border: none !important;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		
+
+		<div class="col-md-12">
+			<h2>Bestelling</h2>
+
+			<div class="table-responsive">
+
+
+				<table id="mytable" class="table table-bordred table-striped table-hover">
+
+					<thead>
+
+						<th>Bestelordernummer</th>
+						<th>Artikelnummer</th>
+						<th>Hoeveelheid</th>
+
+					</thead>
+					{% for bestelregel in bestelregels %}
+					<tbody>
+
+						<tr style="background-color: white;">
+							<td>{{ bestelregel.bestelnummer }} </td>
+							<td>{{ bestelregel.artikelnummer}} </td>
+							<td>{{ bestelregel.hoeveelheid}} </td>
+						</tr>
+					</tbody>
+					{% endfor %}	
+				</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
