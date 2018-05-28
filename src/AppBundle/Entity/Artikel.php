@@ -117,9 +117,9 @@ class Artikel
     /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="Bestellen", inversedBy="artikelen", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Bestelling", inversedBy="artikelen", cascade={"persist"})
      */
-    private $bestelopdracht;
+    private $bestelregel;
 
     /**
      * @var int
