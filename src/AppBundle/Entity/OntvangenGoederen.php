@@ -65,13 +65,13 @@ class OntvangenGoederen
 
     private $ontvangen;
 
-    /**
+   /**
     * @var int
     *
-     * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
-     * @ORM\Id
-
-     */
+    * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
     private $ontvangstnummer;
 
     /**
