@@ -42,8 +42,8 @@ class BestelController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($nieuweBestelregel);
 			$em->flush();
-			//return $this->redirect($this->generateurl("allebestellingen"));
-			return $this->redirect($this->generateurl("bestellingbekijken"));
+			return $this->redirect($this->generateurl("allebestellingen"));
+			//return $this->redirect($this->generateurl("bestellingbekijken"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
