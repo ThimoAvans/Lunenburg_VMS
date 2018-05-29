@@ -128,5 +128,10 @@ class Bestelregel
     {
         return $this->hoeveelheid;
     }
+
+            public function __toString() {
+        return (string) $this->bestelnummer;
+    }
+
 }
 

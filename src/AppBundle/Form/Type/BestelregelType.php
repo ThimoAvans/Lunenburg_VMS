@@ -11,6 +11,7 @@ use AppBundle\Controller\BestelController;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\CollectionType;
 
 
 class BestelregelType extends AbstractType
@@ -19,6 +20,7 @@ class BestelregelType extends AbstractType
     {
         $builder
             ->add('bestelnummer', IntegerType::class);
+
         $builder
             ->add('artikelnummer', EntityType::class, array(
             	'class' => 'AppBundle:Artikel',
