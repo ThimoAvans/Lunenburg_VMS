@@ -49,7 +49,7 @@
                             <td>{{nietgoederen.leverancier}} </td>
                             <td>{{nietgoederen.ontvangen}} </td> 
                             
-
+                            <td><a class="btn btn-primary btn-xs" Title="Goederen bekijken"  href="{{ path('goederenopdrachtbekijken', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Bekijk</a></td>
                             <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>
                             <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('goederenverwijdering', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijder</a></td>
 
