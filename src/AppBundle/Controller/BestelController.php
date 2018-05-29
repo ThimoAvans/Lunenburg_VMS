@@ -46,7 +46,7 @@ class BestelController extends Controller
 			//return $this->redirect($this->generateurl("bestellingbekijken"));
 		}
 
-		return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
+		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
