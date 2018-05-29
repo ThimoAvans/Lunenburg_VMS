@@ -15,9 +15,25 @@ input.btn {
 	margin-left: 250px;
 	color: #FFFFFF;
 	padding: 10px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	padding: 5px 10px;
+
+
+}
+
+a.btn {
+	padding-left: 240px;
+	display: inline-block;
+	margin-left: 5px;
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	padding: 5px 10px;
+
 }
 
 
@@ -26,8 +42,8 @@ input.btn {
 	<div class="container" ></div>
 	<form method="post" action="">
 		{{ form_widget(form) }}
-		<input class="btn btn-primary btn-xs" type="submit" value="Wijzig" style="width:60px;height:30px;" >
-		<a href="javascript:history.back()">Annuleren</a>
+		<input class="btn btn-success btn-xs" type="submit" value="Wijzig"> 
+		<a class="btn btn-danger btn-xs" type="submit" href="javascript:history.back()">Annuleren</a>
 	</form>
 
 </body>
