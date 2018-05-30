@@ -22,8 +22,8 @@ class OntvangenGoederenType extends AbstractType
          //   ->add('artikelnummer', EntityType::class, array(
            // 'class'=> 'AppBundle:Artikel',
             //'choice_label' => 'naam'));
-        $builder
-            ->add('ontvangstnummer', TextType::class);
+      //  $builder
+        //    ->add('ontvangstnummer', TextType::class);
         $builder
             ->add('leverancier', TextType::class);
         $builder

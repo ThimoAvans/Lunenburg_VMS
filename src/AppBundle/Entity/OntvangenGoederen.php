@@ -52,6 +52,7 @@ class OntvangenGoederen
     *
     * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
     * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
     * @ORM\OneToMany(targetEntity="GoederenOpdracht", mappedBy="ontvangstnummer")
     */
     private $ontvangstnummer;
