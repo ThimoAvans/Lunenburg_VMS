@@ -17,8 +17,10 @@
 
 		<div class="col-md-12">
 			{% for bestelregel in bestelregels %}
+			{% if loop.first %}
 			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
-			<a class="btn btn-primary btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('allebestellingen', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a><br><br>
+			<a class="btn btn-primary btn-xs" Title="Product toevoegen aan bestelling"  href="/Lunenburg_VMS/web/app_dev.php/bestelregel/nieuw/...">Product toevoegen</a><br><br>
+			{% endif %}
 			{% endfor %}
 
 			<div class="table-responsive">
