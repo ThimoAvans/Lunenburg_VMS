@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;   
 
 /**
- * Ontvangenoederen
+ * Ontvangstmelding
  *
  * @ORM\Table(name="ontvangstmelding")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OntvangenGoederenRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\OntvangstmeldingRepository")
  */
-class OntvangenGoederen
+class Ontvangstmelding
 {
 
     /**

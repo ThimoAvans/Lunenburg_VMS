@@ -42,8 +42,8 @@ class GoederenOpdracht
      *
      * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
      *
-     * @ORM\ManyToOne(targetEntity="OntvangenGoederen", inversedBy="ontvangstnummer")
-     * @ORM\JoinColumn(name="ontvangengoederen_ontvangstnummer", referencedColumnName="ontvangstnummer")
+     * @ORM\ManyToOne(targetEntity="Ontvangstmelding", inversedBy="ontvangstnummer")
+     * @ORM\JoinColumn(name="ontvangstmelding_ontvangstnummer", referencedColumnName="ontvangstnummer")
      */
     public $ontvangstnummer;
 
