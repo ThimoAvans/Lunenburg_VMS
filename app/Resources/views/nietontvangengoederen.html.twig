@@ -26,26 +26,20 @@
                     <thead>
 
                         <th>Ontvangstnummer</th>
-                        <th>Artikelnummer</th>
                         <th>Datum ontvangst</th>
-                        <th>Hoeveelheid</th>
                         <th>Kwaliteit</th>
-                        <th>Omschrijving</th>
                         <th>Leverancier</th>
                         <th>Ontvangen</th>
 
-                        <th>Wijzigen</th>
+                        
                     </thead>
                     {% for nietgoederen in nietgoederen %}
                     <tbody>
 
 
                             <td>{{nietgoederen.ontvangstnummer}} </td>
-                            <td>{{nietgoederen.artikelnummer}} </td>
                             <td>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </td>
-                            <td>{{nietgoederen.hoeveelheid}} </td>
                             <td>{{nietgoederen.kwaliteit}} </td>
-                            <td>{{nietgoederen.omschrijving}} </td> 
                             <td>{{nietgoederen.leverancier}} </td>
                             <td>{{nietgoederen.ontvangen}} </td> 
                             

@@ -24,7 +24,7 @@ class GoederenController extends Controller{
             $em = $this->getDoctrine()->getManager();
             $em->persist($nieuweOntvangenGoederen);
             $em->flush();
-            return $this->redirect($this->generateurl("nieuwegoederenopdrachtn"));
+            return $this->redirect($this->generateurl("nieuwegoederenopdrachten"));
         }
         return new Response($this->renderview('form.html.twig', array ('form' => $form->createView())));
     }
@@ -78,7 +78,7 @@ class GoederenController extends Controller{
         }
 
         /**
-     * @Route("/goederenopdracht/nieuw", name="nieuwegoederenopdracht")
+     * @Route("/goederenopdracht/nieuw", name="nieuwegoederenopdrachten")
      */
     public function nieuweGoederenOpdracht(Request $request) {
         $nieuweGoederenOpdracht = new GoederenOpdracht();
@@ -100,7 +100,7 @@ class GoederenController extends Controller{
      * @Route("/goederenopdracht/bekijk/{ontvangstnummer}", name="goederenopdrachtbekijken")
      */
     public function bekijkGoederenOpdracht(Request $request, $ontvangstnummer) {
-        $goederenopdracht = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByBestelnummer($ontvangstnummer);
+        $goederenopdracht = $this->getDoctrine()->getRepository("AppBundle:GoederenOpdracht")->findByOntvangstnummer($ontvangstnummer);
         return new Response($this->renderview('goederenopdracht.html.twig', array('goederenopdracht' => $goederenopdracht)));
     }
 

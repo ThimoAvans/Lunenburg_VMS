@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * GoederenOpdracht
  *
- * @ORM\Table(name="goederen_opdracht")
+ * @ORM\Table(name="goederenopdracht")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GoederenOpdrachtRepository")
  */
 class GoederenOpdracht
@@ -30,7 +30,12 @@ class GoederenOpdracht
      */
     private $artikelnummer;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="omschrijving", type="string", length=255)
+     */
+    private $omschrijving;
 
     /**
      * @var int
@@ -133,6 +138,30 @@ class GoederenOpdracht
     public function getHoeveelheid()
     {
         return $this->hoeveelheid;
+    }
+
+        /**
+     * Set omschrijving
+     *
+     * @param string $omschrijving
+     *
+     * @return GoederenOpdracht
+     */
+    public function setOmschrijving($omschrijving)
+    {
+        $this->omschrijving = $omschrijving;
+
+        return $this;
+    }
+
+    /**
+     * Get omschrijving
+     *
+     * @return string
+     */
+    public function getOmschrijving()
+    {
+        return $this->omschrijving;
     }
 
             public function __toString() {

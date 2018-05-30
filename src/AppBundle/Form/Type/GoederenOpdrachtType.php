@@ -27,6 +27,8 @@ class GoederenOpdrachtType extends AbstractType
             	'choice_label' => 'naam'));
         $builder
             ->add('hoeveelheid', IntegerType::class);
+        $builder
+            ->add('omschrijving', TextType::class);
     }
 	
 	public function configureOptions(OptionsResolver $resolver)
