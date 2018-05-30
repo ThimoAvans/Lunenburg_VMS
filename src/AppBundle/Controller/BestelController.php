@@ -31,11 +31,11 @@ class BestelController extends Controller
 	}
 
 	/**
-     * @Route("/bestelregel/nieuw/{a}", name="nieuwebestelregel")
+     * @Route("/bestelregel/nieuw/{bestelnummer}", name="nieuwebestelregel")
      */
-	public function nieuweBestelregel(Request $request, $a) {
+	public function nieuweBestelregel(Request $request, $bestelnummer) {
 		$nieuweBestelregel = new Bestelregel();
-		$nieuweBestelregel->bestelnummer = $a;
+		$nieuweBestelregel->bestelnummer = $bestelnummer;
 		$form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
 
 		$form->handleRequest($request);

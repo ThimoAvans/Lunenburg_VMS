@@ -21,16 +21,12 @@ class OntvangenGoederen
      */
     private $datumontvangst;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="kwaliteit", type="string", length=255)
      */
     private $kwaliteit;
-
-
-
 
     /**
      * @var string
@@ -55,7 +51,7 @@ class OntvangenGoederen
     * @ORM\GeneratedValue(strategy="AUTO")
     * @ORM\OneToMany(targetEntity="GoederenOpdracht", mappedBy="ontvangstnummer")
     */
-    private $ontvangstnummer;
+    public $ontvangstnummer;
 
     /**
      * @ORM\ManyToMany(targetEntity="Artikel", inversedBy="goederenopdracht", cascade={"persist"})
@@ -163,20 +159,6 @@ class OntvangenGoederen
     public function getOntvangen()
     {
         return $this->ontvangen;
-    }
-
-    /**
-     * Set ontvangstnummer
-     *
-     * @param integer $ontvangstnummer
-     *
-     * @return Ontvangengoederen
-     */
-    public function setOntvangstnummer($ontvangstnummer)
-    {
-        $this->ontvangstnummer = $ontvangstnummer;
-
-        return $this;
     }
 
     /**

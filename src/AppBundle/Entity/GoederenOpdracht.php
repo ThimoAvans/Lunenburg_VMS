@@ -41,16 +41,13 @@ class GoederenOpdracht
      * @var int
      *
      * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
-
-      * @ORM\ManyToOne(targetEntity="OntvangenGoederen", inversedBy="ontvangstnummer")
+     *
+     * @ORM\ManyToOne(targetEntity="OntvangenGoederen", inversedBy="ontvangstnummer")
      * @ORM\JoinColumn(name="ontvangengoederen_ontvangstnummer", referencedColumnName="ontvangstnummer")
-
      */
+    public $ontvangstnummer;
 
-
-    private $ontvangstnummer;
-
-        /**
+    /**
      * @var int
      *
      * @ORM\Column(name="hoeveelheid", type="integer")
@@ -90,20 +87,6 @@ class GoederenOpdracht
     public function getArtikelnummer()
     {
         return $this->artikelnummer;
-    }
-
-    /**
-     * Set ontvangstnummer
-     *
-     * @param integer $ontvangstnummer
-     *
-     * @return GoederenOpdracht
-     */
-    public function setOntvangstnummer($ontvangstnummer)
-    {
-        $this->ontvangstnummer = $ontvangstnummer;
-    
-        return $this;
     }
 
     /**
@@ -162,10 +145,6 @@ class GoederenOpdracht
     public function getOmschrijving()
     {
         return $this->omschrijving;
-    }
-
-            public function __toString() {
-        return (string) $this->ontvangstnummer;
     }
 }
 

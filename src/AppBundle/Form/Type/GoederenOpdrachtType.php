@@ -19,9 +19,6 @@ class GoederenOpdrachtType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ontvangstnummer', IntegerType::class);
-
-        $builder
             ->add('artikelnummer', EntityType::class, array(
             	'class' => 'AppBundle:Artikel',
             	'choice_label' => 'naam'));
