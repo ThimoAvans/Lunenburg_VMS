@@ -26,32 +26,26 @@
                     <thead>
 
                         <th>Ontvangstnummer</th>
-                        <th>Artikelnummer</th>
                         <th>Datum ontvangst</th>
-                        <th>Hoeveelheid</th>
-                        <th>Kwaliteit</th>
-                        <th>Omschrijving</th>
                         <th>Leverancier</th>
+                        <th>Kwaliteit</th>
                         <th>Ontvangen</th>
 
-                        <th>Wijzigen</th>
+                        
                     </thead>
                     {% for nietgoederen in nietgoederen %}
                     <tbody>
 
 
                             <td>{{nietgoederen.ontvangstnummer}} </td>
-                            <td>{{nietgoederen.artikelnummer}} </td>
                             <td>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </td>
-                            <td>{{nietgoederen.hoeveelheid}} </td>
-                            <td>{{nietgoederen.kwaliteit}} </td>
-                            <td>{{nietgoederen.omschrijving}} </td> 
                             <td>{{nietgoederen.leverancier}} </td>
+                            <td>{{nietgoederen.kwaliteit}} </td>
                             <td>{{nietgoederen.ontvangen}} </td> 
                             
-
-                            <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>
-                            <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('goederenverwijdering', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijder</a></td>
+                            <td><a class="btn btn-primary btn-xs" Title="Goederen bekijken"  href="{{ path('goederenopdrachtbekijken', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Bekijk</a></td>
+                            <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('ontvangstmeldingWijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>
+                            <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('ontvangstmeldingVerwijderen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijder</a></td>
 
                             </tr>
                         </tbody>

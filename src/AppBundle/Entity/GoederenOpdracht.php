@@ -5,13 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
- * Bestelregel
+ * GoederenOpdracht
  *
- * @ORM\Table(name="bestelregel")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BestelregelRepository")
+ * @ORM\Table(name="goederenopdracht")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GoederenOpdrachtRepository")
  */
-class Bestelregel
+class GoederenOpdracht
 {
     /**
      * @var int
@@ -25,19 +26,26 @@ class Bestelregel
     /**
      * @var int
      *
-     * @ORM\Column(name="bestelnummer", type="integer")
-     *
-     * @ORM\ManyToOne(targetEntity="Bestelling", inversedBy="bestelnummer")
-     * @ORM\JoinColumn(name="bestelling_bestelnummer", referencedColumnName="bestelnummer")
+     * @ORM\Column(name="artikelnummer", type="integer", unique=true)
      */
-    public $bestelnummer;
+    private $artikelnummer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="omschrijving", type="string", length=255)
+     */
+    private $omschrijving;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="artikelnummer", type="integer")
+     * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
+     *
+     * @ORM\ManyToOne(targetEntity="Ontvangstmelding", inversedBy="ontvangstnummer")
+     * @ORM\JoinColumn(name="ontvangstmelding_ontvangstnummer", referencedColumnName="ontvangstnummer")
      */
-    private $artikelnummer;
+    public $ontvangstnummer;
 
     /**
      * @var int
@@ -58,35 +66,11 @@ class Bestelregel
     }
 
     /**
-     * Set bestelnummer
-     *
-     * @param integer $bestelnummer
-     *
-     * @return Bestelregel
-     */
-    public function setBestelnummer($bestelnummer)
-    {
-        $this->bestelnummer = $bestelnummer;
-    
-        return $this;
-    }
-
-    /**
-     * Get bestelnummer
-     *
-     * @return integer
-     */
-    public function getBestelnummer()
-    {
-        return $this->bestelnummer;
-    }
-
-    /**
      * Set artikelnummer
      *
      * @param integer $artikelnummer
      *
-     * @return Bestelregel
+     * @return GoederenOpdracht
      */
     public function setArtikelnummer($artikelnummer)
     {
@@ -106,6 +90,16 @@ class Bestelregel
     }
 
     /**
+     * Get ontvangstnummer
+     *
+     * @return integer
+     */
+    public function getOntvangstnummer()
+    {
+        return $this->ontvangstnummer;
+    }
+
+       /**
      * Set hoeveelheid
      *
      * @param integer $hoeveelheid
@@ -127,6 +121,30 @@ class Bestelregel
     public function getHoeveelheid()
     {
         return $this->hoeveelheid;
+    }
+
+        /**
+     * Set omschrijving
+     *
+     * @param string $omschrijving
+     *
+     * @return GoederenOpdracht
+     */
+    public function setOmschrijving($omschrijving)
+    {
+        $this->omschrijving = $omschrijving;
+
+        return $this;
+    }
+
+    /**
+     * Get omschrijving
+     *
+     * @return string
+     */
+    public function getOmschrijving()
+    {
+        return $this->omschrijving;
     }
 }
 
