@@ -18,6 +18,9 @@
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/homepagina.css') }}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    
 </head>
 <style>
 .navbar {
@@ -70,25 +73,37 @@
                             
                         </div>
                     </li>
-                    <form method="POST" action="{{ path('artikelzoeken') }}" class="form-inline my-2 my-lg-0 float-right">
+                    <!-- <form method="POST" action="{{ path('artikelzoeken') }}" class="form-inline my-2 my-lg-0 float-right">
                         <input class="form-control mr-sm-2" name="zoekwaarde" type="search" placeholder="Zoeken..." aria-label="Search">
                         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="verzendknop" href="{{ path('artikelzoeken') }}">Zoek</button>
-                    </form>
+                    </form> -->
+                    <label for="id_label_multiple">
+                      Click this to highlight the multiple select element
 
-                    <hr/>
+                      <select class="js-example-basic-multiple js-states form-control" id="id_label_multiple" multiple="multiple"></select>
+                  </label>
 
-                    <li class="nav-item dropdown" style="border-left:1px solid rgba(0, 0, 0, 0.1);height:50px; margin-left: 20px">
-                       <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, Admin</a>
-                       <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"><i class="icon-cog"></i> Preferences</a>
-                        <a class="dropdown-item" href="#"><i class="icon-envelope"></i> Contact Support</a>                      
-                        <a class="dropdown-item" href="{{ path('loginpagina') }}"><i class="icon-off"></i> Logout</a>
-                    </div>
-                </li>
+                  <script type="text/Javascript">
+                      // In your Javascript (external .js resource or <script> tag)
+                      $(document).ready(function() {
+                          $('.js-example-basic-single').select2();
+                      });
+                  </script>
 
-            </ul>
-        </div>
+                  <hr/>
+
+                  <li class="nav-item dropdown" style="border-left:1px solid rgba(0, 0, 0, 0.1);height:50px; margin-left: 20px">
+                   <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, Admin</a>
+                   <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#"><i class="icon-cog"></i> Preferences</a>
+                    <a class="dropdown-item" href="#"><i class="icon-envelope"></i> Contact Support</a>                      
+                    <a class="dropdown-item" href="{{ path('loginpagina') }}"><i class="icon-off"></i> Logout</a>
+                </div>
+            </li>
+
+        </ul>
     </div>
+</div>
 </nav>
 {% block body %}
 {% endblock %}
