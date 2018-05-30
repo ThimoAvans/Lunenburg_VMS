@@ -6,16 +6,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class homeController extends Controller 
+class loginController extends Controller 
 { 
 
 	/**
-     * @Route("/home", name="homepagina")
+     * @Route("/login", name="loginpagina")
      */
     public function indexAction()
     {
 
-     return $this->render('default/home.html.twig', [
+     return $this->render('default/login.html.twig', [
         'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
     ]);
  }
