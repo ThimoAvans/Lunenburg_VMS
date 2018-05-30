@@ -27,8 +27,8 @@
 
                             <th>Ontvangstnummer</th>
                         <th>Datum ontvangst</th>
-                        <th>Kwaliteit</th>
                         <th>Leverancier</th>
+                        <th>Kwaliteit</th>
                         <th>Ontvangen</th>
 
                         
@@ -38,8 +38,8 @@
 
                             <td>{{goederen.ontvangstnummer}} </td>
                             <td>{{goederen.datumontvangst|date('Y-m-d') }} </td>
-                            <td>{{goederen.kwaliteit}} </td> 
                             <td>{{goederen.leverancier}} </td>
+                            <td>{{goederen.kwaliteit}} </td> 
                             <td>{{goederen.ontvangen}} </td> 
                             
                             <td><a class="btn btn-primary btn-xs" Title="Goederen bekijken"  href="{{ path('goederenopdrachtbekijken', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Bekijk</a></td>
