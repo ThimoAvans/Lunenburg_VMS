@@ -17,6 +17,7 @@ security:
                     #     password: test
                     #     roles: 'ROLE_GEBRUIKER'
 
+
     access_control:
         # - { path: '^/artikel/nieuw', roles: [ROLE_INKOPER] }
         # - { path: '^/artikel/wijzig/{artikelnummer}', roles: [ROLE_INKOPER] }

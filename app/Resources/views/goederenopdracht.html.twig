@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+	tr{
+		border: none !important;
+	}
+	th{
+		border: none !important;
+	}
+	tbody{
+		border: none !important;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		
+
+		<div class="col-md-12">
+			{% for goederenopdracht in goederenopdracht %}
+			 {% if loop.first %}
+			<h2>Goederenopdracht #{{ goederenopdracht.ontvangstnummer }}</h2>
+			<a class="btn btn-primary btn-xs" Title="Goederen toevoegen aan opdracht"  href="{{ path('nieuwegoederenopdrachten', {'ontvangstnummer':goederenopdracht.ontvangstnummer}) }}">Goederen toevoegen</a><br><br>
+			{% endif %}
+			{% endfor %}
+
+			<div class="table-responsive">
+
+
+				<table id="mytable" class="table table-bordred table-striped table-hover">
+
+					<thead>
+
+						<th>Artikelnummer</th>
+						<th>Ontvangstnummer</th>
+						<th>Omschrijving</th>
+						<th>Hoeveelheid</th>
+
+					</thead>
+					{% for goederenopdracht in goederenopdracht %}
+					<tbody>
+
+						<tr style="background-color: white;">
+							<td>{{ goederenopdracht.artikelnummer}} </td>
+							<td>{{ goederenopdracht.ontvangstnummer}} </td>
+							<td>{{ goederenopdracht.omschrijving}} </td>
+							<td>{{ goederenopdracht.hoeveelheid}} </td>
+						</tr>
+					</tbody>
+					{% endfor %}	
+				</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

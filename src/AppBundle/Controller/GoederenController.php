@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\OntvangenGoederen;
 use AppBundle\Form\Type\OntvangenGoederenType;
+use AppBundle\Entity\GoederenOpdracht;
+use AppBundle\Form\Type\GoederenOpdrachtType;
 
 class GoederenController extends Controller{
     /**
@@ -22,7 +24,7 @@ class GoederenController extends Controller{
             $em = $this->getDoctrine()->getManager();
             $em->persist($nieuweOntvangenGoederen);
             $em->flush();
-            return $this->redirect($this->generateurl("ontvangengoederennieuw"));
+            return $this->redirect($this->generateurl("nieuwegoederenopdrachten"));
         }
         return new Response($this->renderview('form.html.twig', array ('form' => $form->createView())));
     }
@@ -59,13 +61,11 @@ class GoederenController extends Controller{
 
 
 
-
-
    /**
     * @Route("/ontvangengoederen/alle", name="alleGoederen")
     */
         public function alleGoederen(request $request) {
-            $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Ja");
+            $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Ontvangen");
             return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
         }
 
@@ -73,7 +73,35 @@ class GoederenController extends Controller{
     * @Route("/nietontvangengoederen/alle", name="nietOntvangenGoederen")
     */
            public function nietOntvangenGoederen(request $request) {
-            $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Nee");
+            $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Niet Ontvangen");
             return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
         }
+
+        /**
+     * @Route("/goederenopdracht/nieuw", name="nieuwegoederenopdrachten")
+     */
+    public function nieuweGoederenOpdracht(Request $request) {
+        $nieuweGoederenOpdracht = new GoederenOpdracht();
+        $form = $this->createForm(GoederenOpdrachtType::class, $nieuweGoederenOpdracht);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($nieuweGoederenOpdracht);
+            $em->flush();
+            return $this->redirect($this->generateurl("alleGoederen"));
+           
+        }
+        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+    
+    }
+
+            /**
+     * @Route("/goederenopdracht/bekijk/{ontvangstnummer}", name="goederenopdrachtbekijken")
+     */
+    public function bekijkGoederenOpdracht(Request $request, $ontvangstnummer) {
+        $goederenopdracht = $this->getDoctrine()->getRepository("AppBundle:GoederenOpdracht")->findByOntvangstnummer($ontvangstnummer);
+        return new Response($this->renderview('goederenopdracht.html.twig', array('goederenopdracht' => $goederenopdracht)));
+    }
+
 }

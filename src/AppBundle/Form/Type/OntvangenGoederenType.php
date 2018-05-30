@@ -18,20 +18,22 @@ class OntvangenGoederenType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('artikelnummer', EntityType::class, array(
-            'class'=> 'AppBundle:Artikel',
-            'choice_label' => 'naam'));
-        $builder
-            ->add('datumontvangst', DateType::class); 
-        $builder
-            ->add('hoeveelheid', IntegerType::class);
-        $builder
-            ->add('kwaliteit', TextType::class);
-        $builder
-            ->add('omschrijving', TextType::class);
+       // $builder
+         //   ->add('artikelnummer', EntityType::class, array(
+           // 'class'=> 'AppBundle:Artikel',
+            //'choice_label' => 'naam'));
+      //  $builder
+        //    ->add('ontvangstnummer', TextType::class);
         $builder
             ->add('leverancier', TextType::class);
+        $builder
+            ->add('datumontvangst', DateType::class); 
+        //$builder
+          //  ->add('hoeveelheid', IntegerType::class);
+        $builder
+            ->add('kwaliteit', TextType::class);
+        //$builder
+          //  ->add('omschrijving', TextType::class);
         $builder
             ->add('Ontvangen', ChoiceType::class, array(
             'choices'  => array( 
