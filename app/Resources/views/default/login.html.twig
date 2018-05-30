@@ -132,7 +132,7 @@
 	.container form .title:before {
 		content: '';
 		position: absolute;
-		background: #877d73;;
+		background: #FFFFFF;;
 		height: 1px;
 	}
 	.container form:before {
@@ -256,34 +256,36 @@
 			<div class="content-triangle"></div>
 			<div class="enter-triangle-one"></div>
 			<div class="enter-triangle-two"></div>
-			<form onsubmit="validateForm();  return false;" method="post" action="./artikelbestand" class="login-form">
+			<form  action="./artikelbestand" onsubmit="validateForm(); return	 false;" class="login-form">
 				<div class="title">
 					<label>LOG IN</label>
 					<label>SYSTEEM</label>
 				</div>
 				<div class="form-group">
-					<input type="text" name="name" id="name" value="name" placeholder="LOGIN..." />
-					<input type="password" name="psw" id="psw" value="psw" placeholder="WACHTWOORD..." />
-				
-				<div class="enter">
-					<label for="enter"></label>
-					<input type="submit" name="submit" value="ENTER" id="enter" onclick="validateForm();">
+					<input type="text" name="name" id="name"  placeholder="LOGIN..." />
+					<input type="password" name="psw" id="psw"  placeholder="WACHTWOORD..." />
+
+					<div class="enter">
+						<label for="enter"></label>
+						<input type="submit" name="submit" value="ENTER" id="enter" onclick="validateForm();">
+					</div>
 				</div>
-				</div>
+
 			</div>
-		</div>
-		<script>
-			function validateForm(){
-				if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
-					alert('U wordt doorgestuurd naar menu');
+			<script>
+				function validateForm(){
+					if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
+						alert('U wordt doorgestuurd naar menu');
+						window.location.replace("http://localhost/lunenburg_VMS/web/app_dev.php/artikelbestand");
 
-				} else {
-					alert('Verkeerde gebruikersnaam of wachtwoord!');
-					return false;
+					} else {
+						alert('Verkeerde gebruikersnaam of wachtwoord!');
+						`window.location.replace("http://localhost/lunenburg_VMS/web/app_dev.php/home")
+					}
 				}
-			}
+			</script>
 
-		</script>
-	</form>
+		</form>
+	</div>
 </body>
 </html>
