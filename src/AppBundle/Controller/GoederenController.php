@@ -104,4 +104,3 @@ class GoederenController extends Controller{
         return new Response($this->renderview('goederenopdracht.html.twig', array('goederenopdracht' => $goederenopdracht)));
     }
 }
-test
