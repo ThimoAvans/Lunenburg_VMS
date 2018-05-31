@@ -55,8 +55,7 @@ tbody{
 							
 							<td> {{ artikel.vervangendArtikel }} </td> 
 
-							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen" href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-							<td> <a class="btn btn-danger btn-xs" Title="Artikel verplaatsen naar archief" href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
+							<td> <a class="btn btn-success btn-xs" Title="Artikel de-archiveren" href="{{ path('artikelDe-archiveren', {'artikelnummer':artikel.artikelnummer}) }}">De-Archiveren</a></td>
 						</tbody>
 						{% endfor %}	
 					</table>

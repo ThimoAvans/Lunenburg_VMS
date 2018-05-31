@@ -40,9 +40,9 @@
 							<td>{{ bestelling.bestelnummer }} </td>
 							<td>{{ bestelling.leverancier}} </td>
 							
-							<td><a class="btn btn-primary btn-xs" Title="Bestelling bekijken"  href="{{ path('bestellingbekijken', {'bestelnummer':bestelling.bestelnummer}) }}">Bekijk</a></td>
-							<td><a class="btn btn-primary btn-xs" Title="Bestelling wijzigen"  href="{{ path('bestellingwijzigen', {'bestelnummer':bestelling.bestelnummer}) }}">Wijzig</a></td>
-							<td> <a class="btn btn-danger btn-xs" Title="Bestelling verwijderen"  href="{{ path('bestellingverwijderen', {'bestelnummer':bestelling.bestelnummer}) }}">Verwijder</a></td>
+							<td><a class="btn btn-primary btn-xs" Title="Bestelling bekijken" href="{{ path('bestellingbekijken', {'bestelnummer':bestelling.bestelnummer}) }}">Bekijk</a></td>
+							<td><a class="btn btn-primary btn-xs" Title="Bestelling wijzigen" href="{{ path('bestellingwijzigen', {'bestelnummer':bestelling.bestelnummer}) }}">Wijzig</a></td>
+							<td> <a class="btn btn-danger btn-xs" Title="Bestelling verwijderen" href="{{ path('bestellingverwijderen', {'bestelnummer':bestelling.bestelnummer}) }}">Verwijder</a></td>
 						</tr>
 					</tbody>
 					{% endfor %}	
