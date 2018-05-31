@@ -115,6 +115,13 @@ class Artikel
     public $bestelserie;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="actief", type="string", length=3, nullable=true)
+     */
+    public $actief;
+
+    /**
      * @var int
      *
      * @ORM\ManyToMany(targetEntity="Bestelling", inversedBy="artikelen", cascade={"persist"})
@@ -226,6 +233,30 @@ class Artikel
     public function getTechnischeSpecificaties()
     {
         return $this->technischeSpecificaties;
+    }
+
+    /**
+     * Set actief
+     *
+     * @param string $actief
+     *
+     * @return Artikel
+     */
+    public function setActief($actief)
+    {
+        $this->actief = $actief;
+
+        return $this;
+    }
+
+    /**
+     * Get actief
+     *
+     * @return string
+     */
+    public function getactief()
+    {
+        return $this->actief;
     }
 
     /**

@@ -20,6 +20,7 @@ class ArtikelController extends Controller
       if ($form->isSubmitted() && $form->isValid()) {
           $em = $this->getDoctrine()->getManager();
           $em->persist($nieuwArtikel);
+          $nieuwArtikel->actief = "Ja";
           $nieuwArtikel->bestelserie = $nieuwArtikel->minimumVoorraad - $nieuwArtikel->huidigeVoorraad;
           $em->flush();
           return $this->redirect($this->generateurl("artikelbestand"));
@@ -51,7 +52,8 @@ class ArtikelController extends Controller
   public function verwijderArtikel(Request $request, $artikelnummer) {
       $em = $this->getDoctrine()->getManager();
       $bestaandArtikel = $em->getRepository("AppBundle:Artikel")->find($artikelnummer);
-      $em->remove($bestaandArtikel);
+      $em->persist($bestaandArtikel);
+      $bestaandArtikel->actief = "Nee";
       $em->flush();
       return $this->redirect($this->generateurl("artikelbestand"));
   }
@@ -60,7 +62,15 @@ class ArtikelController extends Controller
   * @Route("/artikelbestand", name="artikelbestand")
   */
   public function alleArtikelen(Request $request) {
-    $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+    $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findBy(array("actief" => "Ja"));
+    return new Response($this->renderview('artikel.html.twig', array('artikelen' => $Artikelen)));
+  }
+
+ /**
+  * @Route("/artikelarchief", name="artikelarchief")
+  */
+  public function archiefArtikelen(Request $request) {
+    $Artikelen = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findBy(array("actief" => "Nee"));
     return new Response($this->renderview('artikel.html.twig', array('artikelen' => $Artikelen)));
   }
 
