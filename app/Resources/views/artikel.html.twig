@@ -24,7 +24,6 @@ tbody{
 					<table id="mytable" class="table">
 
 						<thead>
-
 							<th>Artikel- nummer</th>
 							<th>Naam</th>
 							<th>Omschrijving</th>
@@ -36,26 +35,22 @@ tbody{
 							<th>Bestel- serie</th>
 							<th>Vervangend artikel</th>
 						</thead>
+						
 						{% for artikel in artikelen %}
 						<tbody>
+							<td> {{ artikel.artikelnummer }} </td>
+							<td> {{ artikel.naam }} </td>
+							<td> {{ artikel.omschrijving }} </td>
+							<td> {{ artikel.technischeSpecificaties }} </td>
+							<td> {{ artikel.magazijnlocatie}} </td>
+							<td>€{{ artikel.inkoopprijs}} </td>
+							<td> {{ artikel.huidigeVoorraad }} </td>
+							<td> {{ artikel.minimumVoorraad }} </td>
+							<td> {{ artikel.bestelserie }} </td>
+							<td> {{ artikel.vervangendArtikel }} </td> 
 
-
-								<td> {{ artikel.artikelnummer }} </td>
-								<td> {{ artikel.naam }} </td>
-								<td> {{ artikel.omschrijving }} </td>
-								<td> {{ artikel.technischeSpecificaties }} </td>
-								<td> {{ artikel.magazijnlocatie}} </td>
-								<td>€{{ artikel.inkoopprijs}} </td>
-								<td> {{ artikel.huidigeVoorraad }} </td>
-								<td> {{ artikel.minimumVoorraad }} </td>
-								<td> {{ artikel.bestelserie }} </td>
-								<td> {{ artikel.vervangendArtikel }} </td> 
-
-
-								<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-								<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
-
-							</tr>
+							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen" href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+							<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen" href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
 						</tbody>
 						{% endfor %}	
 					</table>

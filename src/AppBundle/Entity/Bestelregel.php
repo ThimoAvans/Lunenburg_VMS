@@ -36,6 +36,9 @@ class Bestelregel
      * @var int
      *
      * @ORM\Column(name="artikelnummer", type="integer")
+     *
+     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="artikelnummer")
+     * @ORM\JoinColumn(name="artikel_artikelnummer", referencedColumnName="artikelnummer")
      */
     private $artikelnummer;
 
