@@ -21,7 +21,7 @@ class Bestelling
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="bestelnummer")
      */
-    private $bestelnummer;
+    public $bestelnummer;
 
     /**
      * @var string

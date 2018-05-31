@@ -6,49 +6,41 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-<<<<<<< HEAD
 use AppBundle\Entity\Ontvangstmelding;
 use AppBundle\Form\Type\OntvangstmeldingType;
-use AppBundle\Entity\Ontvangstregel;
-use AppBundle\Form\Type\OntvangstregelType;
-=======
-use AppBundle\Entity\OntvangenGoederen;
-use AppBundle\Form\Type\OntvangenGoederenType;
->>>>>>> parent of 9d0fc6a... Merge branch 'master' of https://github.com/ThimoAvans/Lunenburg_VMS
+use AppBundle\Entity\GoederenOpdracht;
+use AppBundle\Form\Type\GoederenOpdrachtType;
 
 class GoederenController extends Controller{
-    /**
-    * @Route("/ontvangengoederen/nieuw", name="ontvangengoederennieuw")
+    
+   /**
+    * @Route("/ontvangstmelding/nieuw", name="nieuweOntvangstmelding")
     */
-    public function nieuweOntvangenGoederen(Request $request) {
-        $nieuweOntvangenGoederen = new OntvangenGoederen();
-        $form = $this->createForm(OntvangenGoederenType::class, $nieuweOntvangenGoederen);
+    public function nieuweOntvangstmelding(Request $request) {
+        $nieuweOntvangstmelding = new Ontvangstmelding();
+        $form = $this->createForm(OntvangstmeldingType::class, $nieuweOntvangstmelding);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($nieuweOntvangenGoederen);
+            $em->persist($nieuweOntvangstmelding);
             $em->flush();
-<<<<<<< HEAD
-            return $this->redirect("/Lunenburg_VMS/web/app_dev.php/ontvangstregel/nieuw/$nieuweOntvangstmelding->ontvangstnummer");
-=======
-            return $this->redirect($this->generateurl("ontvangengoederennieuw"));
->>>>>>> parent of 9d0fc6a... Merge branch 'master' of https://github.com/ThimoAvans/Lunenburg_VMS
+            return $this->redirect("/Lunenburg_VMS/web/app_dev.php/goederenopdracht/nieuw/$nieuweOntvangstmelding->ontvangstnummer");
         }
         return new Response($this->renderview('form.html.twig', array ('form' => $form->createView())));
     }
 
     /**
-     * @Route("/ontvangengoederen/wijzig/{ontvangstnummer}", name="goederenwijzigen")
+     * @Route("/ontvangstmelding/wijzig/{ontvangstnummer}", name="ontvangstmeldingWijzigen")
      */
-    public function wijzigOntvangenGoederen(Request $request, $ontvangstnummer) {
-        $bestaandeGoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->find($ontvangstnummer);
-        $form = $this->createForm(OntvangenGoederenType::class, $bestaandeGoederen);
+    public function wijzigOntvangstmelding(Request $request, $ontvangstnummer) {
+        $bestaandeOntvangstmelding = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->find($ontvangstnummer);
+        $form = $this->createForm(OntvangstmeldingType::class, $bestaandeOntvangstmelding);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($bestaandeGoederen);
+            $em->persist($bestaandeOntvangstmelding);
             $em->flush();
             return $this->redirect($this->generateurl("alleGoederen"));
         }
@@ -56,44 +48,17 @@ class GoederenController extends Controller{
     }
 
     /**
-     * @Route("/ontvangengoederen/verwijder/{ontvangstnummer}", name="goederenverwijdering")
+     * @Route("/ontvangstmelding/verwijder/{ontvangstnummer}", name="ontvangstmeldingVerwijderen")
      */
-    public function verwijderOntvangenGoederen(Request $request, $ontvangstnummer) {
-        $bestaandeGoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->find($ontvangstnummer);
+    public function verwijderOntvangstmelding(Request $request, $ontvangstnummer) {
+        $bestaandeOntvangstmelding = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->find($ontvangstnummer);
         $em = $this->getDoctrine()->getManager();
-        $bestaandeGoederen = $em->getRepository("AppBundle:OntvangenGoederen")->find($ontvangstnummer);
-        $em->remove($bestaandeGoederen);
+        $bestaandeOntvangstmelding = $em->getRepository("AppBundle:Ontvangstmelding")->find($ontvangstnummer);
+        $em->remove($bestaandeOntvangstmelding);
         $em->flush();
 
         return $this->redirect($this->generateurl("alleGoederen"));
     }
-
-    /**
-     * @Route("/ontvangstregel/nieuw/{ontvangstnummer}", name="nieuweOntvangstregel")
-     */
-    public function nieuweOntvangstregel(Request $request, $ontvangstnummer) {
-        $nieuweOntvangstregel = new Ontvangstregel();
-        $nieuweOntvangstregel->ontvangstnummer = $ontvangstnummer;
-        $form = $this->createForm(OntvangstregelType::class, $nieuweOntvangstregel);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($nieuweOntvangstregel);
-            $em->flush();
-            return $this->redirect("/Lunenburg_VMS/web/app_dev.php/ontvangstregel/bekijk/$nieuweOntvangstregel->ontvangstnummer");  
-        }
-        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
-    }
-
-    /**
-     * @Route("/ontvangstregel/bekijk/{ontvangstnummer}", name="ontvangstregelbekijken")
-     */
-    public function bekijkOntvangstregel(Request $request, $ontvangstnummer) {
-        $ontvangstregels = $this->getDoctrine()->getRepository("AppBundle:Ontvangstregel")->findByOntvangstnummer($ontvangstnummer);
-        return new Response($this->renderview('ontvangstregel.html.twig', array('ontvangstregels' => $ontvangstregels)));
-    }
-
 
 
 
@@ -101,7 +66,7 @@ class GoederenController extends Controller{
     * @Route("/ontvangengoederen/alle", name="alleGoederen")
     */
         public function alleGoederen(request $request) {
-            $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Ja");
+            $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->findByOntvangen("Ontvangen");
             return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
         }
 
@@ -109,7 +74,33 @@ class GoederenController extends Controller{
     * @Route("/nietontvangengoederen/alle", name="nietOntvangenGoederen")
     */
            public function nietOntvangenGoederen(request $request) {
-            $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:OntvangenGoederen")->findByOntvangen("Nee");
+            $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->findByOntvangen("Niet Ontvangen");
             return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
         }
+
+    /**
+     * @Route("/goederenopdracht/nieuw/{ontvangstnummer}", name="nieuwegoederenopdrachten")
+     */
+    public function nieuweGoederenOpdracht(Request $request, $ontvangstnummer) {
+        $nieuweGoederenOpdracht = new GoederenOpdracht();
+        $nieuweGoederenOpdracht->ontvangstnummer = $ontvangstnummer;
+        $form = $this->createForm(GoederenOpdrachtType::class, $nieuweGoederenOpdracht);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($nieuweGoederenOpdracht);
+            $em->flush();
+            return $this->redirect("/Lunenburg_VMS/web/app_dev.php/goederenopdracht/bekijk/$nieuweGoederenOpdracht->ontvangstnummer");  
+        }
+        return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+    }
+
+    /**
+     * @Route("/goederenopdracht/bekijk/{ontvangstnummer}", name="goederenopdrachtbekijken")
+     */
+    public function bekijkGoederenOpdracht(Request $request, $ontvangstnummer) {
+        $goederenopdracht = $this->getDoctrine()->getRepository("AppBundle:GoederenOpdracht")->findByOntvangstnummer($ontvangstnummer);
+        return new Response($this->renderview('goederenopdracht.html.twig', array('goederenopdracht' => $goederenopdracht)));
+    }
 }

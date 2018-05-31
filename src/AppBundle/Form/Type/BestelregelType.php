@@ -18,8 +18,6 @@ class BestelregelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bestelnummer', IntegerType::class);
-        $builder
             ->add('artikelnummer', EntityType::class, array(
             	'class' => 'AppBundle:Artikel',
             	'choice_label' => 'naam'));

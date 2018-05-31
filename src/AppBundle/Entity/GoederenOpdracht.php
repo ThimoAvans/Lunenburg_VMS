@@ -7,12 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
- * Ontvangstregel
+ * GoederenOpdracht
  *
  * @ORM\Table(name="goederenopdracht")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OntvangstregelRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GoederenOpdrachtRepository")
  */
-class Ontvangstregel
+class GoederenOpdracht
 {
     /**
      * @var int
@@ -70,7 +70,7 @@ class Ontvangstregel
      *
      * @param integer $artikelnummer
      *
-     * @return Ontvangstregel
+     * @return GoederenOpdracht
      */
     public function setArtikelnummer($artikelnummer)
     {
@@ -128,7 +128,7 @@ class Ontvangstregel
      *
      * @param string $omschrijving
      *
-     * @return Ontvangstregel
+     * @return GoederenOpdracht
      */
     public function setOmschrijving($omschrijving)
     {

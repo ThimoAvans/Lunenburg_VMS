@@ -16,10 +16,10 @@
 		
 
 		<div class="col-md-12">
-			{% for ontvangstregel in ontvangstregels %}
+			{% for goederenopdracht in goederenopdracht %}
 			{% if loop.first %}
-			<h2>Ontvangstmelding #{{ ontvangstregel.ontvangstnummer }}</h2>
-			<a class="btn btn-primary btn-xs" Title="Goederen toevoegen aan opdracht"  href="{{ path('nieuweOntvangstregel', {'ontvangstnummer':ontvangstregel.ontvangstnummer}) }}">Goederen toevoegen</a>
+			<h2>Ontvangstmelding #{{ goederenopdracht.ontvangstnummer }}</h2>
+			<a class="btn btn-primary btn-xs" Title="Goederen toevoegen aan opdracht"  href="{{ path('nieuwegoederenopdrachten', {'ontvangstnummer':goederenopdracht.ontvangstnummer}) }}">Goederen toevoegen</a>
 			{% endif %}
 			{% endfor %}
 			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('alleGoederen') }}">Terug naar overzicht</a><br><br>	
@@ -37,14 +37,14 @@
 						<th>Hoeveelheid</th>
 
 					</thead>
-					{% for ontvangstregel in ontvangstregels %}
+					{% for goederenopdracht in goederenopdracht %}
 					<tbody>
 
 						<tr style="background-color: white;">
-							<td> {{ ontvangstregel.artikelnummer}} </td>
-							<td> {{ ontvangstregel.ontvangstnummer}} </td>
-							<td> {{ ontvangstregel.omschrijving}} </td>
-							<td> {{ ontvangstregel.hoeveelheid}} </td>
+							<td> {{ goederenopdracht.artikelnummer}} </td>
+							<td> {{ goederenopdracht.ontvangstnummer}} </td>
+							<td> {{ goederenopdracht.omschrijving}} </td>
+							<td> {{ goederenopdracht.hoeveelheid}} </td>
 						</tr>
 					</tbody>
 					{% endfor %}	
