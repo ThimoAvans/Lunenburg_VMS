@@ -26,25 +26,39 @@
                     <thead>
 
                         <th>Ontvangstnummer</th>
+<<<<<<< HEAD
+=======
+                        <th>Artikelnummer</th>
+>>>>>>> parent of 9d0fc6a... Merge branch 'master' of https://github.com/ThimoAvans/Lunenburg_VMS
                         <th>Datum ontvangst</th>
-                        <th>Leverancier</th>
+                        <th>Hoeveelheid</th>
                         <th>Kwaliteit</th>
+                        <th>Omschrijving</th>
+                        <th>Leverancier</th>
                         <th>Ontvangen</th>
 
-                        
+                        <th>Wijzigen</th>
                     </thead>
                     {% for goederen in goederen %}
                     <tbody>
 
                             <td>{{goederen.ontvangstnummer}} </td>
+                            <td>{{goederen.artikelnummer}} </td>
                             <td>{{goederen.datumontvangst|date('Y-m-d') }} </td>
+                            <td>{{goederen.hoeveelheid}} </td>
+                            <td>{{goederen.kwaliteit}} </td>
+                            <td>{{goederen.omschrijving}} </td> 
                             <td>{{goederen.leverancier}} </td>
-                            <td>{{goederen.kwaliteit}} </td> 
                             <td>{{goederen.ontvangen}} </td> 
                             
+<<<<<<< HEAD
                             <td><a class="btn btn-primary btn-xs" Title="Goederen bekijken"  href="{{ path('ontvangstregelbekijken', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Bekijk</a></td>
                             <td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('ontvangstmeldingWijzigen', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Wijzig</a></td>
                             <td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('ontvangstmeldingVerwijderen', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Verwijder</a></td>
+=======
+                            <td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Wijzig</a></td>
+                            <td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('goederenverwijdering', {'ontvangstnummer':goederen.ontvangstnummer}) }}">Verwijder</a></td>
+>>>>>>> parent of 9d0fc6a... Merge branch 'master' of https://github.com/ThimoAvans/Lunenburg_VMS
 
                         </tr>
                     </tbody>

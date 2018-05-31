@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;   
 
 /**
- * Ontvangstmelding
+ * Ontvangenoederen
  *
  * @ORM\Table(name="ontvangstmelding")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OntvangstmeldingRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\OntvangenGoederenRepository")
  */
-class Ontvangstmelding
+class OntvangenGoederen
 {
 
     /**
@@ -22,11 +22,33 @@ class Ontvangstmelding
     private $datumontvangst;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="hoeveelheid", type="integer")
+     */
+    private $hoeveelheid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="kwaliteit", type="string", length=255)
      */
     private $kwaliteit;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="artikelnummer", type="integer", unique=true)
+     */
+ 
+    private $artikelnummer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="omschrijving", type="string", length=255)
+     */
+    private $omschrijving;
 
     /**
      * @var string
@@ -49,9 +71,8 @@ class Ontvangstmelding
     * @ORM\Column(name="ontvangstnummer", type="integer", unique=true)
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
-    * @ORM\OneToMany(targetEntity="GoederenOpdracht", mappedBy="ontvangstnummer")
     */
-    public $ontvangstnummer;
+    private $ontvangstnummer;
 
     /**
      * @ORM\ManyToMany(targetEntity="Artikel", inversedBy="goederenopdracht", cascade={"persist"})
@@ -86,6 +107,29 @@ class Ontvangstmelding
         return $this->datumontvangst;
     }
 
+    /**
+     * Set hoeveelheid
+     *
+     * @param integer $hoeveelheid
+     *
+     * @return Ontvangengoederen
+     */
+    public function setHoeveelheid($hoeveelheid)
+    {
+        $this->hoeveelheid = $hoeveelheid;
+
+        return $this;
+    }
+
+    /**
+     * Get hoeveelheid
+     *
+     * @return int
+     */
+    public function getHoeveelheid()
+    {
+        return $this->hoeveelheid;
+    }
 
     /**
      * Set kwaliteit
@@ -111,7 +155,53 @@ class Ontvangstmelding
         return $this->kwaliteit;
     }
 
+    /**
+     * Set artikelnummer
+     *
+     * @param integer $artikelnummer
+     *
+     * @return Ontvangengoederen
+     */
+    public function setArtikelnummer($artikelnummer)
+    {
+        $this->artikelnummer = $artikelnummer;
 
+        return $this;
+    }
+
+    /**
+     * Get artikelnummer
+     *
+     * @return int
+     */
+    public function getArtikelnummer()
+    {
+        return $this->artikelnummer;
+    }
+
+    /**
+     * Set omschrijving
+     *
+     * @param string $omschrijving
+     *
+     * @return Ontvangengoederen
+     */
+    public function setOmschrijving($omschrijving)
+    {
+        $this->omschrijving = $omschrijving;
+
+        return $this;
+    }
+
+    /**
+     * Get omschrijving
+     *
+     * @return string
+     */
+    public function getOmschrijving()
+    {
+        return $this->omschrijving;
+    }
 
     /**
      * Set leverancier
@@ -159,6 +249,20 @@ class Ontvangstmelding
     public function getOntvangen()
     {
         return $this->ontvangen;
+    }
+
+    /**
+     * Set ontvangstnummer
+     *
+     * @param integer $ontvangstnummer
+     *
+     * @return Ontvangengoederen
+     */
+    public function setOntvangstnummer($ontvangstnummer)
+    {
+        $this->ontvangstnummer = $ontvangstnummer;
+
+        return $this;
     }
 
     /**

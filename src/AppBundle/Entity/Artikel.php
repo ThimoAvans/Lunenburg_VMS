@@ -124,7 +124,7 @@ class Artikel
     /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="Ontvangstmelding", inversedBy="ontvangengoederen", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="OntvangenGoederen", inversedBy="ontvangengoederen", cascade={"persist"})
      */
     private $goederenopdracht;
 

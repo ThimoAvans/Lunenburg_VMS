@@ -24,18 +24,17 @@ class BestelController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($nieuweBestelling);
 			$em->flush();
-			return $this->redirect("/Lunenburg_VMS/web/app_dev.php/bestelregel/nieuw/$nieuweBestelling->bestelnummer");
+			return $this->redirect($this->generateurl("nieuwebestelregel"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
 	}
 
 	/**
-     * @Route("/bestelregel/nieuw/{bestelnummer}", name="nieuwebestelregel")
+     * @Route("/bestelregel/nieuw", name="nieuwebestelregel")
      */
-	public function nieuweBestelregel(Request $request, $bestelnummer) {
+	public function nieuweBestelregel(Request $request) {
 		$nieuweBestelregel = new Bestelregel();
-		$nieuweBestelregel->bestelnummer = $bestelnummer;
 		$form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
 
 		$form->handleRequest($request);
@@ -43,7 +42,8 @@ class BestelController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($nieuweBestelregel);
 			$em->flush();
-			return $this->redirect("/Lunenburg_VMS/web/app_dev.php/bestelling/bekijk/$nieuweBestelregel->bestelnummer");
+			return $this->redirect($this->generateurl("allebestellingen"));
+			//return $this->redirect($this->generateurl("bestellingbekijken"));
 		}
 
 		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
