@@ -7,32 +7,20 @@ security:
                 users:
                     admin:
                         password: admin
-                        roles: 'ROLE_INKOPER'
+                        roles: 'ROLE_ADMIN'
 
                     magazijnmeester:
                         password: magazijnmeester
                         roles: 'ROLE_MAGAZIJNMEESTER'
 
+                    inkoper:
+                        password: inkoper
+                        roles: 'ROLE_INKOPER'
+
                     # testgebruiker:
                     #     password: test
                     #     roles: 'ROLE_GEBRUIKER'
 
-    access_control:
-        # - { path: '^/artikel/nieuw', roles: [ROLE_INKOPER] }
-        # - { path: '^/artikel/wijzig/{artikelnummer}', roles: [ROLE_INKOPER] }
-        # - { path: '^/artikel/verwijder/{artikelnummer}', roles: [ROLE_INKOPER] }
-        # - { path: '^/search/artikel', roles: [ROLE_INKOPER] }
-        # - { path: '^/bestelorder/nieuw', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/bestelorder/wijzig/{bestelordernummer}', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/bestelorder/verwijder/{bestelordernummer}', roles: [ROLE_MAGAZIJNMEESTERROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/bestelorderoverzicht', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/ontvangengoederen/nieuw', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/ontvangengoederen/wijzig/{ontvangstnummer}', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/ontvangengoederen/verwijder/{ontvangstnummer}', roles: [ROLE_MAGAZIJNMEESTERROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/ontvangengoederen/alle', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/nietontvangengoederen/alle', roles: [ROLE_MAGAZIJNMEESTER] }
-        # - { path: '^/home', roles: [ROLE_INKOPER] }
-    
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
@@ -41,17 +29,41 @@ security:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
+            security: false   
 
-        default:
-            anonymous: ~
-            # activate different ways to authenticate
+        default: 
+            anonymous: ~ 
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             http_basic: ~
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            
+            form_login:
+                login_path: login
+                check_path: login
+    access_control:
+
+        # - { path: '^/artikel/nieuw', roles: [ROLE_ADMIN, ROLE_INKOPER] }    
+        # - { path: '^/artikel/wijzig/{artikelnummer}', roles: [ROLE_ADMIN, ROLE_INKOPER] }
+        # - { path: '^/artikel/verwijder/{artikelnummer}', roles: [ROLE_ADMIN, ROLE_INKOPER] }
+        # - { path: '^/search/artikel', roles: [ROLE_ADMIN, ROLE_INKOPER] }
+        # - { path: '^/bestelorder/nieuw', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/bestelorder/wijzig/{bestelordernummer}', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/bestelorder/verwijder/{bestelordernummer}', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/bestelorderoverzicht', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/ontvangengoederen/nieuw', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/ontvangengoederen/wijzig/{ontvangstnummer}', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/ontvangengoederen/verwijder/{ontvangstnummer}', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/ontvangengoederen/alle', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/nietontvangengoederen/alle', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # - { path: '^/home', roles: [ROLE_INKOPER, ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        # # - { path: '^/login', roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER, ROLE_INKOPER] }
+        - { path: '^/inkoper/*', roles: [ROLE_INKOPER] }
+        - { path: '^/magazijnmeester/*', roles: [ROLE_MAGAZIJNMEESTER] }
+        - { path: '^/logout', roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
+
+              
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
-            logout:
-                path:   /logout
-                target: /home
+

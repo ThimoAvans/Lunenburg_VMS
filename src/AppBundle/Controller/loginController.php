@@ -12,13 +12,19 @@ class loginController extends Controller
 	/**
      * @Route("/login", name="loginpagina")
      */
-    public function indexAction()
+public function loginAction(Request $request)
     {
+    		$authenticationUtils = $this->get('security.authentication_utils');
 
-     return $this->render('default/login.html.twig', [
-        'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-    ]);
- }
+    		$error = $authenticationUtils->getLastAuthenticationError();
+
+    		$lastUsername = $authenticationUtils->getLastUsername();
+
+
+        return $this->render('login.html.twig', array(
+        	'last_username' => $lastUsername,
+            'error' => $error,));
+    }
  
 
 }
