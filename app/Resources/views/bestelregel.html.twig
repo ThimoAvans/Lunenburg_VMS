@@ -19,7 +19,7 @@
 			{% for bestelregel in bestelregels %}
 			{% if loop.first %}
 			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
-			<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'a':bestelregel.bestelnummer}) }}">Product toevoegen</a>
+			<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a>
 			{% endif %}
 			{% endfor %}
 			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
