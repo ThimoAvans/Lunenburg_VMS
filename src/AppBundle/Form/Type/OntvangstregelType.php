@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Doctrine\Form\Type\CollectionType;
 
 
-class GoederenOpdrachtType extends AbstractType
+class OntvangstregelType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +31,7 @@ class GoederenOpdrachtType extends AbstractType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'AppBundle\Entity\GoederenOpdracht', 
+			'data_class' => 'AppBundle\Entity\Ontvangstregel', 
 		));
 	}
 }
