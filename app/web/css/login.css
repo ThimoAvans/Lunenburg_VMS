@@ -1,0 +1,62 @@
+{% block body %}
+
+<head>
+
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+</head>
+<style>
+
+</style>
+<body>
+	<section class="login-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 login-sec">
+					<h2 class="text-center">Login</h2>
+					<form onsubmit="return validateForm();  return false;" method="post" action="./artikelbestand" class="login-form">
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="text-uppercase">Gebruikersnaam</label>
+							<input type="text" class="form-control" name="name" id="name" placeholder="">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1" class="text-uppercase">Wachtwoord</label>
+							<input type="password" class="form-control" name="psw" id="psw" placeholder="">
+						</div>
+
+
+
+						<button type="Submit" class="btn btn-danger float-left">Submit</button>
+
+						<script>
+							function validateForm(){
+								if(document.getElementById('name').value == 'admin' && document.getElementById('psw').value == 'admin'){
+									alert('U wordt doorgestuurd naar menu');
+								} else {
+									alert('Verkeerde gebruikersnaam of wachtwoord!');
+									return false;
+								}
+							}
+						</script>
+					</form>
+				</div>
+
+				<div class="col-md-8 banner-sec login-text">
+					<div class="login-text">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+
+{% endblock %}
