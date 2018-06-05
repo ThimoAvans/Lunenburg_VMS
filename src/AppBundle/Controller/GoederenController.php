@@ -10,6 +10,7 @@ use AppBundle\Entity\Ontvangstmelding;
 use AppBundle\Form\Type\OntvangstmeldingType;
 use AppBundle\Entity\Ontvangstregel;
 use AppBundle\Form\Type\OntvangstregelType;
+use AppBundle\Entity\Bestelregel;
 
 class GoederenController extends Controller{
     

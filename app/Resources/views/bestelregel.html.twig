@@ -31,6 +31,7 @@
 
 						<th>Artikelnummer</th>
 						<th>Hoeveelheid</th>
+						<th>Status</th>
 
 					</thead>
 					{% for bestelregel in bestelregels %}
@@ -39,6 +40,9 @@
 						<tr style="background-color: white;">
 							<td>{{ bestelregel.artikelnummer}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
+							<td>{{ bestelregel.status}} </td>
+
+							<td><a class="btn btn-basic btn-xs" Title="Ontvangst melden"  href="{{ path('meldontvangst', {'id':bestelregel.id}) }}">Ontvangst melden</a></td>
 						</tr>
 
 					</tbody>

@@ -49,6 +49,14 @@ class Bestelregel
      */
     private $hoeveelheid;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=20)
+     */
+    public $status;
+
+
 
     /**
      * Get id
@@ -130,6 +138,30 @@ class Bestelregel
     public function getHoeveelheid()
     {
         return $this->hoeveelheid;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Bestelregel
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
 

@@ -50,6 +50,19 @@ class BestelController extends Controller
 	}
 
 	/**
+     * @Route("/bestelregel/meldontvangst/{id}", name="meldontvangst")
+     */
+ 	public function meldOntvangst(Request $request, $id) {
+    	$em = $this->getDoctrine()->getManager();
+      	$bestelregel = $em->getRepository("AppBundle:Bestelregel")->find($id);
+      	$em->persist($bestelregel);
+      	$bestelregel->status = "Ontvangen";
+      	$em->flush();
+      	return $this->redirect($this->generateurl("allebestellingen"));
+  	}
+
+
+	/**
      * @Route("/bestelling/wijzig/{bestelnummer}", name="bestellingwijzigen")
      */
 	public function wijzigBestelling(Request $request, $bestelnummer) {
