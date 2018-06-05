@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<style>
+body {
+	margin-bottom: 40px;	
+}
+.form-group {
+	padding-right: 250px;
+	padding-left: 250px;
+}
+input.btn {
+	padding-left: 250px;
+	display: inline-block;
+	margin-left: 250px;
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	padding: 5px 10px;
+
+
+}
+
+a.btn {
+	padding-left: 240px;
+	display: inline-block;
+	margin-left: 5px;
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	padding: 5px 10px;
+
+}
+
+
+</style>
+<body>
+	<div class="container" ></div>
+	<form method="post" action="">
+		{{ form_widget(form) }}
+		<input class="btn btn-success btn-xs" type="submit" value="Wijzig"> 
+		<a class="btn btn-danger btn-xs" type="submit" href="javascript:history.back()">Annuleren</a>
+	</form>
+
+</body>
+{% endblock %}

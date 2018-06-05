@@ -24,14 +24,14 @@ class OntvangstmeldingType extends AbstractType
             ->add('datumontvangst', DateType::class); 
         $builder
             ->add('kwaliteit', ChoiceType::class, array(
-                'choices' => array(
-                    'Groen' => "Groen",
-                    'Rood' => "Rood",)));
+            'choices' => array(
+            'Groen' => "Groen",
+            'Rood' => "Rood",)));        
         $builder
             ->add('Ontvangen', ChoiceType::class, array(
             'choices'  => array( 
             'Ja' => "Ontvangen",
-            'Nee' => "Niet Ontvangen",),));                                                                                    	 
+            'Nee' => "Niet Ontvangen",)));                                                                                    	 
     }
 	
 	public function configureOptions(OptionsResolver $resolver)

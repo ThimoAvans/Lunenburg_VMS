@@ -12,7 +12,6 @@ tbody{
 }
 
 </style>
-<body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -24,7 +23,6 @@ tbody{
 					<table id="mytable" class="table">
 
 						<thead>
-
 							<th>Artikel- nummer</th>
 							<th>Naam</th>
 							<th>Omschrijving</th>
@@ -36,10 +34,25 @@ tbody{
 							<th>Bestel- serie</th>
 							<th>Vervangend artikel</th>
 						</thead>
+						
 						{% for artikel in artikelen %}
 						<tbody>
-
+							<td> {{ artikel.artikelnummer }} </td>
+							<td> {{ artikel.naam }} </td>
+							<td> {{ artikel.omschrijving }} </td>
+							<td> {{ artikel.technischeSpecificaties }} </td>
+							<td> {{ artikel.magazijnlocatie}} </td>
+							<td>€{{ artikel.inkoopprijs}} </td>
+							<td> {{ artikel.huidigeVoorraad }} </td>
+							<td> {{ artikel.minimumVoorraad }} </td>
 							
+							{% if artikel.bestelserie < 0 %}
+							<td>0</td>
+							{% else %}
+							<td>{{ artikel.bestelserie }}</td>
+							{% endif %}
+							
+							<td> {{ artikel.vervangendArtikel }} </td> 
 
 								<td> {{ artikel.artikelnummer }} </td>
 								<td> {{ artikel.naam }} </td>
@@ -52,9 +65,10 @@ tbody{
 								<td> {{ artikel.bestelserie }} </td>
 								<td> {{ artikel.vervangendArtikel }} </td> 
 
+{% if is_granted('ROLE_ADMIN', 'ROLE_INKOPER') %}
 								<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-								<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Are you sure you want to delete this item?');">Verwijder</a></td>
-
+								<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Are you sure you want to delete this item?');">Verwijder</a></td>
+{% endif %}
 							</tr>
 						</tbody>
 						{% endfor %}	

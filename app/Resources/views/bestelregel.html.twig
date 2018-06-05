@@ -25,7 +25,6 @@
 			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
 			<div class="table-responsive">
 
-
 				<table id="mytable" class="table table-bordred table-striped table-hover">
 
 					<thead>
@@ -41,6 +40,7 @@
 							<td>{{ bestelregel.artikelnummer}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 						</tr>
+
 					</tbody>
 					{% endfor %}	
 				</table>

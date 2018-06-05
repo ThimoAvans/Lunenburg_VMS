@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+tr{
+	border: none !important;
+}
+th{
+	border: none !important;
+}
+tbody{
+	border: none !important;
+}
+
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Artikelen overzicht</h2>
+
+				<div class="table-responsive">
+
+
+					<table id="mytable" class="table">
+
+						<thead>
+							<th>Artikel- nummer</th>
+							<th>Naam</th>
+							<th>Omschrijving</th>
+							<th>Technische specificaties</th>
+							<th>Magazijn- locatie</th>
+							<th>Inkoop- prijs</th>
+							<th>Huidige voorraad</th>
+							<th>Minimum voorraad</th>
+							<th>Bestel- serie</th>
+							<th>Vervangend artikel</th>
+						</thead>
+						
+						{% for artikel in artikelen %}
+						<tbody>
+							<td> {{ artikel.artikelnummer }} </td>
+							<td> {{ artikel.naam }} </td>
+							<td> {{ artikel.omschrijving }} </td>
+							<td> {{ artikel.technischeSpecificaties }} </td>
+							<td> {{ artikel.magazijnlocatie}} </td>
+							<td>€{{ artikel.inkoopprijs}} </td>
+							<td> {{ artikel.huidigeVoorraad }} </td>
+							<td> {{ artikel.minimumVoorraad }} </td>
+							
+							{% if artikel.bestelserie < 0 %}
+							<td>0</td>
+							{% else %}
+							<td>{{ artikel.bestelserie }}</td>
+							{% endif %}
+							
+							<td> {{ artikel.vervangendArtikel }} </td> 
+
+							<td> <a class="btn btn-success btn-xs" Title="Artikel de-archiveren" href="{{ path('artikelDe-archiveren', {'artikelnummer':artikel.artikelnummer}) }}">De-Archiveren</a></td>
+						</tbody>
+						{% endfor %}	
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock %}
