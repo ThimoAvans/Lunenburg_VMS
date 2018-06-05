@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+    tr{
+        border: none !important;
+    }
+    th{
+        border: none !important;
+    }
+    tbody{
+        border: none !important;
+    }
+</style>
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <h2>Overzicht van nog te ontvangen goederen</h2>
+
+            <div class="table-responsive">
+
+
+                <table id="mytable" class="table table-bordred table-striped table-hover">
+
+                    <thead>
+
+                        <th>Ontvangstnummer</th>
+                        <th>Artikelnummer</th>
+                        <th>Datum ontvangst</th>
+                        <th>Hoeveelheid</th>
+                        <th>Kwaliteit</th>
+                        <th>Omschrijving</th>
+                        <th>Leverancier</th>
+                        <th>Ontvangen</th>
+
+                        <th>Wijzigen</th>
+                    </thead>
+                    {% for nietgoederen in nietgoederen %}
+                    <tbody>
+
+
+                            <td>{{nietgoederen.ontvangstnummer}} </td>
+                            <td>{{nietgoederen.artikelnummer}} </td>
+                            <td>{{ nietgoederen.datumontvangst|date('Y-m-d') }} </td>
+                            <td>{{nietgoederen.hoeveelheid}} </td>
+                            <td>{{nietgoederen.kwaliteit}} </td>
+                            <td>{{nietgoederen.omschrijving}} </td> 
+                            <td>{{nietgoederen.leverancier}} </td>
+                            <td>{{nietgoederen.ontvangen}} </td> 
+                            
+
+                            <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('goederenwijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>
+                            <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('goederenverwijdering', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijder</a></td>
+
+                            </tr>
+                        </tbody>
+                        {% endfor %}    
+                    </table>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
