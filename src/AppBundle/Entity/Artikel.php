@@ -112,7 +112,16 @@ class Artikel
      *
      * @ORM\Column(name="bestelserie", type="integer")
      */
+
+    
     public $bestelserie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actief", type="string", length=3, nullable=true)
+     */
+    public $actief;
 
     /**
      * @var int
@@ -124,7 +133,7 @@ class Artikel
     /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="OntvangenGoederen", inversedBy="ontvangengoederen", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Ontvangstmelding", inversedBy="ontvangengoederen", cascade={"persist"})
      */
     private $goederenopdracht;
 
@@ -226,6 +235,30 @@ class Artikel
     public function getTechnischeSpecificaties()
     {
         return $this->technischeSpecificaties;
+    }
+
+    /**
+     * Set actief
+     *
+     * @param string $actief
+     *
+     * @return Artikel
+     */
+    public function setActief($actief)
+    {
+        $this->actief = $actief;
+
+        return $this;
+    }
+
+    /**
+     * Get actief
+     *
+     * @return string
+     */
+    public function getactief()
+    {
+        return $this->actief;
     }
 
     /**
