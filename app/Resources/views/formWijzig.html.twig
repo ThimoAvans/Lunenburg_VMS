@@ -42,7 +42,7 @@ a.btn {
 	<div class="container" ></div>
 	<form method="post" action="">
 		{{ form_widget(form) }}
-		<input class="btn btn-success btn-xs" type="submit" value="Wijzig"> 
+		<input class="btn btn-success btn-xs" onclick="return confirm('Weet je zeker dat je het wilt wijzigen?');"type="submit" value="Wijzig"> 
 		<a class="btn btn-danger btn-xs" type="submit" href="javascript:history.back()">Annuleren</a>
 	</form>
 

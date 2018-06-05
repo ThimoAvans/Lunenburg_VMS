@@ -101,4 +101,5 @@ class ArtikelController extends Controller
       return new Response($this->renderview('artikelzoeken.html.twig', array('zoekwaarde' => $zoekwaarde)));
     }
   }
+
 }

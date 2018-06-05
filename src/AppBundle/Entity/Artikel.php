@@ -112,6 +112,8 @@ class Artikel
      *
      * @ORM\Column(name="bestelserie", type="integer")
      */
+
+    
     public $bestelserie;
 
     /**
