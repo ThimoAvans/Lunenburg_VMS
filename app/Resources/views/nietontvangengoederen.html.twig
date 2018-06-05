@@ -45,7 +45,7 @@
                             
                             <td><a class="btn btn-primary btn-xs" Title="Goederen bekijken"  href="{{ path('ontvangstregelbekijken', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Bekijk</a></td>
                             <td><a class="btn btn-primary btn-xs" Title="Goederen wijzigen"  href="{{ path('ontvangstmeldingWijzigen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Wijzig</a></td>
-                            <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('ontvangstmeldingVerwijderen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}">Verwijder</a></td>
+                            <td> <a class="btn btn-danger btn-xs" Title="Goederen verwijderen"  href="{{ path('ontvangstmeldingVerwijderen', {'ontvangstnummer':nietgoederen.ontvangstnummer}) }}"onclick="return confirm('Weet je zeker dat je het wilt verwijderen?');">Verwijder</a></td>
 
                             </tr>
                         </tbody>
