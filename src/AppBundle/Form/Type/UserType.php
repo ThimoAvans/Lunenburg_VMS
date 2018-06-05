@@ -36,7 +36,9 @@ class UserType extends AbstractType
                 'expanded' => true, // render check-boxes
                 'choices' => [
                      'Admin' => 'ROLE_ADMIN',
-                     'User' => 'ROLE_USER',
+                     'Inkoper' => 'ROLE_INKOPER',
+                     'Verkoper' => 'ROLE_VERKOPER',
+                     'Magazijnmeester' => 'ROLE_MAGAZIJNMEESTER',
                     ],
                 ])
         ;

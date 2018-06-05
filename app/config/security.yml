@@ -43,7 +43,9 @@ security:
 
     access_control:
         # require ROLE_ADMIN for /admin*
-        - { path: ^/user/*, roles: ROLE_USER }
+        - { path: ^/INKOPER/*, roles: ROLE_INKOPER }
+        - { path: ^/VERKOPER/*, roles: ROLE_VERKOPER }
+        - { path: ^/MAGAZIJNMEESTER/*, roles: ROLE_MAGAZIJNMEESTER }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/, roles: ROLE_ADMIN }
