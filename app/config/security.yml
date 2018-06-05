@@ -48,5 +48,6 @@ security:
         - { path: ^/MAGAZIJNMEESTER/*, roles: ROLE_MAGAZIJNMEESTER }
         - { path: ^/MAGAZIJNMEESTER1/*, roles: ROLE_MAGAZIJNMEESTER1 }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/register, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/, roles: ROLE_ADMIN }
