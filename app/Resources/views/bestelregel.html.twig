@@ -17,12 +17,13 @@
 
 		<div class="col-md-12">
 			{% for bestelregel in bestelregels %}
+			{% if loop.first %}
 			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
-			<a class="btn btn-primary btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a><br><br>
+			<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a>
+			{% endif %}
 			{% endfor %}
-
+			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
 			<div class="table-responsive">
-
 
 				<table id="mytable" class="table table-bordred table-striped table-hover">
 
@@ -39,6 +40,7 @@
 							<td>{{ bestelregel.artikelnummer}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 						</tr>
+
 					</tbody>
 					{% endfor %}	
 				</table>

@@ -12,6 +12,7 @@ tbody{
 }
 
 </style>
+<body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -54,22 +55,7 @@ tbody{
 							
 							<td> {{ artikel.vervangendArtikel }} </td> 
 
-								<td> {{ artikel.artikelnummer }} </td>
-								<td> {{ artikel.naam }} </td>
-								<td> {{ artikel.omschrijving }} </td>
-								<td> {{ artikel.technischeSpecificaties }} </td>
-								<td> {{ artikel.magazijnlocatie}} </td>
-								<td>€{{ artikel.inkoopprijs}} </td>
-								<td> {{ artikel.huidigeVoorraad }} </td>
-								<td> {{ artikel.minimumVoorraad }} </td>
-								<td> {{ artikel.bestelserie }} </td>
-								<td> {{ artikel.vervangendArtikel }} </td> 
-
-{% if is_granted('ROLE_ADMIN', 'ROLE_INKOPER') %}
-								<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-								<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelverwijderen', {'artikelnummer':artikel.artikelnummer}) }}">Verwijder</a></td>
-{% endif %}
-							</tr>
+							<td> <a class="btn btn-success btn-xs" Title="Artikel de-archiveren" href="{{ path('artikelDe-archiveren', {'artikelnummer':artikel.artikelnummer}) }}">De-Archiveren</a></td>
 						</tbody>
 						{% endfor %}	
 					</table>
