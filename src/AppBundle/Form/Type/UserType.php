@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Marice
- * Date: 26-05-18
- * Time: 13:59
- */
 
 // src/AppBundle/Form/Type/UserType.php
 namespace AppBundle\Form\Type;
