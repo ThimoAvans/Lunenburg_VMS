@@ -96,13 +96,28 @@ class AddSessionDomainConstraintPassTest extends TestCase
         $this->assertTrue($utils->createRedirectResponse($request, 'http://pirate.com/foo')->isRedirect('http://pirate.com/foo'));
     }
 
+    /**
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @expectedExceptionMessage You have requested a non-existent service "security.http_utils".
+     */
+    public function testNoHttpUtils()
+    {
+        $container = new ContainerBuilder();
+        $container->setParameter('session.storage.options', array());
+
+        $pass = new AddSessionDomainConstraintPass();
+        $pass->process($container);
+    }
+
     private function createContainer($sessionStorageOptions)
     {
         $container = new ContainerBuilder();
+        $container->setParameter('kernel.bundles_metadata', array());
         $container->setParameter('kernel.cache_dir', __DIR__);
         $container->setParameter('kernel.charset', 'UTF-8');
         $container->setParameter('kernel.container_class', 'cc');
         $container->setParameter('kernel.debug', true);
+        $container->setParameter('kernel.project_dir', __DIR__);
         $container->setParameter('kernel.root_dir', __DIR__);
         $container->setParameter('kernel.secret', __DIR__);
         if (null !== $sessionStorageOptions) {
@@ -119,12 +134,13 @@ class AddSessionDomainConstraintPassTest extends TestCase
         );
 
         $ext = new FrameworkExtension();
-        $ext->load(array(), $container);
+        $ext->load(array('framework' => array('csrf_protection' => false)), $container);
 
         $ext = new SecurityExtension();
         $ext->load($config, $container);
 
-        (new AddSessionDomainConstraintPass())->process($container);
+        $pass = new AddSessionDomainConstraintPass();
+        $pass->process($container);
 
         return $container;
     }

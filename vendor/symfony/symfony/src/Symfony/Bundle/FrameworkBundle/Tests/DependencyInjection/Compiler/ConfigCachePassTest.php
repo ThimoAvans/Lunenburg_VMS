@@ -12,10 +12,14 @@
 namespace Symfony\Bundle\FrameworkBundle\Tests\DependencyInjection\Compiler;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\ConfigCachePass;
 
+/**
+ * @group legacy
+ */
 class ConfigCachePassTest extends TestCase
 {
     public function testThatCheckersAreProcessedInPriorityOrder()
@@ -30,23 +34,26 @@ class ConfigCachePassTest extends TestCase
         $pass = new ConfigCachePass();
         $pass->process($container);
 
-        $expected = array(
+        $expected = new IteratorArgument(array(
             new Reference('checker_1'),
             new Reference('checker_2'),
             new Reference('checker_3'),
-        );
+        ));
         $this->assertEquals($expected, $definition->getArgument(0));
     }
 
     public function testThatCheckersCanBeMissing()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('findTaggedServiceIds'))->getMock();
+        $container = new ContainerBuilder();
 
-        $container->expects($this->atLeastOnce())
-            ->method('findTaggedServiceIds')
-            ->will($this->returnValue(array()));
+        $definitionsBefore = count($container->getDefinitions());
+        $aliasesBefore = count($container->getAliases());
 
         $pass = new ConfigCachePass();
         $pass->process($container);
+
+        // the container is untouched (i.e. no new definitions or aliases)
+        $this->assertCount($definitionsBefore, $container->getDefinitions());
+        $this->assertCount($aliasesBefore, $container->getAliases());
     }
 }

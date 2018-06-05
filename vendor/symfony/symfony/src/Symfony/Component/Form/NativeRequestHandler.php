@@ -21,15 +21,10 @@ use Symfony\Component\Form\Util\ServerParams;
  */
 class NativeRequestHandler implements RequestHandlerInterface
 {
-    /**
-     * @var ServerParams
-     */
     private $serverParams;
 
     /**
      * The allowed keys of the $_FILES array.
-     *
-     * @var array
      */
     private static $fileKeys = array(
         'error',
@@ -123,6 +118,9 @@ class NativeRequestHandler implements RequestHandlerInterface
         $form->submit($data, 'PATCH' !== $method);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isFileUpload($data)
     {
         // POST data will always be strings or arrays of strings. Thus, we can be sure
@@ -163,8 +161,6 @@ class NativeRequestHandler implements RequestHandlerInterface
      *
      * This method is identical to {@link \Symfony\Component\HttpFoundation\FileBag::fixPhpFilesArray}
      * and should be kept as such in order to port fixes quickly and easily.
-     *
-     * @param array $data
      *
      * @return array
      */

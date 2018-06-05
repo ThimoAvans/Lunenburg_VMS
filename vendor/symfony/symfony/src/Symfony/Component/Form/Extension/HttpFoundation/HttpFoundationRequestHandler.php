@@ -27,9 +27,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class HttpFoundationRequestHandler implements RequestHandlerInterface
 {
-    /**
-     * @var ServerParams
-     */
     private $serverParams;
 
     public function __construct(ServerParams $serverParams = null)
@@ -111,6 +108,9 @@ class HttpFoundationRequestHandler implements RequestHandlerInterface
         $form->submit($data, 'PATCH' !== $method);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isFileUpload($data)
     {
         return $data instanceof File;

@@ -32,8 +32,6 @@ class HttpUtils
     private $domainRegexp;
 
     /**
-     * Constructor.
-     *
      * @param UrlGeneratorInterface                       $urlGenerator A UrlGeneratorInterface instance
      * @param UrlMatcherInterface|RequestMatcherInterface $urlMatcher   The URL or Request matcher
      * @param string|null                                 $domainRegexp A regexp that the target of HTTP redirections must match, scheme included
@@ -43,7 +41,7 @@ class HttpUtils
     public function __construct(UrlGeneratorInterface $urlGenerator = null, $urlMatcher = null, $domainRegexp = null)
     {
         $this->urlGenerator = $urlGenerator;
-        if ($urlMatcher !== null && !$urlMatcher instanceof UrlMatcherInterface && !$urlMatcher instanceof RequestMatcherInterface) {
+        if (null !== $urlMatcher && !$urlMatcher instanceof UrlMatcherInterface && !$urlMatcher instanceof RequestMatcherInterface) {
             throw new \InvalidArgumentException('Matcher must either implement UrlMatcherInterface or RequestMatcherInterface.');
         }
         $this->urlMatcher = $urlMatcher;
@@ -157,7 +155,12 @@ class HttpUtils
         // fortunately, they all are, so we have to remove entire query string
         $position = strpos($url, '?');
         if (false !== $position) {
+            $fragment = parse_url($url, PHP_URL_FRAGMENT);
             $url = substr($url, 0, $position);
+            // fragment must be preserved
+            if ($fragment) {
+                $url .= "#$fragment";
+            }
         }
 
         return $url;

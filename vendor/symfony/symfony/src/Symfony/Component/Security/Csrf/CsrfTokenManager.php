@@ -26,29 +26,16 @@ use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
  */
 class CsrfTokenManager implements CsrfTokenManagerInterface
 {
-    /**
-     * @var TokenGeneratorInterface
-     */
     private $generator;
-
-    /**
-     * @var TokenStorageInterface
-     */
     private $storage;
     private $namespace;
 
     /**
-     * Creates a new CSRF provider using PHP's native session storage.
-     *
      * @param null|string|RequestStack|callable $namespace
      *                                                     * null: generates a namespace using $_SERVER['HTTPS']
      *                                                     * string: uses the given string
      *                                                     * RequestStack: generates a namespace using the current master request
      *                                                     * callable: uses the result of this callable (must return a string)
-     *
-     * @param TokenGeneratorInterface|null $generator The token generator
-     * @param TokenStorageInterface|null   $storage   The storage for storing
-     *                                                generated CSRF tokens
      */
     public function __construct(TokenGeneratorInterface $generator = null, TokenStorageInterface $storage = null, $namespace = null)
     {

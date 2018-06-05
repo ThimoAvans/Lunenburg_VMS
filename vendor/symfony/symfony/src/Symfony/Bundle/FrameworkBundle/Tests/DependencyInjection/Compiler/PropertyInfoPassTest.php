@@ -13,9 +13,13 @@ namespace Symfony\Bundle\FrameworkBundle\Tests\DependencyInjection\Compiler;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\PropertyInfoPass;
+use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * @group legacy
+ */
 class PropertyInfoPassTest extends TestCase
 {
     /**
@@ -33,11 +37,11 @@ class PropertyInfoPassTest extends TestCase
         $propertyInfoPass = new PropertyInfoPass();
         $propertyInfoPass->process($container);
 
-        $expected = array(
+        $expected = new IteratorArgument(array(
             new Reference('n1'),
             new Reference('n2'),
             new Reference('n3'),
-        );
+        ));
         $this->assertEquals($expected, $definition->getArgument($index));
     }
 
@@ -53,24 +57,16 @@ class PropertyInfoPassTest extends TestCase
 
     public function testReturningEmptyArrayWhenNoService()
     {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('findTaggedServiceIds'))->getMock();
-
-        $container
-            ->expects($this->any())
-            ->method('findTaggedServiceIds')
-            ->will($this->returnValue(array()))
-        ;
+        $container = new ContainerBuilder();
+        $propertyInfoExtractorDefinition = $container->register('property_info')
+            ->setArguments(array(array(), array(), array(), array()));
 
         $propertyInfoPass = new PropertyInfoPass();
+        $propertyInfoPass->process($container);
 
-        $method = new \ReflectionMethod(
-            'Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\PropertyInfoPass',
-            'findAndSortTaggedServices'
-        );
-        $method->setAccessible(true);
-
-        $actual = $method->invoke($propertyInfoPass, 'tag', $container);
-
-        $this->assertEquals(array(), $actual);
+        $this->assertEquals(new IteratorArgument(array()), $propertyInfoExtractorDefinition->getArgument(0));
+        $this->assertEquals(new IteratorArgument(array()), $propertyInfoExtractorDefinition->getArgument(1));
+        $this->assertEquals(new IteratorArgument(array()), $propertyInfoExtractorDefinition->getArgument(2));
+        $this->assertEquals(new IteratorArgument(array()), $propertyInfoExtractorDefinition->getArgument(3));
     }
 }
