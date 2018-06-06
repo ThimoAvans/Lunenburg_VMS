@@ -42,12 +42,20 @@ security:
                 check_path: login
 
     access_control:
-        # require ROLE_ADMIN for /admin*
+        # Inkoper path
         - { path: ^/INKOPER/*, roles: ROLE_INKOPER }
+
+        # Verkoper path
         - { path: ^/VERKOPER/*, roles: ROLE_VERKOPER }
+
+        # Magazijnmeester path
         - { path: ^/MAGAZIJNMEESTER/*, roles: ROLE_MAGAZIJNMEESTER }
-        - { path: ^/MAGAZIJNMEESTER1/*, roles: ROLE_MAGAZIJNMEESTER1 }
+
+
+        # Admin path
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/register, roles: ROLE_ADMIN }
+
+        # Anonymous path
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/, roles: ROLE_ADMIN }
+
