@@ -40,7 +40,6 @@ class Ontvangstmelding
     *
     * @ORM\Column(name="ontvangen", type="string", length=100)
     */
-
     private $ontvangen;
 
    /**

@@ -89,18 +89,18 @@ class GoederenController extends Controller{
 
 
    /**
-    * @Route("/ontvangengoederen/alle", name="alleGoederen")
+    * @Route("/bestellingen/ontvangen", name="bestellingenOntvangen")
     */
-    public function alleGoederen(request $request) {
-        $ontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->findByOntvangen("Ontvangen");
-        return new Response($this->renderview('ontvangengoederen.html.twig', array('goederen' => $ontvangengoederen)));
+    public function alleOntvangen(request $request) {
+        $bestellingenontvangen = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Ontvangen");
+        return new Response($this->renderview('bestellingenontvangen.html.twig', array('bestelregels' => $bestellingenontvangen)));
     }
 
    /**
-    * @Route("/nietontvangengoederen/alle", name="nietOntvangenGoederen")
+    * @Route("/bestellingen/onderweg", name="bestellingenOnderweg")
     */
-    public function nietOntvangenGoederen(request $request) {
-        $nietontvangengoederen = $this->getDoctrine()->getRepository("AppBundle:Ontvangstmelding")->findByOntvangen("Niet Ontvangen");
-        return new Response($this->renderview('nietontvangengoederen.html.twig', array('nietgoederen' => $nietontvangengoederen)));
+    public function alleOnderweg(request $request) {
+        $bestellingenonderweg = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Onderweg");
+        return new Response($this->renderview('bestellingenonderweg.html.twig', array('bestelregels' => $bestellingenonderweg)));
     }
 }
