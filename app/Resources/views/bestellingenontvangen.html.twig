@@ -16,31 +16,32 @@
 		
 
 		<div class="col-md-12">
-			<h2>Alle bestellingen</h2>
+			<h2>Ontvangen goederen</h2>
 
 			<div class="table-responsive">
-
 
 				<table id="mytable" class="table table-bordred table-striped table-hover">
 
 					<thead>
 
-						<th>Bestelordernummer</th>
-						<th>Leverancier</th>
-
-						<th>Bekijken</th>	
+						<th>Bestelnummer</th>
+						<th>Artikelnummer</th>
+						<th>Hoeveelheid</th>
+						<th>Status</th>
+						<th>Datum Ontvangst</th>
 
 					</thead>
-					{% for bestelling in bestellingen %}
+					{% for bestelregel in bestelregels %}
 					<tbody>
 
 						<tr style="background-color: white;">
-							<td>{{ bestelling.bestelnummer }} </td>
-							<td>{{ bestelling.leverancier}} </td>
-							
-							<td><a class="btn btn-primary btn-xs" Title="Bestelling bekijken"  href="{{ path('bestellingbekijken', {'bestelnummer':bestelling.bestelnummer}) }}">Bekijk</a></td>
-
+							<td>{{ bestelregel.bestelnummer }} </td>
+							<td>{{ bestelregel.artikelnummer}} </td>
+							<td>{{ bestelregel.hoeveelheid}} </td>
+							<td>{{ bestelregel.status}} </td>
+							<td>{{ bestelregel.datum_ontvangst}} </td>
 						</tr>
+
 					</tbody>
 					{% endfor %}	
 				</table>

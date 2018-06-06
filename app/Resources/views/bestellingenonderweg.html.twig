@@ -16,31 +16,31 @@
 		
 
 		<div class="col-md-12">
-			{% for bestelregel in bestelregels %}
-			{% if loop.first %}
-			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
-			<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a>
-			{% endif %}
-			{% endfor %}
-			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
+			<h2>Te ontvangen goederen</h2>
+
 			<div class="table-responsive">
 
 				<table id="mytable" class="table table-bordred table-striped table-hover">
 
 					<thead>
 
+						<th>Bestelnummer</th>
 						<th>Artikelnummer</th>
 						<th>Hoeveelheid</th>
 						<th>Status</th>
+						<th>Ontvangst Melden</th>
 
 					</thead>
 					{% for bestelregel in bestelregels %}
 					<tbody>
 
 						<tr style="background-color: white;">
+							<td>{{ bestelregel.bestelnummer }} </td>
 							<td>{{ bestelregel.artikelnummer}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 							<td>{{ bestelregel.status}} </td>
+
+							<td><a class="btn btn-success btn-xs" Title="Ontvangst melden"  href="{{ path('meldontvangst', {'id':bestelregel.id}) }}">Ontvangst melden</a></td>
 						</tr>
 
 					</tbody>

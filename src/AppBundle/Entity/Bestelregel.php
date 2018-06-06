@@ -49,6 +49,21 @@ class Bestelregel
      */
     private $hoeveelheid;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=20)
+     */
+    public $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datum_ontvangst", type="string", length=20)
+     */
+    public $datum_ontvangst;
+
+
 
     /**
      * Get id
@@ -130,6 +145,54 @@ class Bestelregel
     public function getHoeveelheid()
     {
         return $this->hoeveelheid;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Bestelregel
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set datum_ontvangst
+     *
+     * @param integer $datum_ontvangst
+     *
+     * @return Bestelregel
+     */
+    public function setDatum_ontvangst($datum_ontvangst)
+    {
+        $this->datum_ontvangst = $datum_ontvangst;
+    
+        return $this;
+    }
+
+    /**
+     * Get datum_ontvangst
+     *
+     * @return integer
+     */
+    public function getDatum_ontvangst()
+    {
+        return $this->datum_ontvangst;
     }
 }
 

@@ -31,25 +31,6 @@ class BestelController extends Controller
 	}
 
 	/**
-     * @Route("/bestelregel/nieuw/{bestelnummer}", name="nieuwebestelregel")
-     */
-	public function nieuweBestelregel(Request $request, $bestelnummer) {
-		$nieuweBestelregel = new Bestelregel();
-		$nieuweBestelregel->bestelnummer = $bestelnummer;
-		$form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
-
-		$form->handleRequest($request);
-		if ($form->isSubmitted() && $form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($nieuweBestelregel);
-			$em->flush();
-			return $this->redirect("/Lunenburg_VMS/web/app_dev.php/bestelling/bekijk/$nieuweBestelregel->bestelnummer");
-		}
-
-		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
-	}
-
-	/**
      * @Route("/bestelling/wijzig/{bestelnummer}", name="bestellingwijzigen")
      */
 	public function wijzigBestelling(Request $request, $bestelnummer) {
@@ -79,6 +60,40 @@ class BestelController extends Controller
 	}
 
 	/**
+     * @Route("/bestelregel/nieuw/{bestelnummer}", name="nieuwebestelregel")
+     */
+	public function nieuweBestelregel(Request $request, $bestelnummer) {
+		$nieuweBestelregel = new Bestelregel();
+		$nieuweBestelregel->bestelnummer = $bestelnummer;
+		$form = $this->createForm(BestelregelType::class, $nieuweBestelregel);
+
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($nieuweBestelregel);
+			$nieuweBestelregel->status = "Onderweg";
+			$em->flush();
+			return $this->redirect("/Lunenburg_VMS/web/app_dev.php/bestelling/bekijk/$nieuweBestelregel->bestelnummer");
+		}
+
+		return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
+	}
+
+	/**
+     * @Route("/bestelregel/meldontvangst/{id}", name="meldontvangst")
+     */
+ 	public function meldOntvangst(Request $request, $id) {
+    	$em = $this->getDoctrine()->getManager();
+      	$bestelregel = $em->getRepository("AppBundle:Bestelregel")->find($id);
+      	$em->persist($bestelregel);
+      	$bestelregel->status = "Ontvangen";
+      	$bestelregel->datum_ontvangst = Date('d-m-Y');;
+      	$em->flush();
+      	return $this->redirect($this->generateurl("bestellingenOnderweg"));
+  	}
+
+
+	/**
      * @Route("/bestelling/bekijk/{bestelnummer}", name="bestellingbekijken")
      */
 	public function bekijkBestelregels(Request $request, $bestelnummer) {
@@ -93,5 +108,21 @@ class BestelController extends Controller
 		$Bestellingen = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->findAll();
 		return new Response($this->renderview('bestelling.html.twig', array('bestellingen' => $Bestellingen)));
 	}
+
+   /**
+    * @Route("/bestellingen/ontvangen", name="bestellingenOntvangen")
+    */
+    public function alleOntvangen(request $request) {
+        $bestellingenontvangen = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Ontvangen");
+        return new Response($this->renderview('bestellingenontvangen.html.twig', array('bestelregels' => $bestellingenontvangen)));
+    }
+
+   /**
+    * @Route("/bestellingen/onderweg", name="bestellingenOnderweg")
+    */
+    public function alleOnderweg(request $request) {
+        $bestellingenonderweg = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Onderweg");
+        return new Response($this->renderview('bestellingenonderweg.html.twig', array('bestelregels' => $bestellingenonderweg)));
+    }
 }
 ?>

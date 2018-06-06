@@ -65,10 +65,8 @@
                             Levering overzicht
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ path('alleGoederen') }}">Ontvangen goederen</a>
-                            <a class="dropdown-item" href="{{ path('nietOntvangenGoederen') }}">Nog te ontvangen goederen</a>
-                            <a class="dropdown-item" href="{{ path('nieuweOntvangstmelding') }}">Nieuwe ontvangstmelding</a>
-                            
+                            <a class="dropdown-item" href="{{ path('bestellingenOntvangen') }}">Ontvangen goederen</a>
+                            <a class="dropdown-item" href="{{ path('bestellingenOnderweg') }}">Nog te ontvangen goederen</a>
                         </div>
                     </li>
                     <form method="POST" action="{{ path('artikelzoeken') }}" class="form-inline my-2 my-lg-0 float-right">
