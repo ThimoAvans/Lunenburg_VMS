@@ -130,13 +130,6 @@ class Artikel
      */
     private $bestelregel;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToMany(targetEntity="Ontvangstmelding", inversedBy="ontvangengoederen", cascade={"persist"})
-     */
-    private $goederenopdracht;
-
     public function __construct() {
         $this->artikelen = new ArrayCollection();
     }
@@ -405,7 +398,7 @@ class Artikel
         return $this->bestelserie;
     }
 
-        public function __toString() {
+    public function __toString() {
         return (string) $this->artikelnummer;
     }
 }
