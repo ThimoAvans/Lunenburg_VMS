@@ -43,19 +43,18 @@ security:
 
     access_control:
         # Inkoper path
-        - { path: ^/INKOPER/*, roles: ROLE_INKOPER }
+        - { path: ^/inkoper/*, roles: ROLE_INKOPER }
 
         # Verkoper path
-        - { path: ^/VERKOPER/*, roles: ROLE_VERKOPER }
+        - { path: ^/verkoper/*, roles: ROLE_VERKOPER }
 
         # Magazijnmeester path
-        - { path: ^/MAGAZIJNMEESTER/*, roles: ROLE_MAGAZIJNMEESTER }
+        - { path: ^/magazijnmeester/*, roles: ROLE_MAGAZIJNMEESTER }
 
 
         # Admin path
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/register, roles: ROLE_ADMIN }
+        - { path: ^/admin/*, roles: ROLE_ADMIN }
+        # - { path: ^/register, roles: ROLE_ADMIN }
 
         # Anonymous path
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
