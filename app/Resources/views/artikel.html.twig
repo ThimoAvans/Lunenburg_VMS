@@ -12,57 +12,104 @@ tbody{
 }
 
 </style>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>Artikelen overzicht</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Artikelen overzicht</h2>
 
-				<div class="table-responsive">
-
-
-					<table id="mytable" class="table">
-
-						<thead>
-							<th>Artikel- nummer</th>
-							<th>Naam</th>
-							<th>Omschrijving</th>
-							<th>Technische specificaties</th>
-							<th>Magazijn- locatie</th>
-							<th>Inkoop- prijs</th>
-							<th>Huidige voorraad</th>
-							<th>Minimum voorraad</th>
-							<th>Bestel- serie</th>
-							<th>Vervangend artikel</th>
-						</thead>
-						
-						{% for artikel in artikelen %}
-						<tbody>
-							<td> {{ artikel.artikelnummer }} </td>
-							<td> {{ artikel.naam }} </td>
-							<td> {{ artikel.omschrijving }} </td>
-							<td> {{ artikel.technischeSpecificaties }} </td>
-							<td> {{ artikel.magazijnlocatie}} </td>
-							<td>€{{ artikel.inkoopprijs}} </td>
-							<td> {{ artikel.huidigeVoorraad }} </td>
-							<td> {{ artikel.minimumVoorraad }} </td>
-							
-							{% if artikel.bestelserie < 0 %}
-							<td>0</td>
-							{% else %}
-							<td>{{ artikel.bestelserie }}</td>
-							{% endif %}
-							
-							<td> {{ artikel.vervangendArtikel }} </td> 
-
-							<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-							<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Are you sure you want to delete this item?');">Verwijder</a></td>
-							</tr>
-						</tbody>
-						{% endfor %}	
-					</table>
-				</div>
+			<div class="input-group" style="margin:0 auto;width: 30%" >
+				<span class="input-group-addon" id="basic-addon1" style="    width: 35px;
+				"><i class="glyphicon glyphicon-search"></i></span>
+				<input type="text" class="form-control" placeholder="Zoeken" onkeyup="myFunction()" id="searchbar" aria-describedby="basic-addon1">
 			</div>
-		</div>
-	</div>
+			<script>
+				function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("searchbar");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("mytable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+            	td1 = tr[i].getElementsByTagName("td")[0];
+            	td2 = tr[i].getElementsByTagName("td")[1];
+            	td3 = tr[i].getElementsByTagName("td")[2];
+            	td4 = tr[i].getElementsByTagName("td")[3];
+            	td5 = tr[i].getElementsByTagName("td")[4];
+            	td6 = tr[i].getElementsByTagName("td")[5];
+            	td7 = tr[i].getElementsByTagName("td")[6];
+            	td8 = tr[i].getElementsByTagName("td")[7];
+            	td9 = tr[i].getElementsByTagName("td")[8];
+            	td10 = tr[i].getElementsByTagName("td")[9];
+            	if (td1 || td2 ||td3) {
+            		if (    td1.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td2.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td3.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td4.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td5.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td6.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td7.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td8.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td9.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+            			td10.innerHTML.toUpperCase().indexOf(filter) > -1
+            			) {
+            			tr[i].style.display = "";
+            	} else {
+            		tr[i].style.display = "none";
+            	}
+            }
+        }
+    }
+</script>
+
+<div class="table-responsive">
+
+
+	<table id="mytable" class="table">
+
+		<thead>
+			<th>Artikel- nummer</th>
+			<th>Naam</th>
+			<th>Omschrijving</th>
+			<th>Technische specificaties</th>
+			<th>Magazijn- locatie</th>
+			<th>Inkoop- prijs</th>
+			<th>Huidige voorraad</th>
+			<th>Minimum voorraad</th>
+			<th>Bestel- serie</th>
+			<th>Vervangend artikel</th>
+		</thead>
+
+		{% for artikel in artikelen %}
+		<tbody>
+			<td> {{ artikel.artikelnummer }} </td>
+			<td> {{ artikel.naam }} </td>
+			<td> {{ artikel.omschrijving }} </td>
+			<td> {{ artikel.technischeSpecificaties }} </td>
+			<td> {{ artikel.magazijnlocatie}} </td>
+			<td>€{{ artikel.inkoopprijs}} </td>
+			<td> {{ artikel.huidigeVoorraad }} </td>
+			<td> {{ artikel.minimumVoorraad }} </td>
+
+			{% if artikel.bestelserie < 0 %}
+			<td>0</td>
+			{% else %}
+			<td>{{ artikel.bestelserie }}</td>
+			{% endif %}
+
+			<td> {{ artikel.vervangendArtikel }} </td> 
+
+			<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+			<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Are you sure you want to delete this item?');">Verwijder</a></td>
+		</tr>
+	</tbody>
+	{% endfor %}	
+</table>
+</div>
+</div>
+</div>
+</div>
 </body>
 {% endblock %}
