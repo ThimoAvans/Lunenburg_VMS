@@ -1,4 +1,6 @@
 {# app/Resources/views/Registration/register.html.twig #}
+
+{% block stylesheets %}
 <style>
 
 .alignleft {
@@ -116,6 +118,8 @@ a:hover { text-decoration: none }
 }
 
 </style>
+{% endblock %}
+{% block body %}
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -243,3 +247,4 @@ a:hover { text-decoration: none }
 		alert("Gebuiker geregistreerd, u wordt doorverwezen naar het login scherm");
 	}
 </script>
+{% endblock %}
