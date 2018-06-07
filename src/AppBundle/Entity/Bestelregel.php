@@ -40,14 +40,14 @@ class Bestelregel
      * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="artikelnummer")
      * @ORM\JoinColumn(name="artikel_artikelnummer", referencedColumnName="artikelnummer")
      */
-    private $artikelnummer;
+    public $artikelnummer;
 
     /**
      * @var int
      *
      * @ORM\Column(name="hoeveelheid", type="integer")
      */
-    private $hoeveelheid;
+    public $hoeveelheid;
 
     /**
      * @var string

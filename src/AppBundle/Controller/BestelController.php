@@ -88,6 +88,13 @@ class BestelController extends Controller
       	$em->persist($bestelregel);
       	$bestelregel->status = "Ontvangen";
       	$bestelregel->datum_ontvangst = Date('d-m-Y');;
+      	
+      	$em = $this->getDoctrine()->getManager();
+      	$artikel = $em->getRepository("AppBundle:Artikel")->find($bestelregel->artikelnummer);
+      	$em->persist($artikel);
+      	$artikel->huidigeVoorraad = $artikel->huidigeVoorraad + $bestelregel->hoeveelheid;
+      	$artikel->bestelserie = $artikel->minimumVoorraad - $artikel->huidigeVoorraad;
+      
       	$em->flush();
       	return $this->redirect($this->generateurl("bestellingenOnderweg"));
   	}
