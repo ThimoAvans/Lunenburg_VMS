@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Artikel;
 use AppBundle\Form\Type\ArtikelType;
+use AppBundle\Form\Type\ReserveerType;
 
 
 class ArtikelController extends Controller
@@ -44,6 +45,25 @@ class ArtikelController extends Controller
           return $this->redirect($this->generateurl("artikelbestand"));
       }
       return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
+  }
+
+  /**
+   * @Route("/artikel/reserveer/{artikelnummer}", name="artikelreserveren")
+   */
+  public function reserveerArtikel(Request $request, $artikelnummer) {
+      $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+      $form = $this->createForm(ReserveerType::class, $bestaandArtikel);
+
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($bestaandArtikel);
+          $bestaandArtikel->_gereserveerdeVoorraad = $bestaandArtikel->_gereserveerdeVoorraad + $bestaandArtikel->gereserveerdeVoorraad;
+          $bestaandArtikel->gereserveerdeVoorraad = null;
+          $em->flush();
+          return $this->redirect($this->generateurl("artikelbestand"));
+      }
+      return new Response($this->renderview('form.html.twig', array('form' => $form->createView())));
   }
 
  /**

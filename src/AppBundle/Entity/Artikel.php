@@ -108,12 +108,24 @@ class Artikel
     public $huidigeVoorraad;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="gereserveerdeVoorraad", type="integer")
+     */
+    public $gereserveerdeVoorraad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="_gereserveerdeVoorraad", type="integer")
+     */
+    public $_gereserveerdeVoorraad;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="bestelserie", type="integer")
      */
-
-    
     public $bestelserie;
 
     /**
@@ -372,6 +384,54 @@ class Artikel
     public function getHuidigeVoorraad()
     {
         return $this->huidigeVoorraad;
+    }
+
+    /**
+     * Set gereserveerdeVoorraad
+     *
+     * @param string $gereserveerdeVoorraad
+     *
+     * @return Artikel
+     */
+    public function setGereserveerdeVoorraad($gereserveerdeVoorraad)
+    {
+        $this->gereserveerdeVoorraad = $gereserveerdeVoorraad;
+
+        return $this;
+    }
+
+    /**
+     * Get gereserveerdeVoorraad
+     *
+     * @return string
+     */
+    public function getGereserveerdeVoorraad()
+    {
+        return $this->gereserveerdeVoorraad;
+    }
+
+    /**
+     * Set _gereserveerdeVoorraad
+     *
+     * @param string $_gereserveerdeVoorraad
+     *
+     * @return Artikel
+     */
+    public function set_GereserveerdeVoorraad($gereserveerdeVoorraad)
+    {
+        $this->_gereserveerdeVoorraad = $_gereserveerdeVoorraad;
+
+        return $this;
+    }
+
+    /**
+     * Get _gereserveerdeVoorraad
+     *
+     * @return string
+     */
+    public function get_GereserveerdeVoorraad()
+    {
+        return $this->_gereserveerdeVoorraad;
     }
 
     /**
