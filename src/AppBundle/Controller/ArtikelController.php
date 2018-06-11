@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Artikel;
 use AppBundle\Form\Type\ArtikelType;
+use AppBundle\Form\Type\ArtikelType2;
+use AppBundle\Form\Type\ArtikelType3;
 
 
 class ArtikelController extends Controller
@@ -34,6 +36,42 @@ class ArtikelController extends Controller
   public function wijzigArtikel(Request $request, $artikelnummer) {
       $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
       $form = $this->createForm(ArtikelType::class, $bestaandArtikel);
+
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($bestaandArtikel);
+          $bestaandArtikel->bestelserie = $bestaandArtikel->minimumVoorraad - $bestaandArtikel->huidigeVoorraad;
+          $em->flush();
+          return $this->redirect($this->generateurl("artikelbestand"));
+      }
+      return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
+  }
+
+   /**
+   * @Route("/artikel/wijzig2/{artikelnummer}", name="artikelwijzigen2")
+   */
+  public function wijzigArtikel2(Request $request, $artikelnummer) {
+      $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+      $form = $this->createForm(ArtikelType2::class, $bestaandArtikel);
+
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($bestaandArtikel);
+          $bestaandArtikel->bestelserie = $bestaandArtikel->minimumVoorraad - $bestaandArtikel->huidigeVoorraad;
+          $em->flush();
+          return $this->redirect($this->generateurl("artikelbestand"));
+      }
+      return new Response($this->renderview('formWijzig.html.twig', array('form' => $form->createView())));
+  }
+
+    /**
+   * @Route("/artikel/wijzig3/{artikelnummer}", name="artikelwijzigen3")
+   */
+  public function wijzigArtikel3(Request $request, $artikelnummer) {
+      $bestaandArtikel = $this->getDoctrine()->getRepository("AppBundle:Artikel")->find($artikelnummer);
+      $form = $this->createForm(ArtikelType3::class, $bestaandArtikel);
 
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
