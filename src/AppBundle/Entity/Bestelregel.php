@@ -28,7 +28,6 @@ class Bestelregel
      * @ORM\Column(name="bestelnummer", type="integer")
      *
      * @ORM\ManyToOne(targetEntity="Bestelling", inversedBy="bestelnummer")
-     * @ORM\JoinColumn(name="bestelling_bestelnummer", referencedColumnName="bestelnummer")
      */
     public $bestelnummer;
 
@@ -38,7 +37,6 @@ class Bestelregel
      * @ORM\Column(name="artikelnummer", type="integer")
      *
      * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="artikelnummer")
-     * @ORM\JoinColumn(name="artikel_artikelnummer", referencedColumnName="artikelnummer")
      */
     public $artikelnummer;
 
@@ -62,7 +60,6 @@ class Bestelregel
      * @ORM\Column(name="datum_ontvangst", type="string", length=20)
      */
     public $datum_ontvangst;
-
 
 
     /**
@@ -195,4 +192,3 @@ class Bestelregel
         return $this->datum_ontvangst;
     }
 }
-

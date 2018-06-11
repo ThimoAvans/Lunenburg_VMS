@@ -20,6 +20,7 @@ class Artikel
      * @ORM\Column(name="artikelnummer", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikelnummer")
      */
     private $artikelnummer;
 
@@ -135,16 +136,6 @@ class Artikel
      */
     public $actief;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToMany(targetEntity="Bestelling", inversedBy="artikelen", cascade={"persist"})
-     */
-    private $bestelregel;
-
-    public function __construct() {
-        $this->artikelen = new ArrayCollection();
-    }
 
     /**
      * Set artikelnummer
