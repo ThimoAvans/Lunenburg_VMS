@@ -136,7 +136,7 @@ class Artikel
     public $actief;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikelnummer")
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="Artikel")
      */
     private $bestelregels;
 
