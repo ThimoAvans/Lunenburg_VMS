@@ -20,7 +20,6 @@ class Artikel
      * @ORM\Column(name="artikelnummer", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikelnummer")
      */
     private $artikelnummer;
 
@@ -135,6 +134,16 @@ class Artikel
      * @ORM\Column(name="actief", type="string", length=3, nullable=true)
      */
     public $actief;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bestelregel", mappedBy="artikelnummer")
+     */
+    private $bestelregels;
+
+    public function __construct()
+    {
+        $this->bestelregels = new ArrayCollection();
+    }
 
 
     /**
@@ -448,9 +457,4 @@ class Artikel
     {
         return $this->bestelserie;
     }
-
-    public function __toString() {
-        return (string) $this->artikelnummer;
-    }
 }
-
