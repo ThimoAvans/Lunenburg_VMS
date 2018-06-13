@@ -2,6 +2,14 @@
 {% block body %}
 
 <style>
+.col-md-12 {
+	display: block;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+    border-radius: 25px;
+      padding: 10px; 
+}
 body {
 	margin-bottom: 40px;	
 }
@@ -41,6 +49,7 @@ a.btn {
 </style>
 <body>
 	<div class="container" ></div>
+	<div class="col-md-12" ></div>
 	<form method="post" action="">
 		{{ form_widget(form) }}
 		<input class="btn btn-success btn-xs" type="submit" value="Toevoegen"> 

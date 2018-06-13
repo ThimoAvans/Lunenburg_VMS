@@ -22,8 +22,24 @@
 <style>
 .navbar {
     position: flex;
+    height: 100%;
 }
 
+body{
+    position: flex;
+    background: url('../img/1234.JPG') center no-repeat;
+  font-family: 'Lato', sans-serif;
+  background-size: cover;
+
+}
+.col-md-12 {
+    display: block;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+    border-radius: 25px;
+      padding: 10px; 
+}
 </style>
 
 <body>
@@ -93,8 +109,8 @@
             </div>
         </div>
     </nav>
+</body>
     {% block body %}
     {% endblock %}
     {% block javascripts %}{% endblock %}
-</body>
 </html>
