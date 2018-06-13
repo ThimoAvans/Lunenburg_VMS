@@ -51,10 +51,22 @@ security:
         # Magazijnmeester path
         - { path: ^/magazijnmeester/*, roles: ROLE_MAGAZIJNMEESTER }
 
-
         # Admin path
         - { path: ^/admin/*, roles: ROLE_ADMIN }
-        # - { path: ^/register, roles: ROLE_ADMIN }
+
+        - { path: ^/register, roles: ROLE_ADMIN }
 
         # Anonymous path
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [ROLE_ADMIN, ROLE_INKOPER, ROLE_MAGAZIJNMEESTER, ROLE_VERKOPER] }
+
+        # Artikel toevoegen path
+        - { path: ^/artikeltoevoegen, roles: [ROLE_ADMIN, ROLE_INKOPER] }
+
+        # Bestellingen paths
+        - { path: ^/allebestellingen, roles: [ROLE_ADMIN, ROLE_INKOPER] }
+        - { path: ^/nieuwebestelling, roles: [ROLE_ADMIN, ROLE_INKOPER] }
+
+        # Leveringen paths
+        - { path: ^/bestellingenOntvangen, roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }
+        - { path: ^/bestellingenOnderweg, roles: [ROLE_ADMIN, ROLE_MAGAZIJNMEESTER] }

@@ -47,10 +47,15 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ path('artikelbestand') }}">Artikel overzicht</a>
                             <a class="dropdown-item" href="{{ path('artikelarchief') }}">Artikel archief</a>
+                            <!-- alleen beschikbaar voor rol admin en inkoper -->
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
                             <a class="dropdown-item" href="{{ path('artikeltoevoegen') }}">Nieuw artikel toevoegen</a>
+                            {% endif %}
                         </div>
                     </li>
 
+                    <!-- alleen beschikbaar voor rol admin en inkoper -->
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Bestelling
@@ -60,7 +65,10 @@
                             <a class="dropdown-item" href="{{ path('nieuwebestelling') }}">Nieuwe bestelling</a>
                         </div>
                     </li>
+                    {% endif %}
 
+<!-- alleen beschikbaar voor rol admin en magazijnmeester -->
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MAGAZIJNMEESTER') %} 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Levering
@@ -70,6 +78,7 @@
                             <a class="dropdown-item" href="{{ path('bestellingenOnderweg') }}">Nog te ontvangen goederen</a>
                         </div>
                     </li>
+                    {% endif %}
 
                     <hr/>
 
