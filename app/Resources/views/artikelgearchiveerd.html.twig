@@ -54,8 +54,11 @@ tbody{
 							{% endif %}
 							
 							<td> {{ artikel.vervangendArtikel }} </td> 
-
+							
+							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %}
 							<td> <a class="btn btn-success btn-xs" Title="Artikel de-archiveren" href="{{ path('artikelDe-archiveren', {'artikelnummer':artikel.artikelnummer}) }}">De-Archiveren</a></td>
+							{% endif %}
+
 						</tbody>
 						{% endfor %}	
 					</table>
