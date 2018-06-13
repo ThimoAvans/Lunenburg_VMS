@@ -69,19 +69,6 @@ tr[i].style.display = "none";
 
 <table id="mytable" class="table">
 
-<thead>
-<th>Artikel- nummer</th>
-<th>Naam</th>
-<th>Omschrijving</th>
-<th>Technische specificaties</th>
-<th>Magazijn- locatie</th>
-<th>Inkoop- prijs</th>
-<th>Huidige voorraad</th>
-<th>Minimum voorraad</th>
-<th>Bestel- serie</th>
-<th>Vervangend artikel</th>
-</thead>
-
 		<thead>
 			<th>Artikel- nummer</th>
 			<th>Naam</th>
@@ -111,15 +98,15 @@ tr[i].style.display = "none";
 			<td> {{ artikel.minimumVoorraad }} </td>
       <td> {{ artikel.vervangendArtikel }} </td>
 
-{% if is_granted('ROLE_ADMIN') %}
-<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
-{% elseif is_granted('ROLE_INKOPER') %}
-<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen2', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
-{% elseif is_granted('ROLE_MAGAZIJNMEESTER') %}
-<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen3', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-{% endif %}
+	{% if is_granted('ROLE_ADMIN') %}
+		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
+	{% elseif is_granted('ROLE_INKOPER') %}
+		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen2', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
+	{% elseif is_granted('ROLE_MAGAZIJNMEESTER') %}
+		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen3', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+	{% endif %}
 
 </tr>
 </tbody>
