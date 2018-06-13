@@ -160,4 +160,12 @@ class ArtikelController extends Controller
     }
   }
 
+   /**
+    * @Route("/artikel/minimumvoorraad", name="artikelMinimumvoorraad")
+    */
+    public function alleMinimumvoorraad(request $request) {
+        $minimumvoorraad = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+        return new Response($this->renderview('bijbestellen.html.twig', array('minimumvoorraad' => $minimumvoorraad)));
+    }
+
 }
