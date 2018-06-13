@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+	tr{
+		border: none !important;
+	}
+	th{
+		border: none !important;
+	}
+	tbody{
+		border: none !important;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		
+
+		<div class="col-md-12">
+			<h2>Goederen die besteld moeten worden</h2>
+
+				{% set gevonden = false %}
+
+	{% for minimumvoorraad in minimumvoorraad %}
+		{% if(minimumvoorraad.bestelserie > 0) %}
+			{% set gevonden = true %}
+		{% endif %}
+		{% endfor %}
+	{% if gevonden == true %}
+		<div class = "container">
+		<div class ="alert alert-danger">
+		<div class="text-center">
+			<strong> Er is te weinig op voorraad. Er moeten artikelen besteld worden!</strong><a href="{{ path('artikelMinimumvoorraad')}}</a>
+	</div>
+	</div>
+	</div>
+		{% endif %}
+
+			<div class="table-responsive">
+
+				<table id="mytable" class="table table-bordred table-striped table-hover">
+
+					<thead>
+
+						    <th>Artikelnummer</th>
+							<th>Naam</th>
+							<th>Omschrijving</th>
+							<th>Magazijn- locatie</th>
+							<th>Inkoopprijs</th>
+							<th>Huidige voorraad</th>
+							<th>Minimum voorraad</th>
+							<th>Bestelserie</th>
+
+					</thead>
+					{% for minimumvoorraad in minimumvoorraad %}
+					<tbody>
+
+						<tr style="background-color: white;">
+
+							{% if minimumvoorraad.bestelserie >0 %}
+							<td>{{ minimumvoorraad.artikelnummer }} </td>
+							<td>{{ minimumvoorraad.naam}} </td>
+							<td>{{ minimumvoorraad.omschrijving}} </td>
+							<td>{{ minimumvoorraad.magazijnlocatie}} </td>
+							<td>€{{minimumvoorraad.inkoopprijs}} </td>
+							<td>{{ minimumvoorraad.huidigevoorraad}} </td>
+							<td>{{ minimumvoorraad.minimumvoorraad}} </td>
+							<td>{{ minimumvoorraad.bestelserie}} </td>
+							{% endif %}
+
+
+						</tr>
+
+					</tbody>
+					{% endfor %}	
+				</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
