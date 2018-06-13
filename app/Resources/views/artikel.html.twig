@@ -106,6 +106,7 @@ tr[i].style.display = "none";
 			<td> {{ artikel.vervangendArtikel }} </td>
 
 	{% if is_granted('ROLE_ADMIN') %}
+		<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
 		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
 		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
 	{% elseif is_granted('ROLE_INKOPER') %}
@@ -113,6 +114,8 @@ tr[i].style.display = "none";
 		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
 	{% elseif is_granted('ROLE_MAGAZIJNMEESTER') %}
 		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen3', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+	{% elseif is_granted('ROLE_VERKOPER') %}
+		<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
 	{% endif %}
 
 </tr>
