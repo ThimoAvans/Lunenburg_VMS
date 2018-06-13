@@ -1,92 +1,32 @@
 {% extends 'base.html.twig' %}
-{% block body %}
+{% block stylesheets %}
 <style>
 
 h1 {
-	color: white;
-	z-index: 1;
-	position: relative;
-	margin-top: 100px;
 	text-align: center;
-	font-size: 50px; 
-	text-decoration: underline;
 }
 
 h2 {
-	color: white;
-	z-index: 1;
-	position: relative;
 	text-align: center;
-	margin-top: 100px;
-	font-size: 40px;
-}
-
-.lunenburg-service-afbeelding-hover {
-	left: 0;
-	top: 61.3px;
-	right: 0;
-	bottom: 0;
-	position: absolute;
-	background-color: rgba(56, 56, 56, 0.9);
-}
-
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.lunenburg-service-home {
-	font-size: 20px;
-}
-
-.lunenburg-service-home {
-	font-size: 20px;
-}
-
-.lunenburg-service-home {
-	color: #fff;
-	font-weight: 500;
-	font-size: 16px;
-	font-family: "Lato", sans-serif;
 }
 
 body {
-	color: #333333;
-	font-size: 16px;
-	font-family: 'Lato', sans-serif;
-	text-align: left;
-	background: url(../img/1.jpg);
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #333;
-}
-
-html {
-	font-size: 10px;
-}
-
-html {
-	font-family: sans-serif;
-	-webkit-text-size-adjust: 100%;
+ background: url(../img/winkel2.jpg);
+ background: no-repeat;
 }
 
 </style>
+{% endblock %}
+
+{% block body %}
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
+<body>
 <div class="container">
 <div class="lunenburg-service-afbeelding-hover"></div>
 <h1> WELKOM IN HET VMS </h1><ul>
 <H2>VAN LUNENBURG</H2>
-
 </div>
+</body>
 {% endblock %}
