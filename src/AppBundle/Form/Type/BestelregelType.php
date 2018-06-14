@@ -31,5 +31,4 @@ class BestelregelType extends AbstractType
 		));
 	}
 }
-
 ?>

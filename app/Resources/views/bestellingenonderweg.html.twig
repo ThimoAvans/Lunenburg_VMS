@@ -33,25 +33,34 @@
 					<thead>
 
 						<th>Bestelnummer</th>
+						<th>Leverancier</th>
 						<th>Artikelnummer</th>
+						<th>Artikelnaam</th>
 						<th>Hoeveelheid</th>
 						<th>Status</th>
 						<th>Ontvangst Melden</th>
 
 					</thead>
 					{% for bestelregel in bestelregels %}
+					{% for artikel in artikel %}
+					{% for leverancier in leverancier %}
 					<tbody>
-
 						<tr style="background-color: white;">
+						{%if bestelregel.artikelnummer == artikel.artikelnummer%}
+						{%if bestelregel.bestelnummer == leverancier.bestelnummer%}
 							<td>{{ bestelregel.bestelnummer }} </td>
+							<td>{{ leverancier.leverancier}} </td>
 							<td>{{ bestelregel.artikelnummer}} </td>
+							<td>{{ artikel.naam}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 							<td>{{ bestelregel.status}} </td>
-
 							<td><a class="btn btn-success btn-xs" Title="Ontvangst melden"  href="{{ path('meldontvangst', {'id':bestelregel.id}) }}">Ontvangst melden</a></td>
+							{% endif %}
+							{% endif %}
 						</tr>
-
 					</tbody>
+					{% endfor %}
+					{% endfor %}
 					{% endfor %}	
 				</table>
 		</div>
