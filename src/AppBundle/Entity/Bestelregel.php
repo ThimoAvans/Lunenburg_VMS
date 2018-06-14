@@ -15,12 +15,20 @@ class Bestelregel
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="bestelregel")
+     * @ORM\JoinColumn(name="artikelnummer", referencedColumnName="artikelnummer", nullable=true)
+     */
+    private $artikel;
+
 
     /**
      * @var int
@@ -31,15 +39,6 @@ class Bestelregel
      */
     public $bestelnummer;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="artikelnummer", type="integer")
-     *
-     * @ORM\ManyToOne(targetEntity="Artikel", inversedBy="artikelnummer")
-     * @ORM\JoinColumn(name="bestelregels", referencedColumnName="artikelnummer")
-     */
-    public $artikelnummer;
 
     /**
      * @var int
@@ -98,27 +97,27 @@ class Bestelregel
     }
 
     /**
-     * Set artikelnummer
+     * Set artikel
      *
-     * @param integer $artikelnummer
+     * @param integer $artikel
      *
      * @return Bestelregel
      */
-    public function setArtikelnummer($artikelnummer)
+    public function setArtikel($artikel)
     {
-        $this->artikelnummer = $artikelnummer;
+        $this->artikel = $artikel;
     
         return $this;
     }
 
     /**
-     * Get artikelnummer
+     * Get artikel
      *
      * @return integer
      */
-    public function getArtikelnummer()
+    public function getArtikel()
     {
-        return $this->artikelnummer;
+        return $this->artikel;
     }
 
     /**
