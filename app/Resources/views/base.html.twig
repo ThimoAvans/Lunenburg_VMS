@@ -23,10 +23,10 @@
 .navbar {
     position: flex;
 }
-
 </style>
 
 <body>
+    {% for user in users %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="https://www.lunenburg.nu/cms/images/logo-lunenburg.png" width="120" height="30" class="d-inline-block" alt="">
@@ -73,9 +73,9 @@
                     </li>
 
                     <hr/>
-
+                    
                     <li class="nav-item dropdown" style="border-left:1px solid rgba(0, 0, 0, 0.1);height:50px; margin-left: 20px">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welkom</a>
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welkom, {{user.username}}</a>
                         <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">              
                             <a class="dropdown-item" href="{{ path('login') }}"><i class="icon-off"></i> Logout</a>
                         </div>
@@ -84,6 +84,7 @@
             </div>
         </div>
     </nav>
+    {% endfor %}
     {% block body %}
     {% endblock %}
     {% block javascripts %}{% endblock %}
