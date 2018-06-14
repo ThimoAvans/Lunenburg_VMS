@@ -3,64 +3,67 @@
 <style>
 .col-md-12 {
 	display: block;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 2;
-    border-radius: 25px;
-      padding: 10px; 
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 2;
+	border-radius: 25px;
+	padding: 10px; 
 }
-	tr{
-		border: none !important;
-	}
+tr{
+	border: none !important;
+}
 
-	th{
-		border: none !important;
-	}
+th{
+	border: none !important;
+}
 
-	tbody{
-		border: none !important;
-	}
+tbody{
+	border: none !important;
+}
+
 </style>
-<div class="container">
-	<div class="row">
-		
+<body>
+	<div class="container">
+		<div class="row">
 
-		<div class="col-md-12">
-			{% for bestelregel in bestelregels %}
-			{% if loop.first %}
-			<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
-			<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a>
-			{% endif %}
-			{% endfor %}
-			<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
-			<div class="table-responsive">
 
-				<table id="mytable" class="table table-bordred table-striped table-hover">
+			<div class="col-md-12">
+				{% for bestelregel in bestelregels %}
+				{% if loop.first %}
+				<h2>Bestelling #{{ bestelregel.bestelnummer }}</h2>
+				<a class="btn btn-primary overzicht btn-xs" Title="Product toevoegen aan bestelling"  href="{{ path('nieuwebestelregel', {'bestelnummer':bestelregel.bestelnummer}) }}">Product toevoegen</a>
+				{% endif %}
+				{% endfor %}
+				<a class="btn btn-primary btn-xs" Title="Terug naar overzicht"  href="{{ path('allebestellingen') }}">Terug naar overzicht</a><br><br>	
+				<div class="table-responsive">
 
-					<thead>
+					<table id="mytable" class="table table-bordred table-striped table-hover">
 
-						<th>Artikelnummer</th>
-						<th>Artikelnaam</th>
-						<th>Hoeveelheid</th>
-						<th>Status</th>
+						<thead>
 
-					</thead>
-					{% for bestelregel in bestelregels %}
-					{% for artikel in artikel %}
-					<tbody>
-						<tr style="background-color: white;">
+							<th>Artikelnummer</th>
+							<th>Artikelnaam</th>
+							<th>Hoeveelheid</th>
+							<th>Status</th>
 
-							{%if bestelregel.artikelnummer == artikel.artikelnummer%}
-							<td>{{ bestelregel.artikelnummer}} </td>
-							<td>{{ artikel.naam}} </td>
-							<td>{{ bestelregel.hoeveelheid}} </td>
-							<td>{{ bestelregel.status}} </td>
-							{% endif %}
-						</tr>
-					</tbody>
-					{% endfor %}
-					{% endfor %}	
-				</table>
+						</thead>
+						{% for bestelregel in bestelregels %}
+						{% for artikel in artikel %}
+						<tbody>
+							<tr style="background-color: white;">
+
+								{%if bestelregel.artikelnummer == artikel.artikelnummer%}
+								<td>{{ bestelregel.artikelnummer}} </td>
+								<td>{{ artikel.naam}} </td>
+								<td>{{ bestelregel.hoeveelheid}} </td>
+								<td>{{ bestelregel.status}} </td>
+								{% endif %}
+							</tr>
+						</tbody>
+						{% endfor %}
+						{% endfor %}	
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-{% endblock %}
+	</body>
+	{% endblock %}

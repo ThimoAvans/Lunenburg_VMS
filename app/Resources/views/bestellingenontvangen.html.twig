@@ -3,25 +3,24 @@
 <style>
 .col-md-12 {
 	display: block;
-
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 2;
-    border-radius: 25px;
-      padding: 10px; 
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 2;
+	border-radius: 25px;
+	padding: 10px; 
 }
-	tr{
-		border: none !important;
-	}
-	th{
-		border: none !important;
-	}
-	tbody{
-		border: none !important;
-	}
+tr{
+	border: none !important;
+}
+th{
+	border: none !important;
+}
+tbody{
+	border: none !important;
+}
 </style>
 <div class="container">
 	<div class="row">
-		
+
 
 		<div class="col-md-12">
 			<h2>Ontvangen goederen</h2>
@@ -46,8 +45,8 @@
 					{% for leverancier in leverancier %}
 					<tbody>
 						<tr style="background-color: white;">
-						{%if bestelregel.artikelnummer == artikel.artikelnummer%}
-						{%if bestelregel.artikelnummer == leverancier.bestelnummer%}
+							{%if bestelregel.artikelnummer == artikel.artikelnummer%}
+							{%if bestelregel.artikelnummer == leverancier.bestelnummer%}
 							<td>{{ bestelregel.bestelnummer }} </td>
 							<td>{{ leverancier.leverancier}} </td>
 							<td>{{ bestelregel.artikelnummer}} </td>
@@ -63,7 +62,10 @@
 					{% endfor %}
 					{% endfor %}	
 				</table>
+			</div>
 		</div>
 	</div>
+</div>
+
 </div>
 {% endblock %}
