@@ -13,7 +13,6 @@
 	tbody{
 		border: none !important;
 	}
-	
 </style>
 <div class="container">
 	<div class="row">
@@ -34,19 +33,24 @@
 					<thead>
 
 						<th>Artikelnummer</th>
+						<th>Artikelnaam</th>
 						<th>Hoeveelheid</th>
 						<th>Status</th>
 
 					</thead>
 					{% for bestelregel in bestelregels %}
+					{% for artikel in artikel %}
 					<tbody>
-
 						<tr style="background-color: white;">
+
+							{%if bestelregel.artikelnummer == artikel.artikelnummer%}
 							<td>{{ bestelregel.artikelnummer}} </td>
+							<td>{{ artikel.naam}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 							<td>{{ bestelregel.status}} </td>
+							{% endif %}
 						</tr>
-
+						{% endfor %}
 					</tbody>
 					{% endfor %}	
 				</table>

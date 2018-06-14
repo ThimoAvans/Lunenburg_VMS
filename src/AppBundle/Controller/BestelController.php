@@ -105,7 +105,8 @@ class BestelController extends Controller
      */
 	public function bekijkBestelregels(Request $request, $bestelnummer) {
 		$Bestelregels = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByBestelnummer($bestelnummer);
-		return new Response($this->renderview('bestelregel.html.twig', array('bestelregels' => $Bestelregels)));
+		$Artikels = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+		return new Response($this->renderview('bestelregel.html.twig', array('bestelregels' => $Bestelregels, 'artikel'=> $Artikels)));
 	}
 
 	/**
@@ -121,7 +122,9 @@ class BestelController extends Controller
     */
     public function alleOntvangen(request $request) {
         $bestellingenontvangen = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Ontvangen");
-        return new Response($this->renderview('bestellingenontvangen.html.twig', array('bestelregels' => $bestellingenontvangen)));
+        $Artikels = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+        $Leverancier = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->findAll();
+        return new Response($this->renderview('bestellingenontvangen.html.twig', array('bestelregels' => $bestellingenontvangen, 'artikel'=> $Artikels, 'leverancier' => $Leverancier,)));
     }
 
    /**
@@ -129,7 +132,9 @@ class BestelController extends Controller
     */
     public function alleOnderweg(request $request) {
         $bestellingenonderweg = $this->getDoctrine()->getRepository("AppBundle:Bestelregel")->findByStatus("Onderweg");
-        return new Response($this->renderview('bestellingenonderweg.html.twig', array('bestelregels' => $bestellingenonderweg)));
+        $Artikels = $this->getDoctrine()->getRepository("AppBundle:Artikel")->findAll();
+        $Leverancier = $this->getDoctrine()->getRepository("AppBundle:Bestelling")->findAll();
+        return new Response($this->renderview('bestellingenonderweg.html.twig', array('bestelregels' => $bestellingenonderweg, 'artikel'=> $Artikels, 'leverancier' => $Leverancier,)));
     }
 }
 ?>

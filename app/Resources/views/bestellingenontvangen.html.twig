@@ -25,23 +25,33 @@
 					<thead>
 
 						<th>Bestelnummer</th>
+						<th>Leverancier</th>
 						<th>Artikelnummer</th>
+						<th>Artikelnaam</th>
 						<th>Hoeveelheid</th>
 						<th>Status</th>
 						<th>Datum Ontvangst</th>
 
 					</thead>
 					{% for bestelregel in bestelregels %}
+					{% for artikel in artikel %}
+					{% for leverancier in leverancier %}
 					<tbody>
-
 						<tr style="background-color: white;">
+						{%if bestelregel.artikelnummer == artikel.artikelnummer%}
+						{%if bestelregel.artikelnummer == leverancier.bestelnummer%}
 							<td>{{ bestelregel.bestelnummer }} </td>
+							<td>{{ leverancier.leverancier}} </td>
 							<td>{{ bestelregel.artikelnummer}} </td>
+							<td>{{ artikel.naam}} </td>
 							<td>{{ bestelregel.hoeveelheid}} </td>
 							<td>{{ bestelregel.status}} </td>
 							<td>{{ bestelregel.datum_ontvangst}} </td>
+							{% endif %}
+							{% endif %}
+							{% endfor %}
+							{% endfor %}
 						</tr>
-
 					</tbody>
 					{% endfor %}	
 				</table>
