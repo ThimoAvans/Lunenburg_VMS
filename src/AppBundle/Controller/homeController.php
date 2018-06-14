@@ -25,6 +25,6 @@ class homeController extends Controller
     */
     public function getUsers(request $request) {
         $Users = $this->getDoctrine()->getRepository("AppBundle:User")->findAll();
-        return new Response($this->renderview('base.html.twig', array('users' => $Users)));
+        return new Response($this->render('base.html.twig', array('users' => $Users)));
     }
 }
