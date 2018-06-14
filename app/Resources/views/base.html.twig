@@ -62,7 +62,10 @@ body{
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ path('artikelbestand') }}">Artikel overzicht</a>
+                            <!-- alleen beschikbaar voor rol admin, inkoper en verkoper -->
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') or is_granted('ROLE_VERKOPER') %} 
                             <a class="dropdown-item" href="{{ path('artikelarchief') }}">Artikel archief</a>
+                             {% endif %}
                             <!-- alleen beschikbaar voor rol admin en inkoper -->
                         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
                             <a class="dropdown-item" href="{{ path('artikeltoevoegen') }}">Nieuw artikel toevoegen</a>

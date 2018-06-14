@@ -42,6 +42,9 @@ security:
                 check_path: login
 
     access_control:
+        # home path
+        - { path: ^/home, roles: [ROLE_ADMIN, ROLE_INKOPER, ROLE_MAGAZIJNMEESTER, ROLE_VERKOPER] }
+
         # Inkoper path
         - { path: ^/inkoper/*, roles: ROLE_INKOPER }
 
