@@ -28,17 +28,17 @@
 body{
     position: flex;
     background: url('../img/1234.JPG') center no-repeat;
-  font-family: 'Lato', sans-serif;
-  background-size: cover;
+    font-family: 'Lato', sans-serif;
+    background-size: cover;
 
 }
 .col-md-12 {
     display: block;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 2;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 2;
     border-radius: 25px;
-      padding: 10px; 
+    padding: 10px; 
 }
 </style>
 
@@ -63,18 +63,18 @@ body{
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ path('artikelbestand') }}">Artikel overzicht</a>
                             <!-- alleen beschikbaar voor rol admin, inkoper en verkoper -->
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') or is_granted('ROLE_VERKOPER') %} 
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') or is_granted('ROLE_VERKOPER') %} 
                             <a class="dropdown-item" href="{{ path('artikelarchief') }}">Artikel archief</a>
-                             {% endif %}
+                            {% endif %}
                             <!-- alleen beschikbaar voor rol admin en inkoper -->
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
                             <a class="dropdown-item" href="{{ path('artikeltoevoegen') }}">Nieuw artikel toevoegen</a>
                             {% endif %}
                         </div>
                     </li>
 
                     <!-- alleen beschikbaar voor rol admin en inkoper -->
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %} 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Bestelling
@@ -87,7 +87,7 @@ body{
                     </li>
                     {% endif %}
 
-<!-- alleen beschikbaar voor rol admin en magazijnmeester -->
+                    <!-- alleen beschikbaar voor rol admin en magazijnmeester -->
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MAGAZIJNMEESTER') %} 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,6 +106,10 @@ body{
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welkom</a>
                         <div class="dropdown-menu" ria-labelledby="navbarDropdownMenuLink">              
                             <a class="dropdown-item" href="{{ path('login') }}"><i class="icon-off"></i> Logout</a>
+                            <!-- alleen beschikbaar voor rol admin -->
+                            {% if is_granted('ROLE_ADMIN') %} 
+                            <a class="dropdown-item" href="{{ path('user_registration') }}"><i class="icon-off"></i> Registreren</a>
+                            {% endif %}    
                         </div>
                     </li>
                 </ul>
@@ -113,7 +117,7 @@ body{
         </div>
     </nav>
 </body>
-    {% block body %}
-    {% endblock %}
-    {% block javascripts %}{% endblock %}
+{% block body %}
+{% endblock %}
+{% block javascripts %}{% endblock %}
 </html>
