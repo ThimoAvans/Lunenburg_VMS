@@ -25,11 +25,11 @@ border: none !important;
 <div class="col-md-12">
 <h2>Artikelen overzicht</h2>
 
-<div class="input-group" style="margin:0 auto;width: 30%; float:left;">
+<div class="input-group" style="margin:0 auto;width: 30%; float:center;">
 <span class="input-group-addon" id="basic-addon1" style="    width: 35px;
 "><i class="glyphicon glyphicon-search"></i></span>
 <input type="text" class="form-control" placeholder="Zoeken" onkeyup="myFunction()" id="searchbar" aria-describedby="basic-addon1">
-</div><br><br><br><br>
+</div><br><br>
 <script>
 function myFunction() {
 // Declare variables
@@ -90,6 +90,15 @@ tr[i].style.display = "none";
 			<th>Minimum voorraad</th>
 			<th>Bestel- serie</th>
 			<th>Vervangend artikel</th>
+			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VERKOPER') %}
+			<th>Reserveer artikel</th>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') or is_granted('ROLE_MAGAZIJNMEESTER') %}
+			<th>Wijzig artikel</th>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INKOPER') %}
+			<th>Verwijder artikel</th>
+			{% endif %}
 		</thead>
 
 		{% for artikel in artikelen %}
