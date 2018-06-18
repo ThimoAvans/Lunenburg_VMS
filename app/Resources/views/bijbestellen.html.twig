@@ -3,21 +3,22 @@
 <style>
 .col-md-12 {
 	display: block;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 2;
-    border-radius: 25px;
-      padding: 10px; 
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 2;
+	border-radius: 25px;
+	padding: 10px; 
 }
-	tr{
-		border: none !important;
-	}
-	th{
-		border: none !important;
-	}
-	tbody{
-		border: none !important;
-	}
+tr{
+	border: none !important;
+}
+th{
+	border: none !important;
+}
+tbody{
+	border: none !important;
+}
 </style>
+
 <div class="container">
 	<div class="row">
 		
@@ -25,30 +26,30 @@
 		<div class="col-md-12">
 			<h2>Goederen die besteld moeten worden</h2>
 
-				{% set gevonden = false %}
+			{% set gevonden = false %}
 
-	{% for minimumvoorraad in minimumvoorraad %}
-		{% if(minimumvoorraad.bestelserie > 0) %}
+			{% for minimumvoorraad in minimumvoorraad %}
+			{% if(minimumvoorraad.bestelserie > 0) %}
 			{% set gevonden = true %}
-		{% endif %}
-		{% endfor %}
-	{% if gevonden == true %}
-		<div class = "container">
-		<div class ="alert alert-danger">
-		<div class="text-center">
-			<strong> Er is te weinig op voorraad. Er moeten artikelen besteld worden!</strong><a href="{{ path('artikelMinimumvoorraad')}}</a>
-	</div>
-	</div>
-	</div>
-		{% endif %}
+			{% endif %}
+			{% endfor %}
+			{% if gevonden == true %}
+			<div class = "container">
+				<div class ="alert alert-danger">
+					<div class="text-center">
+						<strong> Er is te weinig op voorraad. Er moeten artikelen besteld worden!</strong><a href="{{ path('artikelMinimumvoorraad')}}</a>
+						</div>
+					</div>
+				</div>
+				{% endif %}
 
-			<div class="table-responsive">
+				<div class="table-responsive">
 
-				<table id="mytable" class="table table-bordred table-striped table-hover">
+					<table id="mytable" class="table table-bordred table-striped table-hover">
 
-					<thead>
+						<thead>
 
-						    <th>Artikelnummer</th>
+							<th>Artikelnummer</th>
 							<th>Naam</th>
 							<th>Omschrijving</th>
 							<th>Magazijn- locatie</th>
@@ -57,30 +58,30 @@
 							<th>Minimum voorraad</th>
 							<th>Bestelserie</th>
 
-					</thead>
-					{% for minimumvoorraad in minimumvoorraad %}
-					<tbody>
+						</thead>
+						{% for minimumvoorraad in minimumvoorraad %}
+						<tbody>
 
-						<tr style="background-color: white;">
+							<tr style="background-color: white;">
 
-							{% if minimumvoorraad.bestelserie >0 %}
-							<td>{{ minimumvoorraad.artikelnummer }} </td>
-							<td>{{ minimumvoorraad.naam}} </td>
-							<td>{{ minimumvoorraad.omschrijving}} </td>
-							<td>{{ minimumvoorraad.magazijnlocatie}} </td>
-							<td>€{{minimumvoorraad.inkoopprijs}} </td>
-							<td>{{ minimumvoorraad.huidigevoorraad}} </td>
-							<td>{{ minimumvoorraad.minimumvoorraad}} </td>
-							<td>{{ minimumvoorraad.bestelserie}} </td>
-							{% endif %}
+								{% if minimumvoorraad.bestelserie >0 %}
+								<td>{{ minimumvoorraad.artikelnummer }} </td>
+								<td>{{ minimumvoorraad.naam}} </td>
+								<td>{{ minimumvoorraad.omschrijving}} </td>
+								<td>{{ minimumvoorraad.magazijnlocatie}} </td>
+								<td>€{{minimumvoorraad.inkoopprijs}} </td>
+								<td>{{ minimumvoorraad.huidigevoorraad}} </td>
+								<td>{{ minimumvoorraad.minimumvoorraad}} </td>
+								<td>{{ minimumvoorraad.bestelserie}} </td>
+								{% endif %}
 
 
-						</tr>
+							</tr>
 
-					</tbody>
-					{% endfor %}	
-				</table>
+						</tbody>
+						{% endfor %}	
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-{% endblock %}
+		{% endblock %}

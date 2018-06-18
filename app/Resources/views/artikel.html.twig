@@ -2,36 +2,36 @@
 {% block body %}
 <style>
 tr{
-border: none !important;
+	border: none !important;
 }
 th{
-border: none !important;
+	border: none !important;
 }
 tbody{
-border: none !important;
+	border: none !important;
 }
 .col-md-12 {
 	display: block;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 2;
-    border-radius: 25px;
-      padding: 10px; 
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 2;
+	border-radius: 25px;
+	padding: 10px; 
 }
 </style>
 
 <div class="container">
-<div class="row">
-<div class="col-md-12">
-<h2>Artikelen overzicht</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Artikelen overzicht</h2>
 
-<div class="input-group" style="margin:0 auto;width: 30%; float:center;">
-<span class="input-group-addon" id="basic-addon1" style="    width: 35px;
-"><i class="glyphicon glyphicon-search"></i></span>
-<input type="text" class="form-control" placeholder="Zoeken" onkeyup="myFunction()" id="searchbar" aria-describedby="basic-addon1">
-</div><br><br>
-<script>
-function myFunction() {
+			<div class="input-group" style="margin:0 auto;width: 30%; float:center;">
+				<span class="input-group-addon" id="basic-addon1" style="    width: 35px;
+				"><i class="glyphicon glyphicon-search"></i></span>
+				<input type="text" class="form-control" placeholder="Zoeken" onkeyup="myFunction()" id="searchbar" aria-describedby="basic-addon1">
+			</div><br><br>
+			<script>
+				function myFunction() {
 // Declare variables
 var input, filter, table, tr, td, i;
 input = document.getElementById("searchbar");
@@ -41,32 +41,32 @@ tr = table.getElementsByTagName("tr");
 
 // Loop through all table rows, and hide those who don't match the search query
 for (i = 0; i < tr.length; i++) {
-td1 = tr[i].getElementsByTagName("td")[0];
-td2 = tr[i].getElementsByTagName("td")[1];
-td3 = tr[i].getElementsByTagName("td")[2];
-td4 = tr[i].getElementsByTagName("td")[3];
-td5 = tr[i].getElementsByTagName("td")[4];
-td6 = tr[i].getElementsByTagName("td")[5];
-td7 = tr[i].getElementsByTagName("td")[6];
-td8 = tr[i].getElementsByTagName("td")[7];
-td9 = tr[i].getElementsByTagName("td")[8];
-td10 = tr[i].getElementsByTagName("td")[9];
-if (td1 || td2 ||td3) {
-if (    td1.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td2.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td3.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td4.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td5.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td6.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td7.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td8.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td9.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-td10.innerHTML.toUpperCase().indexOf(filter) > -1
-) {
-tr[i].style.display = "";
-} else {
-tr[i].style.display = "none";
-}
+	td1 = tr[i].getElementsByTagName("td")[0];
+	td2 = tr[i].getElementsByTagName("td")[1];
+	td3 = tr[i].getElementsByTagName("td")[2];
+	td4 = tr[i].getElementsByTagName("td")[3];
+	td5 = tr[i].getElementsByTagName("td")[4];
+	td6 = tr[i].getElementsByTagName("td")[5];
+	td7 = tr[i].getElementsByTagName("td")[6];
+	td8 = tr[i].getElementsByTagName("td")[7];
+	td9 = tr[i].getElementsByTagName("td")[8];
+	td10 = tr[i].getElementsByTagName("td")[9];
+	if (td1 || td2 ||td3) {
+		if (    td1.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td2.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td3.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td4.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td5.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td6.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td7.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td8.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td9.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+			td10.innerHTML.toUpperCase().indexOf(filter) > -1
+			) {
+			tr[i].style.display = "";
+	} else {
+		tr[i].style.display = "none";
+	}
 }
 }
 }
@@ -75,7 +75,7 @@ tr[i].style.display = "none";
 <div class="table-responsive">
 
 
-<table id="mytable" class="table">
+	<table id="mytable" class="table">
 
 		<thead>
 			<th>Artikel- nummer</th>
@@ -122,22 +122,22 @@ tr[i].style.display = "none";
 
 			<td> {{ artikel.vervangendArtikel }} </td>
 
-	{% if is_granted('ROLE_ADMIN') %}
-		<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
-		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
-	{% elseif is_granted('ROLE_INKOPER') %}
-		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen2', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-		<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
-	{% elseif is_granted('ROLE_MAGAZIJNMEESTER') %}
-		<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen3', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
-	{% elseif is_granted('ROLE_VERKOPER') %}
-		<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
-	{% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+			<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
+			<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+			<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
+			{% elseif is_granted('ROLE_INKOPER') %}
+			<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen2', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+			<td> <a class="btn btn-danger btn-xs" Title="Artikel verwijderen"  href="{{ path('artikelarchiveren', {'artikelnummer':artikel.artikelnummer}) }}"onclick="return confirm('Weet u zeker dat u dit artikel wilt verwijderen?');">Verwijder</a></td>
+			{% elseif is_granted('ROLE_MAGAZIJNMEESTER') %}
+			<td><a class="btn btn-primary btn-xs" Title="Artikel wijzigen"  href="{{ path('artikelwijzigen3', {'artikelnummer':artikel.artikelnummer}) }}">Wijzig</a></td>
+			{% elseif is_granted('ROLE_VERKOPER') %}
+			<td><a class="btn btn-primary btn-xs" Title="Reserveer dit artikel"  href="{{ path('artikelreserveren', {'artikelnummer':artikel.artikelnummer}) }}">Reserveer</a></td>
+			{% endif %}
 
-</tr>
-</tbody>
-{% endfor %}	
+		</tr>
+	</tbody>
+	{% endfor %}	
 
 </table>
 </div>

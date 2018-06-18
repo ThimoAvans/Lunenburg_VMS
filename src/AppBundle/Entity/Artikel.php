@@ -138,20 +138,6 @@ class Artikel
 
 
     /**
-     * Set artikelnummer
-     *
-     * @param integer $artikelnummer
-     *
-     * @return Artikel
-     */
-    public function setArtikelnummer($artikelnummer)
-    {
-        $this->artikelnummer = $artikelnummer;
-
-        return $this;
-    }
-
-    /**
      * Get artikelnummer
      *
      * @return int

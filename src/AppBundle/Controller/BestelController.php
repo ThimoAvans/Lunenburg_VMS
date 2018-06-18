@@ -1,6 +1,7 @@
 <?php
-//Namespace en uses, mag je vergeten. Moet er wel in staan!
+
 namespace AppBundle\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,6 +10,7 @@ use AppBundle\Entity\Bestelling;
 use AppBundle\Form\Type\BestellingType;
 use AppBundle\Entity\Bestelregel;
 use AppBundle\Form\Type\BestelregelType;
+
 
 class BestelController extends Controller
 {	

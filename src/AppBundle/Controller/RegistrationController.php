@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Marice
- * Date: 26-05-18
- * Time: 14:00
- */
 
-// src/AppBundle/Controller/RegistrationController.php
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\UserType;
